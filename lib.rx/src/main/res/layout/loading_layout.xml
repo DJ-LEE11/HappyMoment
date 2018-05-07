@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/layout_allFilled_style"
+    android:background="@color/colorWindowBackground"
+    android:padding="@dimen/layout_Margin_10" >
+
+    <LinearLayout
+        style="@style/layout_allWraped_style"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/avi"
+            style="@style/AVLoadingIndicatorView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="@dimen/layout_Margin_5"/>
+
+        <TextView
+            android:id="@+id/tvLoading"
+            style="@style/item_tv_third_style"
+            android:gravity="center"
+            android:singleLine="false"
+            android:text="没有找到"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 通用布局 -->
+
+    <style name="layout_allFilled_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="layout_allWraped_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="item_tv_third_style" parent="@style/layout_allWraped_style">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">#f2f2f2</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:singleLine">true</item>
+    </style>
+</resources>

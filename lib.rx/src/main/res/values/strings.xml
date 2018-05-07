@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">lib.rx</string>
+    <string name="error_network">网络出问题了~请您查看网络设置\n点击屏幕，重新加载</string>
+</resources>
