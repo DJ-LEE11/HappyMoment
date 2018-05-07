@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ToolBar菜单样式 -->
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="actionMenuTextColor">#FF4081</item> <!--颜色-->
+        <item name="android:textSize">18dp</item> <!--字体大小-->
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="line_style">
+        <item name="android:background">#f1f2f5</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <!--toolbar下拉菜单图标-->
+    <style name="item_img_style">
+        <item name="android:layout_width">25dp</item>
+        <item name="android:layout_height">25dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="item_tv_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">#55606F</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColorHint">#A8B4C4</item>
+    </style>
+
+    <style name="item_tv_forth_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">#A8B4C4</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:singleLine">true</item>
+    </style>
+</resources>

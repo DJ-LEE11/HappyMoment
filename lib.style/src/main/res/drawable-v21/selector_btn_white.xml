@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/line_color1">
+    <item>
+        <selector>
+            <item android:state_pressed="true">
+                <shape>
+                    <size
+                        android:width="100dp"
+                        android:height="42dp" />
+                    <corners android:radius="@dimen/btn_corner_radius" />
+                    <stroke
+                        android:width="0.5dp"
+                        android:color="@color/btn_color_white_pressed" />
+                    <!-- 实心    -->
+                    <solid android:color="@color/btn_color_white_pressed" />
+                </shape>
+            </item>
+            <item android:state_focused="true">
+                <shape>
+                    <size
+                        android:width="100dp"
+                        android:height="42dp" />
+                    <corners android:radius="@dimen/btn_corner_radius" />
+                    <stroke
+                        android:width="0.5dp"
+                        android:color="@color/btn_color_white_pressed" />
+                    <!-- 实心    -->
+                    <solid android:color="@color/btn_color_white_pressed" />
+                </shape>
+            </item>
+            <item android:state_enabled="false">
+                <shape>
+                    <size
+                        android:width="100dp"
+                        android:height="42dp" />
+                    <corners android:radius="@dimen/btn_corner_radius" />
+                    <stroke
+                        android:width="0.5dp"
+                        android:color="@color/btn_color_white_disable" />
+                    <!-- 实心    -->
+                    <solid android:color="@color/btn_color_white_disable" />
+                </shape>
+            </item>
+            <item>
+                <shape>
+                    <size
+                        android:width="100dp"
+                        android:height="42dp" />
+                    <corners android:radius="@dimen/btn_corner_radius" />
+                    <stroke
+                        android:width="0.5dp"
+                        android:color="@color/btn_color_white_normal" />
+                    <!-- 实心    -->
+                    <solid android:color="@color/btn_color_white_normal" />
+                </shape>
+            </item>
+        </selector>
+    </item>
+</ripple>

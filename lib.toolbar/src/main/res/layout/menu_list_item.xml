@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/item_layout"
+    android:background="@null"
+    android:layout_height="42dp"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/layout_Margin_10">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/imgItem"
+            style="@style/item_img_style"
+            android:layout_marginBottom="@dimen/layout_Margin_10"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="@dimen/layout_Margin_10"
+            android:src="@mipmap/ic_checkbox_pressed"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutContent"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvItemName"
+            style="@style/item_tv_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="标题标题"
+            android:textColor="@color/text_color_01"
+            android:textSize="@dimen/text_size_14" />
+
+
+        <TextView
+            android:id="@+id/tvItemDesc"
+            style="@style/item_tv_forth_style"
+            android:layout_width="match_parent"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="@dimen/layout_Margin_10"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+
+        <ImageView
+            android:id="@+id/setting_item_dots_img"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:background="@drawable/dots_red"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</LinearLayout>

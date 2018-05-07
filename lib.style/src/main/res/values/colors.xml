@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="barChartBarColor">#9391FC</color>
+    <color name="barChartLineColor">#F1F3F5</color>
+    <color name="barChartTextNormalColor">#A8B4C4</color>
+    <color name="barChartTextSelectedColor">#55606F</color>
+    <color name="white_color">#FFFFFF</color>
+    <color name="colorWindowBackground">#f2f2f2</color>
+    <!-- 分割线 -->
+    <color name="line_color1">#f1f2f5</color>
+    <color name="line_color2">#D8D8D8</color>
+    <color name="line_color3">#D6DEE7</color>
+
+    <!-- 一号字体颜色 -->
+    <color name="text_color_01">#55606F</color>
+    <!-- 其他字体颜色 -->
+    <color name="text_color_02">#A8B4C4</color>
+    <color name="text_color_03">#9391FC</color>
+    <color name="text_color_04">#FF2366</color>
+    <color name="text_color_05">#ACB3BD</color>
+    <color name="text_color_06">#858D9C</color>
+    <color name="text_color_07">#979EA8</color>
+
+    <!-- 按钮颜色 橙色系 -->
+    <color name="btn_color_normal">#FF793F</color>
+    <color name="btn_color_pressed">#E46128</color>
+    <color name="btn_color_disable">#CCCCCC</color>
+
+    <!-- 按钮颜色 白色系 -->
+    <color name="btn_color_white_normal">#FFFFFF</color>
+    <color name="btn_color_white_pressed">#e5e5e5</color>
+    <color name="btn_color_white_disable">#CCCCCC</color>
+
+    <!-- 按钮字体颜色 -->
+    <color name="btn_text_normal_color">#5F5858</color>
+    <color name="btn_text_enable_color">#ffffff</color>
+    
+    <!-- 主题色 -->
+    <color name="theme_color1">#7c75f0</color>
+    <color name="theme_color2">#6b65d6</color>
+    <color name="theme_color3">#A8B4C4</color>
+
+    <!-- 天成我才主题色 -->
+    <color name="cyan">#37E4E6</color>
+    <color name="cyan_gradient_start_normal">#03DCE1</color>
+    <color name="cyan_gradient_start_press">#00a6aa</color>
+    <color name="cyan_gradient_center_normal">#3ed4d2</color>
+    <color name="cyan_gradient_center_press">#28bebc</color>
+    <color name="cyan_gradient_end_normal">#78e1db</color>
+    <color name="cyan_gradient_end_press">#56d1ca</color>
+    <!-- Toolbar字体颜色 -->
+    <color name="toolbar_title_color">#ffffff</color>
+
+    <!-- PopupWindow半透明的背景色 -->
+    <color name="pop_half_transparent">#26000000</color>
+
+    <color name="order_purple_btn">#9391FC</color>
+
+    <color name="group_unselector_text_color">#A8B4C5</color>
+
+    <color name="grgray">#686868</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="team_blue">#57B1FA</color>
+    <color name="team_blue_gradient_1">#7fbbec</color>
+    <color name="team_blue_gradient_2">#e2effa</color>
+    <color name="team_red">#FFF76079</color>
+    <color name="team_red_gradient_1">#ef9ba9</color>
+    <color name="team_red_gradient_2">#f7e4e7</color>
+    <color name="team_yellow">#FFF6E347</color>
+    <color name="team_yellow_gradient_1">#fcf2a4</color>
+    <color name="team_yellow_gradient_2">#f9f6e4</color>
+    <color name="team_green">#FF70DD83</color>
+    <color name="team_green_gradient_1">#b3f2be</color>
+    <color name="team_green_gradient_2">#dbf4df</color>
+
+    <color name="zombie_player_color1">#FFF17F9C</color>
+    <color name="zombie_player_color2">#FFFDB379</color>
+
+    <color name="color_date_time_picked">#55606F</color>
+    <color name="color_date_time_unpick">#A8B4C4</color>
+
+</resources>

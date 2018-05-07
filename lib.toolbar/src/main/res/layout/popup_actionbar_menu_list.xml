@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pop_half_transparent">
+
+    <AutoCompleteTextView
+        android:id="@+id/lvMenu"
+        android:layout_marginRight="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right"
+        android:background="@mipmap/bg_menu"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@drawable/divider_with_double_side_padding"
+        android:dividerHeight="0.5dp"
+        android:listSelector="?attr/selectableItemBackground"
+        tools:listitem="@layout/menu_list_item" />
+</FrameLayout>

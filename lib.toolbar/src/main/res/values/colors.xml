@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="barChartBarColor">#9391FC</color>
+    <color name="barChartLineColor">#F1F3F5</color>
+    <color name="barChartTextNormalColor">#A8B4C4</color>
+    <color name="barChartTextSelectedColor">#55606F</color>
+    <color name="white_color">#FFFFFF</color>
+    <color name="colorWindowBackground">#f2f2f2</color>
+    <!-- 分割线 -->
+    <color name="line_color1">#f1f2f5</color>
+    <color name="line_color2">#D8D8D8</color>
+    <color name="line_color3">#D6DEE7</color>
+
+    <!-- 一号字体颜色 -->
+    <color name="text_color_01">#55606F</color>
+    <!-- 其他字体颜色 -->
+    <color name="text_color_02">#A8B4C4</color>
+    <color name="text_color_03">#9391FC</color>
+    <color name="text_color_04">#FF2366</color>
+    <color name="text_color_05">#ACB3BD</color>
+    <color name="text_color_06">#858D9C</color>
+    <color name="text_color_07">#979EA8</color>
+    <!-- Toolbar字体颜色 -->
+    <color name="toolbar_title_color">#ffffff</color>
+
+    <!-- 按钮颜色 白色系 -->
+    <color name="btn_color_white_normal">#FFFFFF</color>
+    <color name="btn_color_white_pressed">#e5e5e5</color>
+    <color name="btn_color_white_disable">#CCCCCC</color>
+    <!-- PopupWindow半透明的背景色 -->
+    <color name="pop_half_transparent">#26000000</color>
+</resources>
