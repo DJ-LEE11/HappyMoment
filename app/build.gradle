@@ -13,6 +13,17 @@ android {
             //设置支持的SO库架构
             abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
         }
+        multiDexEnabled true
+    }
+
+    //签名
+    signingConfigs {
+        config {
+            keyAlias 'key0'
+            keyPassword 'hm123456'
+            storeFile file('HappyMoment.jks')
+            storePassword 'hm123456'
+        }
     }
 
     buildTypes {
@@ -28,6 +39,7 @@ android {
             buildConfigField "String", "SinaKey", "\"2386491813\""
             buildConfigField "String", "SinaSecret", "\"51d51981f67b237bc3470ec97cfa8411\""
             minifyEnabled false
+            signingConfig signingConfigs.config
             manifestPlaceholders = [
                     BaiDu_AppKey: "N9dgGGB6sOdt89tPY0tCMcOR1ww8B3Zn",
                     UMENG_APPKEY: "5a139e128f4a9d4e4400005f"
@@ -47,6 +59,7 @@ android {
             buildConfigField "String", "SinaSecret", "\"51d51981f67b237bc3470ec97cfa8411\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
             manifestPlaceholders = [
                     BaiDu_AppKey: "N9dgGGB6sOdt89tPY0tCMcOR1ww8B3Zn",
                     UMENG_APPKEY: "5a139e128f4a9d4e4400005f"
@@ -76,4 +89,16 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation rootProject.ext.dependencies.appcompatV7
     implementation rootProject.ext.dependencies.supportV4
+    implementation rootProject.ext.dependencies.design
+    implementation rootProject.ext.dependencies.cardview
+    implementation rootProject.ext.dependencies.recyclerview
+    implementation rootProject.ext.dependencies.BaseRecyclerViewAdapterHelper
+    implementation rootProject.ext.dependencies.ButterKnife
+    annotationProcessor rootProject.ext.dependencies.ButterKnifeCompiler
+    implementation rootProject.ext.dependencies.FlycoTabLayout
+    implementation rootProject.ext.dependencies.nineoldandroids
+    implementation rootProject.ext.dependencies.FlycoRoundView
+    implementation rootProject.ext.dependencies.MultiDex
+    implementation rootProject.ext.dependencies.SmartRefreshLayout
+    implementation rootProject.ext.dependencies.SmartRefreshHeader
 }
