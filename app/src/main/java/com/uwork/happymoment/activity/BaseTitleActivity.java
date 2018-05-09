@@ -66,7 +66,7 @@ public abstract class BaseTitleActivity extends BaseActivity {
 
     //返回
     protected void setBackClick(){
-        mToolbarTitle.initBackClick(R.mipmap.ic_back, new View.OnClickListener() {
+        mToolbarTitle.initBackClick(R.mipmap.ic_back_black, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
@@ -75,7 +75,7 @@ public abstract class BaseTitleActivity extends BaseActivity {
     }
 
     protected void setBackClick(View.OnClickListener navigationOnClickListener){
-        mToolbarTitle.initBackClick(R.mipmap.ic_back, navigationOnClickListener);
+        mToolbarTitle.initBackClick(R.mipmap.ic_back_black, navigationOnClickListener);
     }
 
     protected void setBackClick(int resLeft , View.OnClickListener navigationOnClickListener){

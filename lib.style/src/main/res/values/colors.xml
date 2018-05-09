@@ -8,12 +8,12 @@
     <color name="text_color_01">#55606F</color>
     <color name="text_color_02">#858D9C</color>
     <color name="text_color_03">#A8B4C4</color>
-    <color name="text_color_theme">#ca9614</color>
+    <color name="text_color_theme">#ffca00</color>
     <color name="text_color_red">#bc001b</color>
 
     <!-- 按钮颜色 主题色系 -->
-    <color name="btn_color_normal">#ca9614</color>
-    <color name="btn_color_pressed">#b07f04</color>
+    <color name="btn_color_normal">#ffca00</color>
+    <color name="btn_color_pressed">#e1af29</color>
     <color name="btn_color_disable">#CCCCCC</color>
 
     <!-- 按钮颜色 白色系 -->
@@ -26,6 +26,6 @@
     <color name="btn_text_enable_color">#ffffff</color>
     
     <!-- 主题色 -->
-    <color name="theme_color">#ca9614</color>
+    <color name="theme_color">#ffca00</color>
 
 </resources>

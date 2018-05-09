@@ -30,8 +30,8 @@ android {
         debug {
             buildConfigField "boolean", "isDebug", "true"
             buildConfigField "String", "API_BASE_URL", "\"http://lbs-app-backend-test.obaymax.com/\""
-            buildConfigField "String", "phone", "\"\""
-            buildConfigField "String", "password", "\"\""
+            buildConfigField "String", "phone", "\"18825098496\""
+            buildConfigField "String", "password", "\"123456\""
             buildConfigField "String", "WechatId", "\"wx8ef894482cffe864\""
             buildConfigField "String", "WechatSecret", "\"90c9f79675342ba29d7889befc99861a\""
             buildConfigField "String", "QQId", "\"1106477543\""

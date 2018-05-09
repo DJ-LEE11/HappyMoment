@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">HappyMoment</string>
+
+    <string-array name="bottom_menu">
+        <item>幸福+</item>
+        <item>幸福时刻</item>
+        <item></item>
+        <item>桃园客栈</item>
+        <item>我的</item>
+    </string-array>
+
+    <string-array name="login_register_tab">
+        <item>登录</item>
+        <item>注册</item>
+    </string-array>
 </resources>

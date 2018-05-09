@@ -13,9 +13,6 @@ public class UserManager {
 	public static final String RONGIM_TOKEN = "RONGIM_TOKEN";
 	public static final String PHONE = "PHONE";
 	public static final String PHOTO = "PHOTO";
-	public static final String NICK_NAME = "NICK_NAME";
-	public static final String SEX = "SEX";
-	public static final String AGE = "AGE";
 	public static final String USER = "USER";
 
 
@@ -79,11 +76,11 @@ public class UserManager {
 	 * @param context
 	 * @return
 	 */
-	public String getUserId(Context context) {
+	public int getUserId(Context context) {
 		if (mSharedFileUtils == null){
 			mSharedFileUtils = new SharedFileUtils(context);
 		}
-		return mSharedFileUtils.getString(USER_ID);
+		return mSharedFileUtils.getInt(USER_ID);
 	}
 
 	/**
@@ -91,11 +88,11 @@ public class UserManager {
 	 * @param context
 	 * @param userId
 	 */
-	public void saveUserId(Context context, String userId) {
+	public void saveUserId(Context context, int userId) {
 		if (mSharedFileUtils == null){
 			mSharedFileUtils = new SharedFileUtils(context);
 		}
-		mSharedFileUtils.putString(USER_ID,userId);
+		mSharedFileUtils.putInt(USER_ID,userId);
 	}
 
 	/**
@@ -170,77 +167,7 @@ public class UserManager {
 		mSharedFileUtils.putString(PHOTO,photo);
 	}
 
-	/**
-	 * 获取用户昵称
-	 * @param context
-	 * @return
-	 */
-	public String getNickName(Context context) {
-		if (mSharedFileUtils == null){
-			mSharedFileUtils = new SharedFileUtils(context);
-		}
-		return mSharedFileUtils.getString(NICK_NAME);
-	}
 
-	/**
-	 * 保存用户昵称
-	 * @param context
-	 * @param nickName
-	 */
-	public void saveNickName(Context context, String nickName) {
-		if (mSharedFileUtils == null){
-			mSharedFileUtils = new SharedFileUtils(context);
-		}
-		mSharedFileUtils.putString(NICK_NAME,nickName);
-	}
-
-	/**
-	 * 获取用户性别
-	 * @param context
-	 * @return
-	 */
-	public int getSex(Context context) {
-		if (mSharedFileUtils == null){
-			mSharedFileUtils = new SharedFileUtils(context);
-		}
-		return mSharedFileUtils.getInt(SEX);
-	}
-
-	/**
-	 * 保存用户性别
-	 * @param context
-	 * @param sex
-	 */
-	public void saveSex(Context context, int sex) {
-		if (mSharedFileUtils == null){
-			mSharedFileUtils = new SharedFileUtils(context);
-		}
-		mSharedFileUtils.putInt(SEX,sex);
-	}
-
-	/**
-	 * 获取用户年龄
-	 * @param context
-	 * @return
-	 */
-	public int getAge(Context context) {
-		if (mSharedFileUtils == null){
-			mSharedFileUtils = new SharedFileUtils(context);
-		}
-		return mSharedFileUtils.getInt(AGE);
-	}
-
-	/**
-	 * 保存用户年龄
-	 * @param context
-	 * @param age
-	 */
-	public void saveAge(Context context, int age) {
-		if (mSharedFileUtils == null){
-			mSharedFileUtils = new SharedFileUtils(context);
-		}
-		mSharedFileUtils.putInt(AGE,age);
-	}
 
 	/**
 	 * 保存用户
@@ -266,14 +193,11 @@ public class UserManager {
 	 *保存用户信息
 	 */
 	public void saveUserInfo(Context context, UserBean userBean){
-		saveToken(context,userBean.getAccessToken());
-		saveRongIMToken(context,userBean.getRongIMToken());
+		saveToken(context,userBean.getToken());
+		saveRongIMToken(context,userBean.getImtoken());
 		saveUserId(context,userBean.getId());
-		savePhone(context,userBean.getMobile());
-		saveHeader(context,userBean.getPhoto());
-		saveNickName(context,userBean.getNickname());
-		saveSex(context,userBean.getSex());
-		saveAge(context,userBean.getAge());
+		savePhone(context,userBean.getPhone());
+		saveHeader(context,userBean.getAvatar());
 		saveUser(context,userBean);
 	}
 
@@ -281,12 +205,10 @@ public class UserManager {
 	 * 保存用户信息（Token除外）
 	 */
 	public void saveUserInfoBesidesToken(Context context, UserBean userBean){
+		saveRongIMToken(context,userBean.getImtoken());
 		saveUserId(context,userBean.getId());
-		savePhone(context,userBean.getMobile());
-		saveHeader(context,userBean.getPhoto());
-		saveNickName(context,userBean.getNickname());
-		saveSex(context,userBean.getSex());
-		saveAge(context,userBean.getAge());
+		savePhone(context,userBean.getPhone());
+		saveHeader(context,userBean.getAvatar());
 		saveUser(context,userBean);
 	}
 
@@ -303,9 +225,6 @@ public class UserManager {
 		mSharedFileUtils.remove(RONGIM_TOKEN);
 		mSharedFileUtils.remove(PHONE);
 		mSharedFileUtils.remove(PHOTO);
-		mSharedFileUtils.remove(NICK_NAME);
-		mSharedFileUtils.remove(SEX);
-		mSharedFileUtils.remove(AGE);
 		mSharedFileUtils.remove(USER);
 		HTTPInterceptor.setToken("");
 	}
