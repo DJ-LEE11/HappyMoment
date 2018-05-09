@@ -1,5 +1,6 @@
 <resources>
 
+    <dimen name="line_height">0.5dp</dimen>
     <dimen name="layout_Margin_5">5dip</dimen>
     <dimen name="layout_Margin_8">8.0dip</dimen>
     <dimen name="layout_Margin_9">9.0dip</dimen>
@@ -8,10 +9,6 @@
     <dimen name="layout_Margin_20">20.0dip</dimen>
     <dimen name="layout_Margin_25">25.0dip</dimen>
     <dimen name="layout_Margin_30">30.0dip</dimen>
-
-    <dimen name="lableLayout_Height_36">36.0sp</dimen>
-    <dimen name="titlebarBtn_Height">45.0dip</dimen>
-
     <!-- 四类字体大小 -->
     <dimen name="text_size_20">20dp</dimen>
     <dimen name="text_size_18">18dp</dimen>
@@ -23,18 +20,4 @@
     <dimen name="text_size_10">10dp</dimen>
     <!-- 按钮圆角 -->
     <dimen name="btn_corner_radius">2dp</dimen>
-    <dimen name="btn_height">45dp</dimen>
-    <!-- 弹窗圆角 -->
-    <dimen name="dialog_corner_radius">8dp</dimen>
-    <dimen name="input_corner_radius">10dp</dimen>
-    <dimen name="activity_horizontal_margin">10dp</dimen>
-    <dimen name="activity_vertical_margin">10dp</dimen>
-    <dimen name="padding">10dp</dimen>
-    <!-- 错误图片宽高 -->
-    <dimen name="error_img_width">100dp</dimen>
-    <dimen name="error_img_height">100dp</dimen>
-    <dimen name="loading_img_width">50dp</dimen>
-    <dimen name="loading_img_height">50dp</dimen>
-    <dimen name="line_height">0.5dp</dimen>
-
 </resources>

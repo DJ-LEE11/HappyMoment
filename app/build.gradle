@@ -17,14 +17,14 @@ android {
     }
 
     //签名
-    signingConfigs {
-        config {
-            keyAlias 'key0'
-            keyPassword 'hm123456'
-            storeFile file('HappyMoment.jks')
-            storePassword 'hm123456'
-        }
-    }
+//    signingConfigs {
+//        config {
+//            keyAlias 'key0'
+//            keyPassword 'hm123456'
+//            storeFile file('HappyMoment.jks')
+//            storePassword 'hm123456'
+//        }
+//    }
 
     buildTypes {
         debug {
@@ -39,7 +39,7 @@ android {
             buildConfigField "String", "SinaKey", "\"2386491813\""
             buildConfigField "String", "SinaSecret", "\"51d51981f67b237bc3470ec97cfa8411\""
             minifyEnabled false
-            signingConfig signingConfigs.config
+//            signingConfig signingConfigs.config
             manifestPlaceholders = [
                     BaiDu_AppKey: "N9dgGGB6sOdt89tPY0tCMcOR1ww8B3Zn",
                     UMENG_APPKEY: "5a139e128f4a9d4e4400005f"
@@ -59,7 +59,7 @@ android {
             buildConfigField "String", "SinaSecret", "\"51d51981f67b237bc3470ec97cfa8411\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
+//            signingConfig signingConfigs.config
             manifestPlaceholders = [
                     BaiDu_AppKey: "N9dgGGB6sOdt89tPY0tCMcOR1ww8B3Zn",
                     UMENG_APPKEY: "5a139e128f4a9d4e4400005f"

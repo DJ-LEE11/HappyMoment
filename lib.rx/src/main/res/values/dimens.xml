@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="layout_Margin_5">5dip</dimen>
-    <dimen name="layout_Margin_10">10.0dip</dimen>
-    <dimen name="text_size_14">14dp</dimen>
-    <dimen name="error_img_width">100dp</dimen>
-    <dimen name="error_img_height">100dp</dimen>
-
-</resources>

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     style="@style/layout_allFilled_style"
-    android:background="@color/colorWindowBackground"
-    android:padding="@dimen/layout_Margin_10" >
+    android:background="#f2f2f2"
+    android:padding="10dp" >
 
     <LinearLayout
         style="@style/layout_allWraped_style"
@@ -13,9 +12,9 @@
 
         <ImageView
             android:id="@+id/imgError"
-            android:layout_width="@dimen/error_img_width"
-            android:layout_height="@dimen/error_img_height"
-            android:layout_marginBottom="@dimen/layout_Margin_5"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="5dp"
             android:src="@mipmap/ic_error_network" />
 
         <TextView

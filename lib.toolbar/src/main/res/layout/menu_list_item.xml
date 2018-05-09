@@ -5,7 +5,7 @@
     android:layout_height="42dp"
     android:gravity="center"
     android:orientation="horizontal"
-    android:paddingLeft="@dimen/layout_Margin_10">
+    android:paddingLeft="10dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -15,10 +15,10 @@
         <ImageView
             android:id="@+id/imgItem"
             style="@style/item_img_style"
-            android:layout_marginBottom="@dimen/layout_Margin_10"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="0dp"
             android:layout_marginRight="0dp"
-            android:layout_marginTop="@dimen/layout_Margin_10"
+            android:layout_marginTop="10dp"
             android:src="@mipmap/ic_checkbox_pressed"
             android:visibility="gone" />
     </LinearLayout>
@@ -40,8 +40,8 @@
             android:gravity="center"
             android:maxLines="1"
             android:text="标题标题"
-            android:textColor="@color/text_color_01"
-            android:textSize="@dimen/text_size_14" />
+            android:textColor="#55606F"
+            android:textSize="14dp" />
 
 
         <TextView
@@ -52,7 +52,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="@dimen/layout_Margin_10"
+        android:layout_width="10dp"
         android:layout_height="match_parent"
         android:gravity="center">
 

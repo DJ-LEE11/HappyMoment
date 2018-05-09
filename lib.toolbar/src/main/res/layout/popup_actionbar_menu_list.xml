@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/pop_half_transparent">
+    android:background="#26000000">
 
     <AutoCompleteTextView
         android:id="@+id/lvMenu"
