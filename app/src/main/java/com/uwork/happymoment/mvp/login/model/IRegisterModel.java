@@ -11,7 +11,7 @@ import com.uwork.librx.rx.BaseResult;
 import com.uwork.librx.rx.http.ApiServiceFactory;
 import com.uwork.librx.rx.http.CustomResourceSubscriber;
 import com.uwork.librx.rx.http.HttpResultFunc;
-import com.uwork.librx.rx.http.ServerResultFunc;
+import com.uwork.librx.rx.http.ServerResultWithDataFunc;
 import com.uwork.librx.rx.interfaces.OnModelCallBack;
 
 import io.reactivex.subscribers.ResourceSubscriber;
@@ -31,7 +31,7 @@ public class IRegisterModel extends IBaseModelImpl implements IRegisterContract.
         return startObservable(ApiServiceFactory.INSTANCE
                 .create(mContext, BuildConfig.API_BASE_URL, ApiService.class)
                 .register(new RegisterRequestBean(code,password,phone,sharingCode))
-                .map(new ServerResultFunc<>())
+                .map(new ServerResultWithDataFunc<>())
                 .onErrorResumeNext(new HttpResultFunc<>()),new CustomResourceSubscriber<>(callBack));
     }
 }

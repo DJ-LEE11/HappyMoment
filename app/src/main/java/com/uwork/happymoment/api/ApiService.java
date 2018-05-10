@@ -19,7 +19,7 @@ import retrofit2.http.Query;
 public interface ApiService {
 
     //发送验证码
-    @POST("/user/sendMessage")
+    @POST("user/sendMessage")
     Flowable<BaseResult<String>> sendMessage(@Query("phone") String phone);
 
     //注册

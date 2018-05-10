@@ -60,7 +60,6 @@ public class ILoginPresenter <T extends ILoginContract.View & IBaseActivityContr
     @Override
     public void saveToken(UserBean userBean) {
         UserManager.getInstance().saveUserInfo(getContext(),userBean);
-        getView().showToast("登录成功");
         getView().loginSuccess();
     }
 }

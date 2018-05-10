@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.uwork.happymoment.BuildConfig;
 import com.uwork.happymoment.R;
 import com.uwork.happymoment.mvp.login.activity.ForgetPasswordActivity;
 import com.uwork.happymoment.mvp.login.contract.ILoginContract;
@@ -115,7 +116,8 @@ public class LoginFragment extends BaseFragment implements ILoginContract.View{
                 setButtonEnable();
             }
         });
-        mEtPassWord.setText("");
+        mEtPhone.setText(BuildConfig.phone);
+        mEtPassWord.setText(BuildConfig.password);
     }
 
     private void setButtonEnable() {
@@ -134,8 +136,7 @@ public class LoginFragment extends BaseFragment implements ILoginContract.View{
                 break;
             case R.id.tvLogin:
                 if (validateInput()) {
-                    loginSuccess();
-//                    mILoginPresenter.login(mEtPhone.getText().toString(), mEtPassWord.getText().toString());
+                    mILoginPresenter.login(mEtPhone.getText().toString(), mEtPassWord.getText().toString());
                 }
                 break;
         }
@@ -143,6 +144,7 @@ public class LoginFragment extends BaseFragment implements ILoginContract.View{
 
     @Override
     public void loginSuccess() {
+        showToast("登录成功");
         getActivity().finish();
     }
 

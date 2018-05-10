@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
+import com.kw.rxbus.RxBus;
 import com.uwork.happymoment.R;
 import com.uwork.happymoment.bean.TabEntity;
 import com.uwork.happymoment.manager.UserManager;
@@ -16,7 +17,9 @@ import com.uwork.happymoment.mvp.login.activity.LoginRegisterActivity;
 import com.uwork.happymoment.mvp.main.fragment.HomePageFragment;
 import com.uwork.happymoment.mvp.my.fragment.MyFragment;
 import com.uwork.happymoment.mvp.social.fragment.SocialFragment;
+import com.uwork.librx.bean.LoginEvent;
 import com.uwork.librx.mvp.BaseActivity;
+import com.uwork.libutil.IntentUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,12 +27,17 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Consumer;
 
 public class MainActivity extends BaseActivity {
 
     @BindView(R.id.bottomTabLayout)
     CommonTabLayout mBottomTabLayout;
     private FragmentManager mFragmentManager;
+
+    private CompositeDisposable mDisposables;
+
 
     private int mCurrentBottom = 0;
 
@@ -53,12 +61,34 @@ public class MainActivity extends BaseActivity {
         ButterKnife.bind(this);
         mFragmentManager = getSupportFragmentManager();
         initBottom();
+        initEvent();
     }
+
+    private void initEvent() {
+        if (mDisposables == null) {
+            mDisposables = new CompositeDisposable();
+        }
+        //出现权限错误跳出主页，返回到引导页
+        mDisposables.add(RxBus.getInstance().register(LoginEvent.class, new Consumer<LoginEvent>() {
+            @Override
+            public void accept(LoginEvent event) throws Exception {
+                new IntentUtils.Builder(MainActivity.this)
+                        .to(SplashActivity.class)
+                        .putExtra(SplashActivity.CLEAN_TOKEN, true)
+                        .finish(event.isFinish())
+                        .build()
+                        .start();
+            }
+        }));
+    }
+
 
     @OnClick(R.id.ivSpeech)
     public void onViewClicked() {
         if (!UserManager.getInstance().isLogin(this)){
             goTo(LoginRegisterActivity.class);
+        }else {
+            showToast("语音");
         }
     }
 

@@ -10,8 +10,12 @@ import android.widget.TextView;
 
 import com.uwork.happymoment.R;
 import com.uwork.happymoment.activity.BaseTitleActivity;
+import com.uwork.happymoment.mvp.login.contract.ILoginContract;
 import com.uwork.happymoment.mvp.login.contract.IResetPasswordContract;
+import com.uwork.happymoment.mvp.login.contract.ISendMessageContract;
+import com.uwork.happymoment.mvp.login.presenter.ILoginPresenter;
 import com.uwork.happymoment.mvp.login.presenter.IResetPasswordPresenter;
+import com.uwork.happymoment.mvp.login.presenter.ISendMessagePresenter;
 import com.uwork.happymoment.ui.PasswordEditText;
 import com.uwork.happymoment.ui.SendCodeButton;
 
@@ -21,7 +25,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class ForgetPasswordActivity extends BaseTitleActivity implements IResetPasswordContract.View {
+public class ForgetPasswordActivity extends BaseTitleActivity implements ISendMessageContract.View
+        , IResetPasswordContract.View , ILoginContract.View{
 
 
     @BindView(R.id.etPhone)
@@ -35,6 +40,8 @@ public class ForgetPasswordActivity extends BaseTitleActivity implements IResetP
     @BindView(R.id.tvLogin)
     TextView mTvLogin;
 
+    private ILoginPresenter mILoginPresenter;
+    private ISendMessagePresenter mISendMessagePresenter;
     private IResetPasswordPresenter mIResetPasswordPresenter;
 
     @Override
@@ -47,7 +54,11 @@ public class ForgetPasswordActivity extends BaseTitleActivity implements IResetP
         if (list == null) {
             list = new ArrayList();
         }
+        mISendMessagePresenter = new ISendMessagePresenter(this);
         mIResetPasswordPresenter = new IResetPasswordPresenter(this);
+        mILoginPresenter = new ILoginPresenter(this);
+        list.add(mILoginPresenter);
+        list.add(mISendMessagePresenter);
         list.add(mIResetPasswordPresenter);
         return list;
     }
@@ -130,22 +141,33 @@ public class ForgetPasswordActivity extends BaseTitleActivity implements IResetP
         switch (view.getId()) {
             case R.id.btnSendCode:
                 if (validatePhone()) {
-                    mBtnSendCode.startTime();
+                    mISendMessagePresenter.sendMessage(mEtPhone.getText().toString());
                 }
                 break;
             case R.id.tvLogin:
                 if (validateInput()) {
-//                    mIResetPasswordPresenter.resetPassword(mEtPhone.getText().toString()
-//                            , mEtCode.getText().toString()
-//                            , mEtPassWord.getText().toString());
-                    resetPasswordSuccess();
+                    mIResetPasswordPresenter.resetPassword(mEtPhone.getText().toString()
+                            , mEtCode.getText().toString()
+                            , mEtPassWord.getText().toString());
                 }
                 break;
         }
     }
 
     @Override
+    public void startRegisterCountDown() {
+        mBtnSendCode.startTime();
+        showToast("验证码发送成功");
+    }
+
+    @Override
     public void resetPasswordSuccess() {
+        showToast("修改密码成功");
+        mILoginPresenter.login(mEtPhone.getText().toString(), mEtPassWord.getText().toString());
+    }
+
+    @Override
+    public void loginSuccess() {
         setResult(RESULT_OK);
         finish();
     }

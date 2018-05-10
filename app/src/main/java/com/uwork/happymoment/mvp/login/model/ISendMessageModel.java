@@ -10,7 +10,7 @@ import com.uwork.librx.rx.BaseResult;
 import com.uwork.librx.rx.http.ApiServiceFactory;
 import com.uwork.librx.rx.http.CustomResourceSubscriber;
 import com.uwork.librx.rx.http.HttpResultFunc;
-import com.uwork.librx.rx.http.ServerResultFunc;
+import com.uwork.librx.rx.http.ServerResultWithDataFunc;
 import com.uwork.librx.rx.interfaces.OnModelCallBack;
 
 import io.reactivex.subscribers.ResourceSubscriber;
@@ -30,7 +30,7 @@ public class ISendMessageModel extends IBaseModelImpl implements ISendMessageCon
         return startObservable(ApiServiceFactory.INSTANCE
                 .create(mContext, BuildConfig.API_BASE_URL, ApiService.class)
                 .sendMessage(phone)
-                .map(new ServerResultFunc<>())
-                .onErrorResumeNext(new HttpResultFunc<>()),new CustomResourceSubscriber<>(callBack));
+                .map(new ServerResultWithDataFunc<>())
+                .onErrorResumeNext(new HttpResultFunc<>()), new CustomResourceSubscriber<>(callBack));
     }
 }
