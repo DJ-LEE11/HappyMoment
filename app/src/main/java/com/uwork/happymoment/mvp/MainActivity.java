@@ -140,7 +140,7 @@ public class MainActivity extends BaseActivity {
                 break;
             case 3:
                 if (UserManager.getInstance().isLogin(this)){
-                    switchOrder();
+                    switchHotel();
                     mCurrentBottom = 3;
                 }else {
                     goTo(LoginRegisterActivity.class);
@@ -179,7 +179,7 @@ public class MainActivity extends BaseActivity {
     }
 
     //桃园客栈
-    private void switchOrder() {
+    private void switchHotel() {
         Fragment fragment = mFragmentManager.findFragmentByTag(HotelFragment.TAG);
         if (fragment == null) {
             fragment = HotelFragment.newInstance();

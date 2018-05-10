@@ -1,13 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
+    xmlns:stick="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white_color"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <include
+        android:id="@+id/headerBtnLayout"
+        layout="@layout/header_btn_layout" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <!--<com.uwork.happymoment.ui.StickyLayout-->
+        <!--android:id="@+id/stickyLayout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--stick:isStickNav="false">-->
+
+    <com.uwork.happymoment.ui.StickyNavLayout
+        android:id="@+id/stickyNavLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:id="@id/id_sticky_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_header_banner"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@id/id_sticky_indicator"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="幸福时刻"
-        android:layout_centerInParent="true"/>
+        android:orientation="vertical"
+        android:background="@color/white_color">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/line_color"/>
 
-</RelativeLayout>
+        <com.flyco.tablayout.CommonTabLayout
+            android:id="@+id/bottomTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="#ffffff"
+            tl:tl_iconHeight="25dp"
+            tl:tl_iconWidth="25dp"
+            tl:tl_indicator_height="0dp"
+            tl:tl_textSelectColor="@color/text_color_red"
+            tl:tl_textUnselectColor="@color/text_color_02"
+            tl:tl_textsize="9dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@color/line_color"/>
+
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@id/id_sticky_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"/>
+    </com.uwork.happymoment.ui.StickyNavLayout>
+</LinearLayout>

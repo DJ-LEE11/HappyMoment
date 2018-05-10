@@ -13,4 +13,10 @@
         <item>登录</item>
         <item>注册</item>
     </string-array>
+
+    <string-array name="social_tab">
+        <item>幸福圈</item>
+        <item>幸福客</item>
+        <item>足迹</item>
+    </string-array>
 </resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="id_sticky_header" type="id"/>
+    <item name="id_sticky_indicator" type="id"/>
+    <item name="id_sticky_view_pager" type="id"/>
+    <item name="id_sticky_scrollview" type="id"/>
+
+</resources>
