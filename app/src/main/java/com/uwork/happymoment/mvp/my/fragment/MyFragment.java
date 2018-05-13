@@ -7,9 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.kw.rxbus.RxBus;
 import com.uwork.happymoment.R;
-import com.uwork.librx.bean.LoginEvent;
+import com.uwork.happymoment.manager.IMRongManager;
 import com.uwork.librx.mvp.BaseFragment;
 
 import java.util.List;
@@ -62,8 +61,6 @@ public class MyFragment extends BaseFragment {
 
     @OnClick(R.id.tvMy)
     public void onViewClicked() {
-        showToast("登录失效，请先登录");
-        RxBus.getInstance().send(new LoginEvent(true));
-        getActivity().finish();
+        IMRongManager.privateChat(getActivity(),"6","嘿嘿");
     }
 }

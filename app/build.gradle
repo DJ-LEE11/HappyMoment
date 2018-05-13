@@ -29,7 +29,7 @@ android {
     buildTypes {
         debug {
             buildConfigField "boolean", "isDebug", "true"
-            buildConfigField "String", "API_BASE_URL", "\"http://192.168.4.20:9090/\""
+            buildConfigField "String", "API_BASE_URL", "\"http://192.168.4.89:9090/\""
             buildConfigField "String", "phone", "\"18825098496\""
             buildConfigField "String", "password", "\"123456\""
             buildConfigField "String", "WechatId", "\"wx8ef894482cffe864\""
@@ -82,7 +82,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
@@ -101,10 +101,10 @@ dependencies {
     implementation rootProject.ext.dependencies.MultiDex
     implementation rootProject.ext.dependencies.SmartRefreshLayout
     implementation rootProject.ext.dependencies.SmartRefreshHeader
-
     implementation project(':lib.rx')
     implementation project(':lib.util')
     implementation project(':lib.toolbar')
     implementation project(':lib.style')
-
+    implementation project(':IMLib')
+    implementation project(':imkit')
 }

@@ -29,6 +29,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
+import io.rong.imkit.RongIM;
+import io.rong.imkit.fragment.ConversationFragment;
 
 public class MainActivity extends BaseActivity {
 
@@ -88,7 +90,7 @@ public class MainActivity extends BaseActivity {
         if (!UserManager.getInstance().isLogin(this)){
             goTo(LoginRegisterActivity.class);
         }else {
-            showToast("语音");
+            showToast("电话");
         }
     }
 
@@ -216,5 +218,24 @@ public class MainActivity extends BaseActivity {
                 transaction.show(to).commitAllowingStateLoss();
             }
         }
+    }
+
+    //客服
+    @Override
+    public void onBackPressed() {
+        ConversationFragment fragment = (ConversationFragment) getSupportFragmentManager().findFragmentById(R.id.conversation);
+        if (fragment!=null){
+            if(!fragment.onBackPressed()) {
+                finish();
+            }
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (RongIM.getInstance()!=null){
+            RongIM.getInstance().disconnect();
+        }
+        super.onDestroy();
     }
 }

@@ -19,6 +19,8 @@ public interface ILoginContract {
         void login(String phone, String password);
 
         void saveToken(UserBean userBean);
+
+        void connectIM(UserBean userBean);
     }
 
     interface Model {

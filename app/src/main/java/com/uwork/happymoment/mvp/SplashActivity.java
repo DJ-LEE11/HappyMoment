@@ -6,10 +6,14 @@ import android.os.Handler;
 import android.os.Message;
 
 import com.uwork.happymoment.R;
+import com.uwork.happymoment.manager.IMRongManager;
 import com.uwork.happymoment.manager.UserManager;
+import com.uwork.happymoment.mvp.login.bean.UserBean;
 import com.uwork.librx.mvp.BaseActivity;
 
 import java.util.List;
+
+import io.rong.imkit.RongIM;
 
 public class SplashActivity extends BaseActivity {
 
@@ -57,8 +61,14 @@ public class SplashActivity extends BaseActivity {
         if (getIntent() != null && getIntent().getExtras() != null && getIntent().getExtras().containsKey(CLEAN_TOKEN)) {
             noCheckToken = getIntent().getExtras().getBoolean(CLEAN_TOKEN);
             if (noCheckToken) {
+                RongIM.getInstance().logout();
                 UserManager.getInstance().logout(this);
             }
+        }
+        if (UserManager.getInstance().isLogin(this)){
+            UserBean user = UserManager.getInstance().getUser(this);
+            //连接融云
+            IMRongManager.imConnect(this,user.getImtoken(),user.getNickName(),user.getAvatar());
         }
         mHandler.sendEmptyMessageDelayed(GOTO_NEXT_PAGE, 1000);
     }

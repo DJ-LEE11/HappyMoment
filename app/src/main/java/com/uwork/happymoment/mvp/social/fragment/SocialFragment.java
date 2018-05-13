@@ -1,5 +1,6 @@
 package com.uwork.happymoment.mvp.social.fragment;
 
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,7 +19,6 @@ import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.uwork.happymoment.R;
 import com.uwork.happymoment.bean.TabEntity;
-import com.uwork.happymoment.mvp.social.chat.fragment.ChatListFragment;
 import com.uwork.happymoment.mvp.social.circle.fragment.CircleListFragment;
 import com.uwork.happymoment.mvp.social.track.fragment.TrackFragment;
 import com.uwork.happymoment.ui.StickyNavLayout;
@@ -31,6 +31,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import io.rong.imkit.fragment.ConversationListFragment;
+import io.rong.imlib.model.Conversation;
 
 /**
  * Created by jie on 2018/5/9.
@@ -98,8 +100,29 @@ public class SocialFragment extends BaseFragment {
     private void initFragment() {
         mFragments = new ArrayList<>();
         mFragments.add(CircleListFragment.newInstance());
-        mFragments.add(ChatListFragment.newInstance());
+        mFragments.add(initConversationList());
         mFragments.add(TrackFragment.newInstance());
+    }
+
+    //会话列表
+    private ConversationListFragment mConversationListFragment = null;
+    //会话列表
+    private Fragment initConversationList() {
+        if (mConversationListFragment == null) {
+            ConversationListFragment listFragment = new ConversationListFragment();
+            Uri uri = Uri.parse("rong://" + getActivity().getApplicationInfo().packageName).buildUpon()
+                    .appendPath("conversationlist")
+                    .appendQueryParameter(Conversation.ConversationType.PRIVATE.getName(), "false") //设置私聊会话是否聚合显示
+                    .appendQueryParameter(Conversation.ConversationType.GROUP.getName(), "true")//群组
+                    .appendQueryParameter(Conversation.ConversationType.DISCUSSION.getName(), "false")
+                    .appendQueryParameter(Conversation.ConversationType.CUSTOMER_SERVICE.getName(), "false")//客服
+                    .build();
+
+            listFragment.setUri(uri);
+            return listFragment;
+        } else {
+            return mConversationListFragment;
+        }
     }
 
     private void initTab() {

@@ -2,6 +2,7 @@ package com.uwork.happymoment.mvp.login.presenter;
 
 import android.content.Context;
 
+import com.uwork.happymoment.manager.IMRongManager;
 import com.uwork.happymoment.manager.UserManager;
 import com.uwork.happymoment.mvp.login.bean.UserBean;
 import com.uwork.happymoment.mvp.login.contract.ILoginContract;
@@ -41,6 +42,7 @@ public class ILoginPresenter <T extends ILoginContract.View & IBaseActivityContr
             @Override
             public void onSuccess(UserBean value) {
                 getView().dismissLoading();
+                connectIM(value);
                 saveToken(value);
             }
 
@@ -61,5 +63,11 @@ public class ILoginPresenter <T extends ILoginContract.View & IBaseActivityContr
     public void saveToken(UserBean userBean) {
         UserManager.getInstance().saveUserInfo(getContext(),userBean);
         getView().loginSuccess();
+    }
+
+    //连接融云
+    @Override
+    public void connectIM(UserBean userBean) {
+        IMRongManager.imConnect(mContext,userBean.getImtoken(),userBean.getNickName(),userBean.getAvatar());
     }
 }
