@@ -10,6 +10,7 @@
     <color name="text_color_03">#A8B4C4</color>
     <color name="text_color_theme">#ffca00</color>
     <color name="text_color_red">#bc001b</color>
+    <color name="text_color_yellow">#cea039</color>
 
     <!-- 按钮颜色 主题色系 -->
     <color name="btn_color_normal">#ffca00</color>

@@ -95,4 +95,17 @@ public abstract class BaseTitleActivity extends BaseActivity {
                                 int resRight, String textRight, View.OnClickListener right){
         mToolbarTitle.initMenuClick(resLeft,textLeft,left,resRight,textRight,right);
     }
+
+    protected void setLeftClick(int resLeft, String textLeft, @ColorRes int textLeftColor ,View.OnClickListener left){
+        mToolbarTitle.initMenuClick(resLeft,textLeft,textLeftColor,left,0,"",R.color.white_color,null);
+    }
+
+    protected void setRightClick(int resRight, String textRight,@ColorRes int textRightColor, View.OnClickListener right){
+        mToolbarTitle.initMenuClick(0,"",R.color.white_color,null,resRight,textRight,textRightColor,right);
+    }
+
+    protected void setMenuClick(int resLeft, String textLeft,@ColorRes int textLeftColor ,View.OnClickListener left,
+                                int resRight, String textRight,@ColorRes int textRightColor , View.OnClickListener right){
+        mToolbarTitle.initMenuClick(resLeft,textLeft,textLeftColor,left,resRight,textRight,textRightColor,right);
+    }
 }

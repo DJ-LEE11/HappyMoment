@@ -19,6 +19,7 @@ import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.uwork.happymoment.R;
 import com.uwork.happymoment.bean.TabEntity;
+import com.uwork.happymoment.mvp.social.chat.fragment.ChatListFragment;
 import com.uwork.happymoment.mvp.social.circle.fragment.CircleListFragment;
 import com.uwork.happymoment.mvp.social.track.fragment.TrackFragment;
 import com.uwork.happymoment.ui.StickyNavLayout;
@@ -100,7 +101,7 @@ public class SocialFragment extends BaseFragment {
     private void initFragment() {
         mFragments = new ArrayList<>();
         mFragments.add(CircleListFragment.newInstance());
-        mFragments.add(initConversationList());
+        mFragments.add(ChatListFragment.newInstance());
         mFragments.add(TrackFragment.newInstance());
     }
 

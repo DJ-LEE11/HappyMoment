@@ -178,6 +178,26 @@ public class ToolbarTitle<V extends View> {
         headerMenu3.setOnClickListener(right);
     }
 
+    public void initMenuClick(int resLeft,
+                              String textLeft,@ColorRes int textLeftColor ,View.OnClickListener left,
+                              int resRight, String textRight, @ColorRes int textRightColor,View.OnClickListener right) {
+        headerMenu2 = (TextView) mViewReference.get().findViewById(R.id.headerMenu2);
+        headerMenu3 = (TextView) mViewReference.get().findViewById(R.id.headerMenu3);
+        headerMenu2.setText(textLeft);
+        headerMenu2.setTextColor(mContext.getResources().getColor(textLeftColor));
+        if (resLeft!= 0 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            headerMenu2.setCompoundDrawablesWithIntrinsicBounds(null,
+                    null, mContext.getResources().getDrawable(resLeft, null), null);
+        }
+        headerMenu2.setOnClickListener(left);
+        headerMenu3.setText(textRight);
+        headerMenu3.setTextColor(mContext.getResources().getColor(textRightColor));
+        if (resRight!= 0 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            headerMenu3.setCompoundDrawablesWithIntrinsicBounds(null,
+                    null, mContext.getResources().getDrawable(resRight, null), null);
+        }
+        headerMenu3.setOnClickListener(right);
+    }
 
     public void initMenuWithSubMenuClick(int resLeft,
                                          int textLeftRes,
