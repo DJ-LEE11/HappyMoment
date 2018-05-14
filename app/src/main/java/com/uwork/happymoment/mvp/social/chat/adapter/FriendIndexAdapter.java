@@ -1,0 +1,27 @@
+package com.uwork.happymoment.mvp.social.chat.adapter;
+
+import android.support.annotation.Nullable;
+
+import com.chad.library.adapter.base.BaseViewHolder;
+import com.uwork.happymoment.R;
+import com.uwork.happymoment.adapter.BaseAdapter;
+import com.uwork.happymoment.mvp.social.chat.bean.FriendIndexBean;
+
+import java.util.List;
+
+/**
+ * Created by jie on 2018/5/14.
+ */
+
+public class FriendIndexAdapter extends BaseAdapter<FriendIndexBean>{
+
+    public FriendIndexAdapter(@Nullable List<FriendIndexBean> data) {
+        super(R.layout.adapter_friend_index, data);
+    }
+
+    @Override
+    protected void convert(BaseViewHolder helper, FriendIndexBean item) {
+//        ImageLoaderUtils.display(mContext,helper.getView(R.id.ivAvatar),item.getAvatar());
+        helper.setText(R.id.tvNickName,item.getNickName());
+    }
+}

@@ -8,6 +8,7 @@ import com.uwork.happymoment.activity.BaseTitleActivity;
 
 import java.util.List;
 
+//导入手机通讯录
 public class LeadingPhoneActivity extends BaseTitleActivity {
 
     @Override

@@ -1,35 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/line_color">
+    android:background="@color/line_color"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:background="@drawable/shape_search"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/shape_search"
         android:gravity="center">
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:focusable="true"
-            android:focusableInTouchMode="true"/>
+            android:focusableInTouchMode="true" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal">
+
             <ImageView
                 android:layout_width="13dp"
                 android:layout_height="13dp"
-                android:src="@mipmap/ic_search"/>
+                android:src="@mipmap/ic_search" />
 
             <EditText
                 android:id="@+id/etSearch"
@@ -45,10 +46,9 @@
                 android:textColor="@color/text_color_01"
                 android:textColorHint="#B3B3B3"
                 android:textCursorDrawable="@null"
-                android:textSize="@dimen/text_size_14"/>
+                android:textSize="@dimen/text_size_14" />
 
         </LinearLayout>
 
-</LinearLayout>
-
+    </LinearLayout>
 </LinearLayout>

@@ -10,7 +10,7 @@ import com.uwork.happymoment.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
+//聊天页面
 public class ConversationActivity extends AppCompatActivity {
 
 

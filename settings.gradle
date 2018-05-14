@@ -1,1 +1,1 @@
-include ':app', ':lib.util', ':lib.toolbar', ':lib.style', ':lib.rx', ':IMLib', ':imkit'
+include ':app', ':lib.util', ':lib.toolbar', ':lib.style', ':lib.rx', ':IMLib', ':imkit', ':lib.index'

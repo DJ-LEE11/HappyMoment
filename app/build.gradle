@@ -107,4 +107,6 @@ dependencies {
     implementation project(':lib.style')
     implementation project(':IMLib')
     implementation project(':imkit')
+    implementation project(':lib.index')
+
 }
