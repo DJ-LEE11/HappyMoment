@@ -1,22 +1,28 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    
+
     repositories {
+        mavenCentral()
         google()
         jcenter()
         maven { url "https://jitpack.io" }
+        maven { url 'https://maven.google.com' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
     }
 }
 
 allprojects {
     repositories {
+        mavenCentral()
         google()
         jcenter()
         maven { url 'https://jitpack.io' }
+        maven { url 'https://maven.google.com' }
+        maven { url "https://raw.github.com/bmob/bmob-android-sdk/master" }
     }
 }
 
@@ -31,39 +37,45 @@ ext {
     compileSdkVersion = 27
 
     dependencies = [
-            appcompatV7     : 'com.android.support:appcompat-v7:27.1.1',
-            supportV4       : 'com.android.support:support-v4:27.1.1',
+            appcompatV7                  : 'com.android.support:appcompat-v7:27.1.1',
+            supportV4                    : 'com.android.support:support-v4:27.1.1',
             //Material Design
-            design          : 'com.android.support:design:27.1.1',
+            design                       : 'com.android.support:design:27.1.1',
             //RecyclerView
-            recyclerview    : 'com.android.support:recyclerview-v7:27.1.1',
+            recyclerview                 : 'com.android.support:recyclerview-v7:27.1.1',
             //CardView
-            cardview        : 'com.android.support:cardview-v7:27.1.1',
-            annotations     : 'com.android.support:support-annotations:27.1.1',
+            cardview                     : 'com.android.support:cardview-v7:27.1.1',
+            annotations                  : 'com.android.support:support-annotations:27.1.1',
             //Butterknife
-            ButterKnife     : 'com.jakewharton:butterknife:8.8.1',
-            ButterKnifeCompiler     : 'com.jakewharton:butterknife-compiler:8.8.1',
+            ButterKnife                  : 'com.jakewharton:butterknife:8.8.1',
+            ButterKnifeCompiler          : 'com.jakewharton:butterknife-compiler:8.8.1',
             //loading dialog
-            LoadingDialog   : 'com.wang.avi:library:2.1.3',
+            LoadingDialog                : 'com.wang.avi:library:2.1.3',
             //Glide
-            Glide           : 'com.github.bumptech.glide:glide:3.7.0',
+            Glide                        : 'com.github.bumptech.glide:glide:3.7.0',
             //玻璃效果
-            GlideTransformations : 'jp.wasabeef:glide-transformations:2.0.1',
+//            Glide           : 'com.github.bumptech.glide:glide:3.7.0',
+            //玻璃效果
+            GlideTransformations         : 'jp.wasabeef:glide-transformations:2.0.1',
             //FlycoTabLayout segmentTab顶部切换按钮
-            FlycoTabLayout  : 'com.flyco.tablayout:FlycoTabLayout_Lib:1.5.0@aar',
-            nineoldandroids : 'com.nineoldandroids:library:2.4.0',
-            FlycoRoundView  : 'com.flyco.roundview:FlycoRoundView_Lib:1.1.2@aar',
+            FlycoTabLayout               : 'com.flyco.tablayout:FlycoTabLayout_Lib:1.5.0@aar',
+            nineoldandroids              : 'com.nineoldandroids:library:2.4.0',
+            FlycoRoundView               : 'com.flyco.roundview:FlycoRoundView_Lib:1.1.2@aar',
             //Custom Log
-            logging         : 'de.mindpipe.android:android-logging-log4j:1.0.3',
-            log4j           : 'log4j:log4j:1.2.17',
+            logging                      : 'de.mindpipe.android:android-logging-log4j:1.0.3',
+            log4j                        : 'log4j:log4j:1.2.17',
             //BaseAdapter
-            BaseRecyclerViewAdapterHelper   : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30',
+            BaseRecyclerViewAdapterHelper: 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30',
             //沉浸式
-            SystemBarTint: 'com.readystatesoftware.systembartint:systembartint:1.0.3',
+            SystemBarTint                : 'com.readystatesoftware.systembartint:systembartint:1.0.3',
             //MultiDex
-            MultiDex    : 'com.android.support:multidex:1.0.3',
+            MultiDex                     : 'com.android.support:multidex:1.0.3',
             //下拉刷新
-            SmartRefreshLayout  : 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3',
-            SmartRefreshHeader  : 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3',
+            SmartRefreshLayout           : 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3',
+            SmartRefreshHeader           : 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3',
+            //朋友圈所需
+            support_util                 : 'com.android.support:support-core-utils:27.0.2',
+            arouter_api                  : 'com.alibaba:arouter-api:1.3.1',
+            arouter_compiler             : 'com.alibaba:arouter-compiler:1.1.4'
     ]
 }

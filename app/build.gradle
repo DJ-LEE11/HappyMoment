@@ -14,6 +14,16 @@ android {
             abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
         }
         multiDexEnabled true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
+    }
+
+    packagingOptions {
+        pickFirst 'META-INF/*'
     }
 
     //签名
@@ -101,6 +111,7 @@ dependencies {
     implementation rootProject.ext.dependencies.MultiDex
     implementation rootProject.ext.dependencies.SmartRefreshLayout
     implementation rootProject.ext.dependencies.SmartRefreshHeader
+    annotationProcessor rootProject.ext.dependencies.arouter_compiler
     implementation project(':lib.rx')
     implementation project(':lib.util')
     implementation project(':lib.toolbar')
@@ -108,5 +119,14 @@ dependencies {
     implementation project(':IMLib')
     implementation project(':imkit')
     implementation project(':lib.index')
+    implementation project(':circle_base_library')
+    implementation project(':circle_base_ui')
+    implementation project(':circle_photoselect')
+    implementation project(':circle_publish')
+    configurations {
+        all *.exclude group : 'com.google.code.gson'
+        all *.exclude group : 'com.squareup.okio'
+    }
+
 
 }
