@@ -179,6 +179,27 @@ public class ToolbarTitle<V extends View> {
     }
 
     public void initMenuClick(int resLeft,
+                              String textLeft, View.OnClickListener left,View.OnLongClickListener leftLong,
+                              int resRight, String textRight, View.OnClickListener right,View.OnLongClickListener rightLong) {
+        headerMenu2 = (TextView) mViewReference.get().findViewById(R.id.headerMenu2);
+        headerMenu3 = (TextView) mViewReference.get().findViewById(R.id.headerMenu3);
+        headerMenu2.setText(textLeft);
+        if (resLeft!= 0 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            headerMenu2.setCompoundDrawablesWithIntrinsicBounds(null,
+                    null, mContext.getResources().getDrawable(resLeft, null), null);
+        }
+        headerMenu2.setOnClickListener(left);
+        headerMenu2.setOnLongClickListener(leftLong);
+        headerMenu3.setText(textRight);
+        if (resRight!= 0 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            headerMenu3.setCompoundDrawablesWithIntrinsicBounds(null,
+                    null, mContext.getResources().getDrawable(resRight, null), null);
+        }
+        headerMenu3.setOnClickListener(right);
+        headerMenu3.setOnLongClickListener(rightLong);
+    }
+
+    public void initMenuClick(int resLeft,
                               String textLeft,@ColorRes int textLeftColor ,View.OnClickListener left,
                               int resRight, String textRight, @ColorRes int textRightColor,View.OnClickListener right) {
         headerMenu2 = (TextView) mViewReference.get().findViewById(R.id.headerMenu2);

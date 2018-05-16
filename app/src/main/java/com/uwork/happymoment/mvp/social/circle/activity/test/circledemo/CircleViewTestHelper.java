@@ -1,12 +1,13 @@
-package com.uwork.happymoment.mvp.social.circle.activity.circledemo;
+package com.uwork.happymoment.mvp.social.circle.activity.test.circledemo;
 
+import android.app.Activity;
 import android.graphics.Rect;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.example.circle_base_ui.util.UIHelper;
 import com.example.circle_base_ui.widget.commentwidget.CommentBox;
 import com.example.circle_base_ui.widget.commentwidget.CommentWidget;
-import com.example.circle_base_ui.widget.pullrecyclerview.CircleRecyclerView;
 import com.socks.library.KLog;
 
 
@@ -14,14 +15,14 @@ import com.socks.library.KLog;
  * Created by 大灯泡 on 2017/9/6.
  */
 
-public class CircleViewHelper {
-    FriendCircleDemoActivity mActivity;
+public class CircleViewTestHelper {
+    Activity mActivity;
 
     //评论时对应的参照View
     private View commentAnchorView;
     private int commentItemDataPosition;
 
-    public CircleViewHelper(FriendCircleDemoActivity activity) {
+    public CircleViewTestHelper(Activity activity) {
         mActivity = activity;
     }
 
@@ -52,7 +53,7 @@ public class CircleViewHelper {
      * @param commentType
      * @return
      */
-    public View alignCommentBoxToView(CircleRecyclerView circleRecyclerView, CommentBox commentBox, int commentType) {
+    public View alignCommentBoxToView(RecyclerView circleRecyclerView, CommentBox commentBox, int commentType) {
         if (circleRecyclerView == null || commentBox == null) return null;
         View anchorView = commentAnchorView;
         int scrollY = 0;
@@ -72,10 +73,10 @@ public class CircleViewHelper {
                 CommentWidget commentWidget = (CommentWidget) anchorView;
                 if (commentWidget == null) return null;
                 scrollY = calcuateCommentWidgetOffset(commentBox, commentWidget);
-                circleRecyclerView.getRecyclerView().smoothScrollBy(0, scrollY);
+                circleRecyclerView.smoothScrollBy(0, scrollY);
                 break;
         }
-        circleRecyclerView.getRecyclerView().smoothScrollBy(0, scrollY);
+        circleRecyclerView.smoothScrollBy(0, scrollY);
         return anchorView;
 
     }
@@ -86,7 +87,7 @@ public class CircleViewHelper {
      * @param commentType
      * @param anchorView
      */
-    public void alignCommentBoxToViewWhenDismiss(CircleRecyclerView circleRecyclerView, CommentBox commentBox, int commentType, View anchorView) {
+    public void alignCommentBoxToViewWhenDismiss(RecyclerView circleRecyclerView, CommentBox commentBox, int commentType, View anchorView) {
         if (anchorView == null) return;
         int decorViewHeight = mActivity.getWindow().getDecorView().getHeight();
         int alignScrollY;
@@ -97,7 +98,7 @@ public class CircleViewHelper {
             anchorView.getGlobalVisibleRect(rect);
             alignScrollY = decorViewHeight - rect.bottom - commentBox.getHeight();
         }
-        circleRecyclerView.getRecyclerView().smoothScrollBy(0, -alignScrollY);
+        circleRecyclerView.smoothScrollBy(0, -alignScrollY);
     }
 
     /**

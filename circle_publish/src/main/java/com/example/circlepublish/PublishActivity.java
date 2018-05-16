@@ -1,5 +1,6 @@
 package com.example.circlepublish;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.text.Editable;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -226,7 +228,18 @@ public class PublishActivity extends BaseTitleBarActivity {
         if (mPopupProgress != null) {
             mPopupProgress.dismiss();
         }
+        closeInput();
         SwitchActivityTransitionUtil.transitionVerticalOnFinish(this);
+    }
+
+    //关闭键盘
+    private void closeInput() {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        if(imm.isActive()&&getCurrentFocus()!=null){
+            if (getCurrentFocus().getWindowToken()!=null) {
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        }
     }
 
     private void publish() {

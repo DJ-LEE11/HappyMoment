@@ -1,4 +1,4 @@
-package com.uwork.happymoment.mvp.social.circle.activity.circledemo;
+package com.uwork.happymoment.mvp.social.circle.activity.test.circledemo;
 
 import android.content.Intent;
 import android.os.Build;
@@ -33,7 +33,7 @@ import com.example.circle_common.common.request.MomentsRequest;
 import com.example.circle_common.common.router.RouterList;
 import com.socks.library.KLog;
 import com.uwork.happymoment.R;
-import com.uwork.happymoment.mvp.social.circle.activity.ActivityLauncher;
+import com.uwork.happymoment.mvp.social.circle.activity.test.ActivityLauncher;
 import com.uwork.happymoment.mvp.social.circle.mvp.presenter.impl.MomentPresenter;
 import com.uwork.happymoment.mvp.social.circle.mvp.view.IMomentView;
 import com.uwork.happymoment.ui.circle.adapter.CircleMomentsAdapter;
@@ -73,7 +73,7 @@ public class FriendCircleDemoActivity extends BaseTitleBarActivity implements On
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_friend_cirecle);
+        setContentView(R.layout.activity_friend_cirecle);
         momentsInfoList = new ArrayList<>();
         momentsRequest = new MomentsRequest();
         initView();
@@ -139,7 +139,6 @@ public class FriendCircleDemoActivity extends BaseTitleBarActivity implements On
             }
         });
     }
-
 
     @Override
     public void onRefresh() {

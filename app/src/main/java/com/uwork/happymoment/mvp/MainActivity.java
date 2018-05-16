@@ -1,25 +1,33 @@
 package com.uwork.happymoment.mvp;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
+import com.example.circle_base_library.common.entity.ImageInfo;
+import com.example.circle_base_ui.helper.PhotoHelper;
+import com.example.circle_base_ui.util.UIHelper;
+import com.example.circle_common.common.router.RouterList;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.kw.rxbus.RxBus;
 import com.uwork.happymoment.R;
 import com.uwork.happymoment.bean.TabEntity;
+import com.uwork.happymoment.event.RefreshCircleEvent;
 import com.uwork.happymoment.manager.UserManager;
 import com.uwork.happymoment.mvp.hotel.fragment.HotelFragment;
 import com.uwork.happymoment.mvp.login.activity.LoginRegisterActivity;
 import com.uwork.happymoment.mvp.main.fragment.HomePageFragment;
 import com.uwork.happymoment.mvp.my.fragment.MyFragment;
+import com.uwork.happymoment.mvp.social.circle.activity.test.ActivityLauncher;
 import com.uwork.happymoment.mvp.social.fragment.SocialFragment;
 import com.uwork.librx.bean.LoginEvent;
 import com.uwork.librx.mvp.BaseActivity;
@@ -275,6 +283,39 @@ public class MainActivity extends BaseActivity {
             if(!fragment.onBackPressed()) {
                 finish();
             }
+        }
+    }
+
+    //发朋友圈回调
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        PhotoHelper.handleActivityResult(this, requestCode, resultCode, data, new PhotoHelper.PhotoCallback() {
+            @Override
+            public void onFinish(String filePath) {
+                List<ImageInfo> selectedPhotos = new ArrayList<ImageInfo>();
+                selectedPhotos.add(new ImageInfo(filePath, null, null, 0, 0));
+                ActivityLauncher.startToPublishActivityWithResult(MainActivity.this,
+                        RouterList.PublishActivity.MODE_MULTI,
+                        selectedPhotos,
+                        RouterList.PublishActivity.requestCode);
+            }
+
+            @Override
+            public void onError(String msg) {
+                UIHelper.ToastMessage(msg);
+            }
+        });
+        if (requestCode == RouterList.PhotoSelectActivity.requestCode && resultCode == RESULT_OK) {
+            List<ImageInfo> selectedPhotos = data.getParcelableArrayListExtra(RouterList.PhotoSelectActivity.key_result);
+            if (selectedPhotos != null) {
+                ActivityLauncher.startToPublishActivityWithResult(this, RouterList.PublishActivity.MODE_MULTI, selectedPhotos, RouterList.PublishActivity.requestCode);
+            }
+        }
+
+        if (requestCode == RouterList.PublishActivity.requestCode && resultCode == RESULT_OK) {
+            RxBus.getInstance().send(new RefreshCircleEvent());
         }
     }
 

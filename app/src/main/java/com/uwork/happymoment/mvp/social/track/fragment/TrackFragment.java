@@ -83,7 +83,7 @@ public class TrackFragment extends BaseFragment {
             }
         });
 
-//        //下拉刷新
+        //下拉刷新
         mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {

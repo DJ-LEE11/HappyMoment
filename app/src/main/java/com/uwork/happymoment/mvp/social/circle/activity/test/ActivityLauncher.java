@@ -1,4 +1,4 @@
-package com.uwork.happymoment.mvp.social.circle.activity;
+package com.uwork.happymoment.mvp.social.circle.activity.test;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,7 +12,7 @@ import com.example.circle_common.common.entity.PhotoBrowseInfo;
 import com.example.circle_common.common.router.RouterList;
 import com.example.circle_photoselect.photoselect.PhotoSelectActivity;
 import com.example.circlepublish.PublishActivity;
-import com.uwork.happymoment.mvp.social.circle.activity.gallery.PhotoBrowseActivity;
+import com.uwork.happymoment.mvp.social.circle.activity.test.gallery.PhotoBrowseActivity;
 
 import java.util.ArrayList;
 import java.util.List;

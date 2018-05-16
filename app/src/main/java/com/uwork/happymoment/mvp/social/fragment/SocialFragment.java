@@ -1,6 +1,5 @@
 package com.uwork.happymoment.mvp.social.fragment;
 
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,12 +13,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.circle_base_ui.helper.PhotoHelper;
+import com.example.circle_base_ui.widget.popup.SelectPhotoMenuPopup;
+import com.example.circle_common.common.router.RouterList;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.uwork.happymoment.R;
 import com.uwork.happymoment.bean.TabEntity;
 import com.uwork.happymoment.mvp.social.chat.fragment.ChatListFragment;
+import com.uwork.happymoment.mvp.social.circle.activity.test.ActivityLauncher;
 import com.uwork.happymoment.mvp.social.circle.fragment.CircleListFragment;
 import com.uwork.happymoment.mvp.social.track.fragment.TrackFragment;
 import com.uwork.happymoment.ui.StickyNavLayout;
@@ -32,8 +35,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import io.rong.imkit.fragment.ConversationListFragment;
-import io.rong.imlib.model.Conversation;
 
 /**
  * Created by jie on 2018/5/9.
@@ -89,13 +90,39 @@ public class SocialFragment extends BaseFragment {
     private void initTitle(View view) {
         ToolbarTitle toolbarTitle = new ToolbarTitle(getContext(), view.findViewById(R.id.headerBtnLayout));
         toolbarTitle.initTitle("幸福时刻");
-        toolbarTitle.initMenuClick(0, "", null
+        toolbarTitle.initMenuClick(0, "", null, null
                 , R.mipmap.ic_send_circle, "", new View.OnClickListener() {
                     @Override
-                    public void onClick(View view) {
-                        showToast("发朋友圈");
+                    public void onClick(View view) {//点击发图片
+                        sendCirclePhoto();
+                    }
+                }, new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {//长按发文字
+                        sendCircleText();
+                        return false;
                     }
                 });
+    }
+
+    //发图片
+    private void sendCirclePhoto() {
+        new SelectPhotoMenuPopup(getActivity()).setOnSelectPhotoMenuClickListener(new SelectPhotoMenuPopup.OnSelectPhotoMenuClickListener() {
+            @Override
+            public void onShootClick() {
+                PhotoHelper.fromCamera(getActivity(), false);
+            }
+
+            @Override
+            public void onAlbumClick() {
+                ActivityLauncher.startToPhotoSelectActivity(getActivity(), RouterList.PhotoSelectActivity.requestCode);
+            }
+        }).showPopupWindow();
+    }
+
+    //发文字
+    private void sendCircleText() {
+        ActivityLauncher.startToPublishActivityWithResult(getActivity(), RouterList.PublishActivity.MODE_TEXT, null, RouterList.PublishActivity.requestCode);
     }
 
     private void initFragment() {
@@ -103,27 +130,6 @@ public class SocialFragment extends BaseFragment {
         mFragments.add(CircleListFragment.newInstance());
         mFragments.add(ChatListFragment.newInstance());
         mFragments.add(TrackFragment.newInstance());
-    }
-
-    //会话列表
-    private ConversationListFragment mConversationListFragment = null;
-    //会话列表
-    private Fragment initConversationList() {
-        if (mConversationListFragment == null) {
-            ConversationListFragment listFragment = new ConversationListFragment();
-            Uri uri = Uri.parse("rong://" + getActivity().getApplicationInfo().packageName).buildUpon()
-                    .appendPath("conversationlist")
-                    .appendQueryParameter(Conversation.ConversationType.PRIVATE.getName(), "false") //设置私聊会话是否聚合显示
-                    .appendQueryParameter(Conversation.ConversationType.GROUP.getName(), "true")//群组
-                    .appendQueryParameter(Conversation.ConversationType.DISCUSSION.getName(), "false")
-                    .appendQueryParameter(Conversation.ConversationType.CUSTOMER_SERVICE.getName(), "false")//客服
-                    .build();
-
-            listFragment.setUri(uri);
-            return listFragment;
-        } else {
-            return mConversationListFragment;
-        }
     }
 
     private void initTab() {
@@ -196,8 +202,10 @@ public class SocialFragment extends BaseFragment {
                 //当滑到顶部的时候下面的子fragment中的列表才可以下拉刷新
                 if (scrollY == 0){
                     TrackFragment.newInstance().setRefresh(true);
+                    CircleListFragment.newInstance().setRefresh(true);
                 }else {
                     TrackFragment.newInstance().setRefresh(false);
+                    CircleListFragment.newInstance().setRefresh(false);
                 }
             }
         });
