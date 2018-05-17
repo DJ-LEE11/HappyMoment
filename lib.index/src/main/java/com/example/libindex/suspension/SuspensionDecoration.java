@@ -30,7 +30,7 @@ public class SuspensionDecoration extends RecyclerView.ItemDecoration {
     private LayoutInflater mInflater;
 
     private int mTitleHeight;//title的高
-    private static int COLOR_TITLE_BG = Color.parseColor("#FFDFDFDF");
+    private static int COLOR_TITLE_BG = Color.parseColor("#fff1f2f5");
     private static int COLOR_TITLE_FONT = Color.parseColor("#FF999999");
     private static int mTitleFontSize;//title字体大小
 

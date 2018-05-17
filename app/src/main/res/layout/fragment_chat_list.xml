@@ -1,121 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
+<com.uwork.happymoment.ui.ScrollviewNestedRecyclerView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/white_color"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white_color"
+    android:fillViewport="true"
     android:overScrollMode="never">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
         <LinearLayout
+            android:id="@+id/llLeadingPhone"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="56dp"
+            android:background="@drawable/selector_btn_white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp"
+            android:visibility="gone">
 
-                <LinearLayout
-                    android:id="@+id/llLeadingPhone"
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/selector_btn_white"
-                    android:paddingLeft="15dp">
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/ic_leading_phone"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="导入手机通讯录"
-                            android:textColor="@color/text_color_01"
-                            android:textSize="@dimen/text_size_14"
-                            android:layout_marginLeft="10dp"/>
-                </LinearLayout>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/line_height"
-                    android:background="@color/line_color"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_leading_phone" />
 
-                <LinearLayout
-                    android:id="@+id/llNewFriend"
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/selector_btn_white"
-                    android:paddingLeft="15dp">
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/ic_new_friend"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="新的朋友"
-                            android:textColor="@color/text_color_01"
-                            android:textSize="@dimen/text_size_14"
-                            android:layout_marginLeft="10dp"/>
-                </LinearLayout>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/line_height"
-                    android:background="@color/line_color"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="导入手机通讯录"
+                android:textColor="@color/text_color_01"
+                android:textSize="@dimen/text_size_14" />
+        </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/llGroupChat"
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/selector_btn_white"
-                    android:paddingLeft="15dp">
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/ic_group_chat"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="群聊"
-                            android:textColor="@color/text_color_01"
-                            android:textSize="@dimen/text_size_14"
-                            android:layout_marginLeft="10dp"/>
-                </LinearLayout>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/line_height"
-                    android:background="@color/line_color"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_height"
+            android:background="@color/line_color"
+            android:visibility="gone" />
 
-                <LinearLayout
-                    android:id="@+id/llAddressList"
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/selector_btn_white"
-                    android:paddingLeft="15dp">
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/ic_address_list"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="通讯录"
-                            android:textColor="@color/text_color_01"
-                            android:textSize="@dimen/text_size_14"
-                            android:layout_marginLeft="10dp"/>
-                </LinearLayout>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:background="@color/line_color"/>
+        <LinearLayout
+            android:id="@+id/llNewFriend"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@drawable/selector_btn_white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_new_friend" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="新的朋友"
+                android:textColor="@color/text_color_01"
+                android:textSize="@dimen/text_size_14" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_height"
+            android:background="@color/line_color" />
+
+        <LinearLayout
+            android:id="@+id/llGroupChat"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@drawable/selector_btn_white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_group_chat" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="群聊"
+                android:textColor="@color/text_color_01"
+                android:textSize="@dimen/text_size_14" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_height"
+            android:background="@color/line_color" />
+
+        <LinearLayout
+            android:id="@+id/llAddressList"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@drawable/selector_btn_white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_address_list" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="通讯录"
+                android:textColor="@color/text_color_01"
+                android:textSize="@dimen/text_size_14" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/line_color" />
 
 
         <FrameLayout
             android:id="@+id/frameLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-        </LinearLayout>
+            android:layout_height="match_parent" />
+    </LinearLayout>
 
-</android.support.v4.widget.NestedScrollView>
+</com.uwork.happymoment.ui.ScrollviewNestedRecyclerView>
+
+

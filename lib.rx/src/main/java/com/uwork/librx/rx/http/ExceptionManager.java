@@ -79,7 +79,7 @@ public class ExceptionManager {
     }
 
     static List<String> codes = new ArrayList<String>() {{
-        add("5");//默认token失效返回5
+        add("700");//默认token失效返回5
     }};//授权失效
 
     public static void addUnauthorizedCodes(List<String> codes) {

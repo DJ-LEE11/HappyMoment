@@ -102,10 +102,10 @@ public class CircleListFragment extends BaseFragment  implements IMomentView {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_circle_list, container, false);
         unbinder = ButterKnife.bind(this, view);
-        initView();
-        initKeyboardHeightObserver();
-        initData();
-        initEvent();
+//        initView();
+//        initKeyboardHeightObserver();
+//        initData();
+//        initEvent();
         return view;
     }
 
@@ -289,6 +289,9 @@ public class CircleListFragment extends BaseFragment  implements IMomentView {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        if (mDisposables != null) {
+            mDisposables.clear();
+        }
         unbinder.unbind();
     }
 }

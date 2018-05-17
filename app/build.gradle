@@ -124,8 +124,8 @@ dependencies {
     implementation project(':circle_photoselect')
     implementation project(':circle_publish')
     configurations {
-        all *.exclude group : 'com.google.code.gson'
-        all *.exclude group : 'com.squareup.okio'
+        all*.exclude group: 'com.google.code.gson'
+        all*.exclude group: 'com.squareup.okio'
     }
 
 

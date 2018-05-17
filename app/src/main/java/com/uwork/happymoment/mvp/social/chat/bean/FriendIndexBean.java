@@ -1,52 +1,63 @@
 package com.uwork.happymoment.mvp.social.chat.bean;
 
+import android.text.TextUtils;
+
 import com.example.libindex.IndexBar.bean.BaseIndexPinyinBean;
 
+import java.io.Serializable;
+
 /**
- * Created by jie on 2018/5/14.
+ * Created by jie on 2018/5/17.
  */
 
-public class FriendIndexBean extends BaseIndexPinyinBean {
+public class FriendIndexBean extends BaseIndexPinyinBean implements Serializable{
 
-    private String mId;
-    private String mNickName;
-    private String mAvatar;
+    /**
+     * avatar : string
+     * id : 0
+     * nickName : string
+     * remarksName : string
+     */
 
-    public FriendIndexBean() {
-    }
-
-    public FriendIndexBean(String id, String nickName, String avatar) {
-        mId = id;
-        mNickName = nickName;
-        mAvatar = avatar;
-    }
+    private String avatar;
+    private int id;
+    private String nickName;
+    private String remarksName;
 
     @Override
     public String getTarget() {
-        return mNickName;
-    }
-
-    public String getId() {
-        return mId;
-    }
-
-    public void setId(String id) {
-        mId = id;
-    }
-
-    public String getNickName() {
-        return mNickName;
-    }
-
-    public void setNickName(String nickName) {
-        mNickName = nickName;
+        return TextUtils.isEmpty(remarksName)?nickName:remarksName;
     }
 
     public String getAvatar() {
-        return mAvatar;
+        return avatar;
     }
 
     public void setAvatar(String avatar) {
-        mAvatar = avatar;
+        this.avatar = avatar;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getRemarksName() {
+        return remarksName;
+    }
+
+    public void setRemarksName(String remarksName) {
+        this.remarksName = remarksName;
     }
 }

@@ -56,8 +56,8 @@ public class IMRongManager {
     }
 
     //单人聊天
-    public static void privateChat(Activity activity,String targetId,String name){
-        RongIM.getInstance().startPrivateChat(activity, targetId, name);
+    public static void privateChat(Activity activity,String targetId,String title){
+        RongIM.getInstance().startPrivateChat(activity, targetId, title);
     }
 
     //群组聊天
@@ -74,4 +74,8 @@ public class IMRongManager {
         RongIMClient.getInstance().switchToHumanMode(targetId);//人工模式
     }
 
+    //刷新融云的用户信息
+    public static void updateCurrentUserInfo(String currentUserId,String name,String avatarUrl){
+        RongIM.getInstance().refreshUserInfoCache(new UserInfo(currentUserId, name, Uri.parse(avatarUrl)));
+    }
 }

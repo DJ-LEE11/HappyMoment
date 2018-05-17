@@ -25,8 +25,14 @@ public abstract class BaseAdapter<T> extends BaseQuickAdapter<T,BaseViewHolder> 
 
     //没有数据
     public void setEmptyView(Activity activity , View viewGroup, View.OnClickListener onClickListener){
+
         View emptyView = activity.getLayoutInflater().inflate(R.layout.layout_empty, (ViewGroup) viewGroup.getParent(), false);
         emptyView.setOnClickListener(onClickListener);
+        setEmptyView(emptyView);
+    }
+
+    public void setEmptyView(Activity activity){
+        View emptyView = activity.getLayoutInflater().inflate(R.layout.layout_empty, getRecyclerView(), false);
         setEmptyView(emptyView);
     }
 

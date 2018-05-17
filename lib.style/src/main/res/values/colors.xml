@@ -17,6 +17,10 @@
     <color name="btn_color_pressed">#e1af29</color>
     <color name="btn_color_disable">#CCCCCC</color>
 
+    <!-- 按钮颜色 黄色色系 -->
+    <color name="btn_color_yellow_normal">#e1af29</color>
+    <color name="btn_color_yellow_pressed">#c99615</color>
+
     <!-- 按钮颜色 白色系 -->
     <color name="btn_color_white_normal">#FFFFFF</color>
     <color name="btn_color_white_pressed">#e5e5e5</color>

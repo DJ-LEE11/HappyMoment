@@ -19,21 +19,19 @@
     <uses-permission android:name="android.permission.READ_LOGS" />
 
     <!-- 许可使用照相机 -->
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
     <!-- 许可调用相机硬件 -->
-    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera" />
     <!-- 许可调用相机自动对焦 -->
-    <uses-feature android:name="android.hardware.camera.autofocus"/>
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <!-- 这个权限用于进行网络定位 -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!-- 这个权限用于访问GPS定位 -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:name=".App"
@@ -129,33 +127,42 @@
             </intent-filter>
         </activity>
         <!-- 融云的配置 结束 -->
-        <activity android:name=".mvp.social.chat.activity.LeadingPhoneActivity"
+        <activity
+            android:name=".mvp.social.chat.activity.LeadingPhoneActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.social.chat.activity.NewFriendActivity"
+        <activity
+            android:name=".mvp.social.chat.activity.NewFriendActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.social.chat.activity.GroupChatActivity"
+        <activity
+            android:name=".mvp.social.chat.activity.GroupChatActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.social.chat.activity.AddressListActivity"
+        <activity
+            android:name=".mvp.social.chat.activity.AddressListActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.social.chat.activity.AddGroupActivity"
+        <activity
+            android:name=".mvp.social.chat.activity.AddGroupActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-
-        <activity android:name=".mvp.social.circleTest.activity.test.circledemo.FriendCircleDemoActivity"
+        <activity
+            android:name=".mvp.social.circleTest.activity.test.circledemo.FriendCircleDemoActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.social.circleTest.activity.test.gallery.PhotoBrowseActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/Transparent"/>
-
+            android:theme="@style/Transparent" />
+        <activity android:name=".mvp.social.chat.activity.FriendDetailActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".mvp.social.chat.activity.RemarkNameActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

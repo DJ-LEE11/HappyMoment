@@ -36,7 +36,7 @@ public class HTTPInterceptor implements Interceptor {
                 .header("platform", "Android");
         LogUtils.e("token===>"+token);
         if (!TextUtils.isEmpty(token)) {
-            header.header("X-Access-Auth-Token", token);
+            header.header("X-Auth-Token", token);
         }
         Request authorised = header.build();
         return chain.proceed(authorised);
