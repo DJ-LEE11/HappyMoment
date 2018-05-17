@@ -1,4 +1,4 @@
-package com.uwork.happymoment.mvp.social.circle.fragment;
+package com.uwork.happymoment.mvp.social.circleTest.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -30,9 +30,9 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.socks.library.KLog;
 import com.uwork.happymoment.R;
 import com.uwork.happymoment.event.RefreshCircleEvent;
-import com.uwork.happymoment.mvp.social.circle.activity.test.circledemo.CircleViewTestHelper;
-import com.uwork.happymoment.mvp.social.circle.mvp.presenter.impl.MomentPresenter;
-import com.uwork.happymoment.mvp.social.circle.mvp.view.IMomentView;
+import com.uwork.happymoment.mvp.social.circleTest.activity.test.circledemo.CircleViewTestHelper;
+import com.uwork.happymoment.mvp.social.circleTest.mvp.presenter.impl.MomentPresenter;
+import com.uwork.happymoment.mvp.social.circleTest.mvp.view.IMomentView;
 import com.uwork.happymoment.ui.circle.adapter.CircleMomentsAdapter;
 import com.uwork.happymoment.ui.circle.viewholder.EmptyMomentsVH;
 import com.uwork.happymoment.ui.circle.viewholder.MultiImageMomentsVH;

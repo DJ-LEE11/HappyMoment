@@ -1,7 +1,7 @@
-package com.uwork.happymoment.mvp.social.circle.mvp.presenter;
+package com.uwork.happymoment.mvp.social.circleTest.mvp.presenter;
 
 
-import com.uwork.happymoment.mvp.social.circle.mvp.callback.OnLikeChangeCallback;
+import com.uwork.happymoment.mvp.social.circleTest.mvp.callback.OnLikeChangeCallback;
 
 /**
  * Created by 大灯泡 on 2016/12/6.

@@ -8,7 +8,7 @@ import com.example.circle_base_library.api.AppContext;
 import com.example.circle_base_library.manager.localphoto.LocalPhotoManager;
 import com.example.circle_common.common.manager.LocalHostManager;
 import com.uwork.happymoment.listener.RongConnectionStatusListener;
-import com.uwork.happymoment.mvp.social.circle.config.Define;
+import com.uwork.happymoment.mvp.social.circleTest.config.Define;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobConfig;

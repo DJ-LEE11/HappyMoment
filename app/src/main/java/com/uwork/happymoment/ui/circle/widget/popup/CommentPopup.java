@@ -62,7 +62,7 @@ public class CommentPopup extends BasePopupWindow implements View.OnClickListene
         mCommentClickLayout.setOnClickListener(this);
 
         buildAnima();
-        setBlurBackgroundEnable(true);
+//        setBlurBackgroundEnable(true);
         setInterceptTouchEvent(false);
         setDismissWhenTouchOutside(true);
     }

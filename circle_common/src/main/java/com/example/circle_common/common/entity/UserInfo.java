@@ -12,15 +12,6 @@ import cn.bmob.v3.BmobObject;
 
 public class UserInfo extends BmobObject {
 
-    public interface UserFields {
-        String USERNAME = "username";
-        String PASSWORD = "password";
-        String NICK = "nick";
-        String AUTHOR_USER = "author";
-        String AVATAR = "avatar";
-        String COVER="cover";
-    }
-
     private String username;
     private String password;
     private String nick;

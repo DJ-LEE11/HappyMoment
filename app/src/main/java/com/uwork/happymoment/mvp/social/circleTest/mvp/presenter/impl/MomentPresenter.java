@@ -1,4 +1,4 @@
-package com.uwork.happymoment.mvp.social.circle.mvp.presenter.impl;
+package com.uwork.happymoment.mvp.social.circleTest.mvp.presenter.impl;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -17,10 +17,10 @@ import com.example.circle_common.common.entity.LikesInfo;
 import com.example.circle_common.common.entity.MomentsInfo;
 import com.example.circle_common.common.manager.LocalHostManager;
 import com.socks.library.KLog;
-import com.uwork.happymoment.mvp.social.circle.mvp.callback.OnCommentChangeCallback;
-import com.uwork.happymoment.mvp.social.circle.mvp.callback.OnLikeChangeCallback;
-import com.uwork.happymoment.mvp.social.circle.mvp.presenter.IMomentPresenter;
-import com.uwork.happymoment.mvp.social.circle.mvp.view.IMomentView;
+import com.uwork.happymoment.mvp.social.circleTest.mvp.callback.OnCommentChangeCallback;
+import com.uwork.happymoment.mvp.social.circleTest.mvp.callback.OnLikeChangeCallback;
+import com.uwork.happymoment.mvp.social.circleTest.mvp.presenter.IMomentPresenter;
+import com.uwork.happymoment.mvp.social.circleTest.mvp.view.IMomentView;
 
 import java.util.ArrayList;
 import java.util.Iterator;

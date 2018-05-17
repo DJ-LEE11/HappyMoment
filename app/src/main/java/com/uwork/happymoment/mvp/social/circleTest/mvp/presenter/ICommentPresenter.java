@@ -1,9 +1,9 @@
-package com.uwork.happymoment.mvp.social.circle.mvp.presenter;
+package com.uwork.happymoment.mvp.social.circleTest.mvp.presenter;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.uwork.happymoment.mvp.social.circle.mvp.callback.OnCommentChangeCallback;
+import com.uwork.happymoment.mvp.social.circleTest.mvp.callback.OnCommentChangeCallback;
 
 
 /**

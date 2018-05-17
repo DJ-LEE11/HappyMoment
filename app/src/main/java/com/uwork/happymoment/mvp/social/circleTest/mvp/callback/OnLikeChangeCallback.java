@@ -1,4 +1,4 @@
-package com.uwork.happymoment.mvp.social.circle.mvp.callback;
+package com.uwork.happymoment.mvp.social.circleTest.mvp.callback;
 
 /**
  * Created by 大灯泡 on 2016/12/7.

@@ -1,11 +1,11 @@
-package com.uwork.happymoment.mvp.social.circle.mvp.presenter.impl;
+package com.uwork.happymoment.mvp.social.circleTest.mvp.presenter.impl;
 
 
 import com.example.circle_base_library.network.base.OnResponseListener;
 import com.example.circle_common.common.request.AddLikeRequest;
 import com.example.circle_common.common.request.UnLikeRequest;
-import com.uwork.happymoment.mvp.social.circle.mvp.callback.OnLikeChangeCallback;
-import com.uwork.happymoment.mvp.social.circle.mvp.presenter.ILikePresenter;
+import com.uwork.happymoment.mvp.social.circleTest.mvp.callback.OnLikeChangeCallback;
+import com.uwork.happymoment.mvp.social.circleTest.mvp.presenter.ILikePresenter;
 
 import cn.bmob.v3.exception.BmobException;
 

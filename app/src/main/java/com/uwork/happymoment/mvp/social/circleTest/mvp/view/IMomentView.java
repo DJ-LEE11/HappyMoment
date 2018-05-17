@@ -1,4 +1,4 @@
-package com.uwork.happymoment.mvp.social.circle.mvp.view;
+package com.uwork.happymoment.mvp.social.circleTest.mvp.view;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;

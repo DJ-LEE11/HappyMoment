@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
 import com.example.circle_base_ui.base.adapter.BaseMultiRecyclerViewAdapter;
 import com.example.circle_base_ui.base.adapter.BaseRecyclerViewHolder;
 import com.example.circle_common.common.entity.MomentsInfo;
-import com.uwork.happymoment.mvp.social.circle.mvp.presenter.impl.MomentPresenter;
+import com.uwork.happymoment.mvp.social.circleTest.mvp.presenter.impl.MomentPresenter;
 import com.uwork.happymoment.ui.circle.viewholder.CircleBaseViewHolder;
 
 import java.util.List;

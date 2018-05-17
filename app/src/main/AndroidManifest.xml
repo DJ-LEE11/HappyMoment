@@ -145,12 +145,12 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".mvp.social.circle.activity.test.circledemo.FriendCircleDemoActivity"
+        <activity android:name=".mvp.social.circleTest.activity.test.circledemo.FriendCircleDemoActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".mvp.social.circle.activity.test.gallery.PhotoBrowseActivity"
+            android:name=".mvp.social.circleTest.activity.test.gallery.PhotoBrowseActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"

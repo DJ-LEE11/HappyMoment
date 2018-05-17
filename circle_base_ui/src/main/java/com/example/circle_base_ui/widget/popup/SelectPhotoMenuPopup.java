@@ -31,7 +31,8 @@ public class SelectPhotoMenuPopup extends BasePopupWindow implements View.OnClic
         cancel = findViewById(R.id.cancel);
 
         ViewUtil.setViewsClickListener(this, shoot, album, cancel);
-        setBlurBackgroundEnable(true);
+        //背景模糊
+//        setBlurBackgroundEnable(true);
     }
 
     @Override

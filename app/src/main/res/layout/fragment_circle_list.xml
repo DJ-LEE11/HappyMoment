@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             app:srlAccentColor="@color/text_color_01"
             app:srlClassicsSpinnerStyle="FixedBehind"
-            app:srlPrimaryColor="@color/line_color" />
+            app:srlPrimaryColor="@color/white_color" />
 
 
         <android.support.v7.widget.RecyclerView

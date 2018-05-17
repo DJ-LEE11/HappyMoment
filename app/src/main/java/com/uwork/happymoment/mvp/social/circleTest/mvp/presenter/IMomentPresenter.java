@@ -1,4 +1,4 @@
-package com.uwork.happymoment.mvp.social.circle.mvp.presenter;
+package com.uwork.happymoment.mvp.social.circleTest.mvp.presenter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -7,7 +7,7 @@ import com.example.circle_base_library.mvp.IBasePresenter;
 import com.example.circle_common.common.entity.CommentInfo;
 import com.example.circle_common.common.entity.LikesInfo;
 import com.example.circle_common.common.entity.MomentsInfo;
-import com.uwork.happymoment.mvp.social.circle.mvp.view.IMomentView;
+import com.uwork.happymoment.mvp.social.circleTest.mvp.view.IMomentView;
 
 import java.util.List;
 

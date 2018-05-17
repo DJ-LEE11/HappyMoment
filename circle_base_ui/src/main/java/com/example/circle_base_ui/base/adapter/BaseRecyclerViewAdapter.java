@@ -30,7 +30,6 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Ba
     protected LayoutInflater mInflater;
 
     private OnRecyclerViewItemClickListener<T> onRecyclerViewItemClickListener;
-    private OnRecyclerViewLongItemClickListener<T> onRecyclerViewLongItemClickListener;
 
     public BaseRecyclerViewAdapter(@NonNull Context context) {
         this(context, new ArrayList<T>());
@@ -82,17 +81,6 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Ba
                     //这个获取位置的方法，防止添加删除导致位置不变
                     int layoutPosition = holder.getAdapterPosition();
                     onRecyclerViewItemClickListener.onItemClick(holder.itemView, layoutPosition, datas.get(layoutPosition));
-                }
-            });
-        }
-        if (onRecyclerViewLongItemClickListener != null) {
-            //longclick
-            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    int layoutPosition = holder.getAdapterPosition();
-                    onRecyclerViewLongItemClickListener.onItemLongClick(holder.itemView, layoutPosition, datas.get(layoutPosition));
-                    return false;
                 }
             });
         }
@@ -175,11 +163,4 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Ba
         this.onRecyclerViewItemClickListener = onRecyclerViewItemClickListener;
     }
 
-    public OnRecyclerViewLongItemClickListener<T> getOnRecyclerViewLongItemClickListener() {
-        return onRecyclerViewLongItemClickListener;
-    }
-
-    public void setOnRecyclerViewLongItemClickListener(OnRecyclerViewLongItemClickListener<T> onRecyclerViewLongItemClickListener) {
-        this.onRecyclerViewLongItemClickListener = onRecyclerViewLongItemClickListener;
-    }
 }

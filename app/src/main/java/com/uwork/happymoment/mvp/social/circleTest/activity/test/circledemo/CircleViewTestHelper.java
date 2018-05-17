@@ -1,4 +1,4 @@
-package com.uwork.happymoment.mvp.social.circle.activity.test.circledemo;
+package com.uwork.happymoment.mvp.social.circleTest.activity.test.circledemo;
 
 import android.app.Activity;
 import android.graphics.Rect;

@@ -1,4 +1,4 @@
-package com.uwork.happymoment.mvp.social.circle.config;
+package com.uwork.happymoment.mvp.social.circleTest.config;
 
 import android.support.annotation.IntDef;
 

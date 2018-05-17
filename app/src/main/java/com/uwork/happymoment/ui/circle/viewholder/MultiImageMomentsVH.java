@@ -15,7 +15,7 @@ import com.example.circle_common.common.entity.PhotoBrowseInfo;
 import com.example.circle_common.util.BmobUrlUtil;
 import com.socks.library.KLog;
 import com.uwork.happymoment.R;
-import com.uwork.happymoment.mvp.social.circle.activity.test.ActivityLauncher;
+import com.uwork.happymoment.mvp.social.circleTest.activity.test.ActivityLauncher;
 
 import java.util.ArrayList;
 import java.util.List;

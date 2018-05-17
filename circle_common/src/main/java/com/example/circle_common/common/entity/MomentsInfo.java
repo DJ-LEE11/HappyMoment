@@ -94,6 +94,7 @@ public class MomentsInfo extends BmobObject implements MultiType {
         this.content = content;
     }
 
+    //添加评论
     public void addComment(CommentInfo commentInfo) {
         if (commentInfo == null) return;
         if (this.commentList == null) {
@@ -102,6 +103,7 @@ public class MomentsInfo extends BmobObject implements MultiType {
         this.commentList.add(commentInfo);
     }
 
+    //添加点赞
     public void addLikes(LikesInfo likesInfo) {
         if (likesInfo == null) return;
         if (this.likesList == null) {
@@ -110,6 +112,7 @@ public class MomentsInfo extends BmobObject implements MultiType {
         this.likesList.add(likesInfo);
     }
 
+    //如果返回null当前用户没有点赞，否则返回当前用户id
     public String getLikesObjectid() {
         String momentid = getMomentid();
         String userid = LocalHostManager.INSTANCE.getUserid();

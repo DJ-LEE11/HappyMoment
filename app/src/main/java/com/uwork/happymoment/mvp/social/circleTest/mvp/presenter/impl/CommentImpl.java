@@ -1,4 +1,4 @@
-package com.uwork.happymoment.mvp.social.circle.mvp.presenter.impl;
+package com.uwork.happymoment.mvp.social.circleTest.mvp.presenter.impl;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,8 +8,8 @@ import com.example.circle_common.common.entity.CommentInfo;
 import com.example.circle_common.common.request.AddCommentRequest;
 import com.example.circle_common.common.request.DeleteCommentRequest;
 import com.example.circle_common.common.request.SimpleResponseListener;
-import com.uwork.happymoment.mvp.social.circle.mvp.callback.OnCommentChangeCallback;
-import com.uwork.happymoment.mvp.social.circle.mvp.presenter.ICommentPresenter;
+import com.uwork.happymoment.mvp.social.circleTest.mvp.callback.OnCommentChangeCallback;
+import com.uwork.happymoment.mvp.social.circleTest.mvp.presenter.ICommentPresenter;
 
 
 /**

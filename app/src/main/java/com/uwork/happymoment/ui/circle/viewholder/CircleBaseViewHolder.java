@@ -26,7 +26,7 @@ import com.example.circle_common.common.entity.MomentsInfo;
 import com.example.circle_common.common.manager.LocalHostManager;
 import com.socks.library.KLog;
 import com.uwork.happymoment.R;
-import com.uwork.happymoment.mvp.social.circle.mvp.presenter.impl.MomentPresenter;
+import com.uwork.happymoment.mvp.social.circleTest.mvp.presenter.impl.MomentPresenter;
 import com.uwork.happymoment.ui.circle.widget.popup.CommentPopup;
 import com.uwork.happymoment.ui.circle.widget.popup.DeleteCommentPopup;
 import com.uwork.happymoment.ui.circle.widget.praisewidget.PraiseWidget;
@@ -140,6 +140,7 @@ public abstract class CircleBaseViewHolder extends BaseMultiRecyclerViewHolder<M
         onBindDataToView(data, position, getViewType());
     }
 
+    //绑定头部和底部的公共数据
     private void onBindMutualDataToViews(MomentsInfo data) {
         //header
         ImageLoadMnanger.INSTANCE.loadImage(avatar, data.getAuthor().getAvatar());
@@ -150,6 +151,7 @@ public abstract class CircleBaseViewHolder extends BaseMultiRecyclerViewHolder<M
 
         //bottom
         createTime.setText(TimeUtil.getTimeStringFromBmob(data.getCreatedAt()));
+        //是否显示删除状态
         ViewUtil.setViewsVisible(TextUtils.equals(momentsInfo.getAuthor().getUserid(), LocalHostManager.INSTANCE.getUserid()) ?
                 View.VISIBLE : View.GONE, deleteMoments);
         boolean needPraiseData = addLikes(data.getLikesList());
@@ -199,9 +201,9 @@ public abstract class CircleBaseViewHolder extends BaseMultiRecyclerViewHolder<M
             }
             if (commentInfo == null) return;
             if (commentInfo.canDelete()) {
-                deleteCommentPopup.showPopupWindow(commentInfo);
+                deleteCommentPopup.showPopupWindow(commentInfo);//删除评论对话框
             } else {
-                momentPresenter.showCommentBox(null, itemPosition, momentsInfo.getMomentid(), widget);
+                momentPresenter.showCommentBox(null, itemPosition, momentsInfo.getMomentid(), widget);//回复评论对话框
             }
         }
     };
@@ -213,6 +215,7 @@ public abstract class CircleBaseViewHolder extends BaseMultiRecyclerViewHolder<M
         }
     };
 
+    //删除评论回调
     private DeleteCommentPopup.OnDeleteCommentClickListener onDeleteCommentClickListener = new DeleteCommentPopup.OnDeleteCommentClickListener() {
         @Override
         public void onDelClick(CommentInfo commentInfo) {
@@ -220,6 +223,7 @@ public abstract class CircleBaseViewHolder extends BaseMultiRecyclerViewHolder<M
         }
     };
 
+    //删除动态
     private View.OnClickListener onDeleteMomentClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -227,7 +231,7 @@ public abstract class CircleBaseViewHolder extends BaseMultiRecyclerViewHolder<M
         }
     };
 
-
+    //点赞/取消点赞，评论
     private View.OnClickListener onMenuButtonClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -239,19 +243,19 @@ public abstract class CircleBaseViewHolder extends BaseMultiRecyclerViewHolder<M
         }
     };
 
-
+    //点赞/取消点赞，评论的回调方法
     private CommentPopup.OnCommentPopupClickListener onCommentPopupClickListener = new CommentPopup.OnCommentPopupClickListener() {
         @Override
         public void onLikeClick(View v, @NonNull MomentsInfo info, boolean hasLiked) {
-            if (hasLiked) {
+            if (hasLiked) {//取消点赞
                 momentPresenter.unLike(itemPosition, info.getLikesObjectid(), info.getLikesList());
-            } else {
+            } else {//点赞
                 momentPresenter.addLike(itemPosition, info.getMomentid(), info.getLikesList());
             }
 
         }
 
-        @Override
+        @Override//评论
         public void onCommentClick(View v, @NonNull MomentsInfo info) {
             momentPresenter.showCommentBox(itemView, itemPosition, info.getMomentid(), null);
         }

@@ -27,7 +27,7 @@ import com.uwork.happymoment.mvp.hotel.fragment.HotelFragment;
 import com.uwork.happymoment.mvp.login.activity.LoginRegisterActivity;
 import com.uwork.happymoment.mvp.main.fragment.HomePageFragment;
 import com.uwork.happymoment.mvp.my.fragment.MyFragment;
-import com.uwork.happymoment.mvp.social.circle.activity.test.ActivityLauncher;
+import com.uwork.happymoment.mvp.social.circleTest.activity.test.ActivityLauncher;
 import com.uwork.happymoment.mvp.social.fragment.SocialFragment;
 import com.uwork.librx.bean.LoginEvent;
 import com.uwork.librx.mvp.BaseActivity;
