@@ -81,7 +81,7 @@ public class ChatListFragment extends BaseFragment {
             Uri uri = Uri.parse("rong://" + getActivity().getApplicationInfo().packageName).buildUpon()
                     .appendPath("conversationlist")
                     .appendQueryParameter(Conversation.ConversationType.PRIVATE.getName(), "false") //设置私聊会话是否聚合显示
-                    .appendQueryParameter(Conversation.ConversationType.GROUP.getName(), "true")//群组
+                    .appendQueryParameter(Conversation.ConversationType.GROUP.getName(), "false")//群组
                     .appendQueryParameter(Conversation.ConversationType.DISCUSSION.getName(), "false")
                     .appendQueryParameter(Conversation.ConversationType.CUSTOMER_SERVICE.getName(), "false")//客服
                     .build();

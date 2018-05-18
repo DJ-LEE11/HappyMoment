@@ -32,5 +32,5 @@
     
     <!-- 主题色 -->
     <color name="theme_color">#ffca00</color>
-
+    <color name="theme_color_yellow">#e1af29</color>
 </resources>

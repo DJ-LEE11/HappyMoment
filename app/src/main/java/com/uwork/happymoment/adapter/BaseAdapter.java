@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -33,6 +34,13 @@ public abstract class BaseAdapter<T> extends BaseQuickAdapter<T,BaseViewHolder> 
 
     public void setEmptyView(Activity activity){
         View emptyView = activity.getLayoutInflater().inflate(R.layout.layout_empty, getRecyclerView(), false);
+        setEmptyView(emptyView);
+    }
+
+    public void setEmptyView(Activity activity,String tip){
+        View emptyView = activity.getLayoutInflater().inflate(R.layout.layout_empty, getRecyclerView(), false);
+        TextView tv = emptyView.findViewById(R.id.tvEmpty);
+        tv.setText(tip);
         setEmptyView(emptyView);
     }
 

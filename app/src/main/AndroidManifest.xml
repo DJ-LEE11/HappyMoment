@@ -157,10 +157,18 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/Transparent" />
-        <activity android:name=".mvp.social.chat.activity.FriendDetailActivity"
+        <activity
+            android:name=".mvp.social.chat.activity.FriendDetailActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.social.chat.activity.RemarkNameActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity android:name=".mvp.social.chat.activity.SearchFriendActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
-        <activity android:name=".mvp.social.chat.activity.RemarkNameActivity"
+        <activity android:name=".mvp.social.chat.activity.SearchNewFriendActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
     </application>

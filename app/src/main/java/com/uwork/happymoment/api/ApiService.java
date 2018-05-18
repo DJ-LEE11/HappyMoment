@@ -4,8 +4,14 @@ import com.uwork.happymoment.mvp.login.bean.LoginRequestBean;
 import com.uwork.happymoment.mvp.login.bean.RegisterRequestBean;
 import com.uwork.happymoment.mvp.login.bean.ResetPasswordRequestBean;
 import com.uwork.happymoment.mvp.login.bean.UserBean;
+import com.uwork.happymoment.mvp.social.chat.bean.AddCreateGroupRequestBean;
+import com.uwork.happymoment.mvp.social.chat.bean.AddGroupBean;
 import com.uwork.happymoment.mvp.social.chat.bean.FriendDetailBean;
 import com.uwork.happymoment.mvp.social.chat.bean.FriendIndexBean;
+import com.uwork.happymoment.mvp.social.chat.bean.NewFriendResponseBean;
+import com.uwork.happymoment.mvp.social.chat.bean.SearchNewFriendBean;
+import com.uwork.happymoment.mvp.social.chat.bean.SearchNewFriendForCodeRequestBean;
+import com.uwork.happymoment.mvp.social.chat.bean.SearchNewFriendForPhoneRequestBean;
 import com.uwork.happymoment.mvp.social.chat.bean.UpdateFriendInfoRequestBean;
 import com.uwork.librx.rx.BaseResult;
 
@@ -24,6 +30,7 @@ import retrofit2.http.Query;
 public interface ApiService {
 
     //===========================================================================>登录注册模块
+
     /**
      * 发送验证码
      */
@@ -49,6 +56,7 @@ public interface ApiService {
     Flowable<BaseResult<String>> resetPassword(@Body ResetPasswordRequestBean resetPasswordRequestBean);
 
     //===========================================================================>幸福时刻模块
+
     /**
      * 好友通讯录列表
      */
@@ -67,4 +75,27 @@ public interface ApiService {
     @POST("/friend/update")
     Flowable<BaseResult<String>> updateFriendInfo(@Body UpdateFriendInfoRequestBean updateFriendInfoRequestBean);
 
+    /**
+     * 创建群聊
+     */
+    @POST("/group/createGroup")
+    Flowable<BaseResult<AddGroupBean>> addGroup(@Body AddCreateGroupRequestBean addCreateGroupRequestBean);
+
+    /**
+     * 新朋友
+     */
+    @POST("/friend/newFriends")
+    Flowable<BaseResult<NewFriendResponseBean>> getNewFriend();
+
+    /**
+     * 搜索新朋友(通过手机)
+     */
+    @POST("/user/searchUser")
+    Flowable<BaseResult<SearchNewFriendBean>> searchNewFriendForPhone(@Body SearchNewFriendForPhoneRequestBean searchNewFriendForPhoneRequestBean);
+
+    /**
+     * 搜索新朋友(通过二维码)
+     */
+    @POST("/user/searchUser")
+    Flowable<BaseResult<SearchNewFriendBean>> searchNewFriendForCode(@Body SearchNewFriendForCodeRequestBean searchNewFriendForCodeRequestBean);
 }

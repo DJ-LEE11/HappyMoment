@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 
@@ -139,6 +140,11 @@ public class AddressListActivity extends BaseTitleActivity implements IGetFriend
         mIndexBar.setmSourceDatas(friendIndexBeanList)
                 .invalidate();
         mDecoration.setmDatas(friendIndexBeanList);
+    }
+
+    @OnClick(R.id.llSearch)
+    public void onViewClicked() {
+        goTo(SearchFriendActivity.class);
     }
 
     @Override

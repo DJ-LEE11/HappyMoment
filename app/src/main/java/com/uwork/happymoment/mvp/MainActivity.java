@@ -145,7 +145,7 @@ public class MainActivity extends BaseActivity {
         if (!UserManager.getInstance().isLogin(this)){
             goTo(LoginRegisterActivity.class);
         }else {
-            showToast("电话");
+//            IMRongManager.groupChat(this,"2","hahah");
         }
     }
 

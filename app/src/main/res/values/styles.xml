@@ -24,4 +24,14 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <!-- dialog去除标题 -->
+    <style name="DialogTheme" parent="android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item><!--无标题-->
+        <item name="android:windowBackground">@android:color/transparent</item><!--背景透明-->
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsTranslucent">false</item><!--半透明-->
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+
 </resources>

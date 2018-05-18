@@ -56,26 +56,34 @@ public class IMRongManager {
     }
 
     //单人聊天
-    public static void privateChat(Activity activity,String targetId,String title){
+    public static void privateChat(Activity activity, String targetId, String title) {
         RongIM.getInstance().startPrivateChat(activity, targetId, title);
     }
 
     //群组聊天
-    public static void groupChat(Activity activity,String groupId,String groupName){
+    public static void groupChat(Activity activity, String groupId, String groupName) {
+//        RongIM.setGroupInfoProvider(new RongIM.GroupInfoProvider() {
+//            @Override
+//            public Group getGroupInfo(String s) {
+//                //调用接口获取groupInfo信息。然后刷新 refreshGroupInfoCache(group);
+//                Group group=new Group(Integer.valueOf(addGroupBean.getId()).toString(),addGroupBean.getName(),  Uri.parse(""));
+//                return group;
+//            }
+//        }, true);
         RongIM.getInstance().startGroupChat(activity, groupId, groupName);
     }
 
     //客服聊天
-    public static void chatCustom(Activity activity,String customName
-            ,String chatTitle,String customID,String targetId){
+    public static void chatCustom(Activity activity, String customName
+            , String chatTitle, String customID, String targetId) {
         CSCustomServiceInfo.Builder csBuilder = new CSCustomServiceInfo.Builder();
         CSCustomServiceInfo csInfo = csBuilder.nickName(customName).build();
-        RongIM.getInstance().startCustomerServiceChat(activity, customID, chatTitle,csInfo);
+        RongIM.getInstance().startCustomerServiceChat(activity, customID, chatTitle, csInfo);
         RongIMClient.getInstance().switchToHumanMode(targetId);//人工模式
     }
 
     //刷新融云的用户信息
-    public static void updateCurrentUserInfo(String currentUserId,String name,String avatarUrl){
+    public static void updateCurrentUserInfo(String currentUserId, String name, String avatarUrl) {
         RongIM.getInstance().refreshUserInfoCache(new UserInfo(currentUserId, name, Uri.parse(avatarUrl)));
     }
 }
