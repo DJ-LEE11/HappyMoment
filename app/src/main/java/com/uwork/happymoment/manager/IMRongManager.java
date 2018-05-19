@@ -15,7 +15,7 @@ import io.rong.imlib.model.UserInfo;
  * Created by jie on 2018/5/11.
  */
 
-public class IMRongManager {
+public class IMRongManager{
 
     //连接融云
     public static void imConnect(Context context, String imToken, final String userName, final String userHead) {
@@ -41,6 +41,12 @@ public class IMRongManager {
                     RongIM.getInstance().setCurrentUserInfo(new UserInfo(userId, userName, Uri.parse(userHead)));
                     //设置消息体内携带用户信息
                     RongIM.getInstance().setMessageAttachedUserInfo(true);
+//                    RongIM.setGroupInfoProvider(new RongIM.GroupInfoProvider() {
+//                        @Override
+//                        public Group getGroupInfo(String s) {
+//                            return null;
+//                        }
+//                    }, true);
                 }
 
                 /**

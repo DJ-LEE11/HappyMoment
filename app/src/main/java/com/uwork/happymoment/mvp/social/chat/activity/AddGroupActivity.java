@@ -190,6 +190,7 @@ public class AddGroupActivity extends BaseTitleActivity implements IGetFriendInd
             public Group getGroupInfo(String s) {
                 //调用接口获取groupInfo信息。然后刷新 refreshGroupInfoCache(group);
                 Group group=new Group(Integer.valueOf(addGroupBean.getId()).toString(),addGroupBean.getName(),  Uri.parse(""));
+                RongIM.getInstance().refreshGroupInfoCache(group);
                 return group;
             }
         }, true);

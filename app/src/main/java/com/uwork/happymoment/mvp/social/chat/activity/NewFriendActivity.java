@@ -15,7 +15,9 @@ import com.uwork.happymoment.mvp.social.chat.adapter.NewFriendAdapter;
 import com.uwork.happymoment.mvp.social.chat.bean.NewFriendBean;
 import com.uwork.happymoment.mvp.social.chat.bean.NewFriendResponseBean;
 import com.uwork.happymoment.mvp.social.chat.contract.IGetNewFriendContract;
+import com.uwork.happymoment.mvp.social.chat.contract.IMakeFriendContract;
 import com.uwork.happymoment.mvp.social.chat.presenter.IGetNewFriendPresenter;
+import com.uwork.happymoment.mvp.social.chat.presenter.IMakeFriendPresenter;
 import com.uwork.happymoment.ui.DividerItemLineDecoration;
 
 import java.util.ArrayList;
@@ -24,12 +26,13 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class NewFriendActivity extends BaseTitleActivity implements IGetNewFriendContract.View{
+public class NewFriendActivity extends BaseTitleActivity implements IGetNewFriendContract.View,IMakeFriendContract.View{
 
     @BindView(R.id.rvFriend)
     RecyclerView mRvFriend;
     private NewFriendAdapter mNewFriendAdapter;
     private IGetNewFriendPresenter mIGetNewFriendPresenter;
+    private IMakeFriendPresenter mIMakeFriendPresenter;
     private List<MultiItemEntity> mData;
 
     @Override
@@ -43,7 +46,9 @@ public class NewFriendActivity extends BaseTitleActivity implements IGetNewFrien
             list = new ArrayList();
         }
         mIGetNewFriendPresenter = new IGetNewFriendPresenter(this);
+        mIMakeFriendPresenter = new IMakeFriendPresenter(this);
         list.add(mIGetNewFriendPresenter);
+        list.add(mIMakeFriendPresenter);
         return list;
     }
 
@@ -80,7 +85,8 @@ public class NewFriendActivity extends BaseTitleActivity implements IGetNewFrien
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 if (view.getId() == R.id.tvLook){
-                    showToast("查看");
+                    NewFriendBean newFriendBean = (NewFriendBean) adapter.getData().get(position);
+                    mIMakeFriendPresenter.makeFriend(Integer.valueOf(newFriendBean.getId()));
                 }
             }
         });
@@ -107,10 +113,17 @@ public class NewFriendActivity extends BaseTitleActivity implements IGetNewFrien
             }
         }
         mNewFriendAdapter.setNewData(mData);
+        dismissLoading();
     }
 
     @OnClick(R.id.llSearch)
     public void onViewClicked() {
         goTo(SearchNewFriendActivity.class);
+    }
+
+    @Override
+    public void makeFriendSuccess() {
+        showToast("添加成功");
+        mIGetNewFriendPresenter.getNewFriend();
     }
 }

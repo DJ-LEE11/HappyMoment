@@ -10,7 +10,6 @@ import com.uwork.librx.mvp.BaseFragment;
 import com.uwork.librx.mvp.contract.IBaseListPageContract;
 import com.uwork.librx.mvp.presenter.IBaseListPagePresenter;
 
-
 /**
  * @author 李栋杰
  * @time 2018/3/29  上午11:38
@@ -34,18 +33,20 @@ public abstract class BasePageFragment <T> extends BaseFragment implements IBase
     @Override
     public void addList(PageResponseBean<T> pager) {
         if (mAdapter != null && mRefreshLayout != null) {
-            if (mIsRefresh && !pager.hasPreviousPage) {
-                if (pager.list != null && pager.list.size() > 0) {
-                    mAdapter.setNewData(pager.list);
+            if (mIsRefresh && pager.isFirst()) {
+                if (pager.getContent() != null && pager.getContent().size() > 0) {
+                    mAdapter.setNewData(pager.getContent());
                 } else {
                     showEmptyView();
                 }
             } else {
-                mAdapter.addData(pager.list);
+                mAdapter.addData(pager.getContent());
                 mAdapter.notifyDataSetChanged();
             }
-            if (!pager.hasNextPage) {
+            if (pager.isLast()) {
                 mRefreshLayout.setLoadmoreFinished(true);
+            }else {
+                mRefreshLayout.setLoadmoreFinished(false);
             }
             stopLoading();
         }

@@ -26,8 +26,8 @@ public class App extends MultiDexApplication {
         super.onCreate();
         //朋友圈
         AppContext.initARouter();
-//        initBmob();
-//        initLocalHostInfo();
+        initBmob();
+        initLocalHostInfo();
         LocalPhotoManager.INSTANCE.registerContentObserver(null);
         //初始化融云
         RongIM.init(this);

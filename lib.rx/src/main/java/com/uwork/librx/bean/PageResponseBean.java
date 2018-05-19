@@ -9,142 +9,39 @@ import java.util.List;
  * @desc ${TODD}
  */
 public class PageResponseBean<T> implements Serializable {
+
     /**
-     * endRow : 0
-     * firstPage : 0
-     * hasNextPage : true
-     * hasPreviousPage : true
-     * isFirstPage : true
-     * isLastPage : true
-     * lastPage : 0
-     * navigateFirstPage : 0
-     * navigateLastPage : 0
-     * navigatePages : 0
-     * navigatepageNums : [0]
-     * nextPage : 0
+     * content : [{"avatar":"string","content":"string","createTime":"string","id":0,"momentsCommentResponseBeans":[{"content":"string","createTime":"string","id":0,"sendUserId":0,"toUserId":0}],"momentsFavourResponseBeans":[{"avatar":"string","id":0,"name":"string"}],"name":"string","picture":["string"],"userId":0}]
+     * first : false
+     * last : false
      * pageNum : 0
      * pageSize : 0
-     * pages : 0
-     * prePage : 0
-     * size : 0
-     * startRow : 0
-     * total : 0
+     * totalElements : 0
+     * totalPages : 0
      */
-    public List<T> list;
-    public int endRow;
-    public int firstPage;
-    public boolean hasNextPage;
-    public boolean hasPreviousPage;
-    public boolean isFirstPage;
-    public boolean isLastPage;
-    public int lastPage;
-    public int navigateFirstPage;
-    public int navigateLastPage;
-    public int navigatePages;
-    public int nextPage;
-    public int pageNum;
-    public int pageSize;
-    public int pages;
-    public int prePage;
-    public int size;
-    public int startRow;
-    public int total;
-    public List<Integer> navigatepageNums;
 
-    public List<T> getList() {
-        return list;
+    private boolean first;
+    private boolean last;
+    private int pageNum;
+    private int pageSize;
+    private int totalElements;
+    private int totalPages;
+    private List<T> content;
+
+    public boolean isFirst() {
+        return first;
     }
 
-    public void setList(List<T> list) {
-        this.list = list;
+    public void setFirst(boolean first) {
+        this.first = first;
     }
 
-    public int getEndRow() {
-        return endRow;
+    public boolean isLast() {
+        return last;
     }
 
-    public void setEndRow(int endRow) {
-        this.endRow = endRow;
-    }
-
-    public int getFirstPage() {
-        return firstPage;
-    }
-
-    public void setFirstPage(int firstPage) {
-        this.firstPage = firstPage;
-    }
-
-    public boolean isHasNextPage() {
-        return hasNextPage;
-    }
-
-    public void setHasNextPage(boolean hasNextPage) {
-        this.hasNextPage = hasNextPage;
-    }
-
-    public boolean isHasPreviousPage() {
-        return hasPreviousPage;
-    }
-
-    public void setHasPreviousPage(boolean hasPreviousPage) {
-        this.hasPreviousPage = hasPreviousPage;
-    }
-
-    public boolean isFirstPage() {
-        return isFirstPage;
-    }
-
-    public void setFirstPage(boolean firstPage) {
-        isFirstPage = firstPage;
-    }
-
-    public boolean isLastPage() {
-        return isLastPage;
-    }
-
-    public void setLastPage(boolean lastPage) {
-        isLastPage = lastPage;
-    }
-
-    public int getLastPage() {
-        return lastPage;
-    }
-
-    public void setLastPage(int lastPage) {
-        this.lastPage = lastPage;
-    }
-
-    public int getNavigateFirstPage() {
-        return navigateFirstPage;
-    }
-
-    public void setNavigateFirstPage(int navigateFirstPage) {
-        this.navigateFirstPage = navigateFirstPage;
-    }
-
-    public int getNavigateLastPage() {
-        return navigateLastPage;
-    }
-
-    public void setNavigateLastPage(int navigateLastPage) {
-        this.navigateLastPage = navigateLastPage;
-    }
-
-    public int getNavigatePages() {
-        return navigatePages;
-    }
-
-    public void setNavigatePages(int navigatePages) {
-        this.navigatePages = navigatePages;
-    }
-
-    public int getNextPage() {
-        return nextPage;
-    }
-
-    public void setNextPage(int nextPage) {
-        this.nextPage = nextPage;
+    public void setLast(boolean last) {
+        this.last = last;
     }
 
     public int getPageNum() {
@@ -163,77 +60,27 @@ public class PageResponseBean<T> implements Serializable {
         this.pageSize = pageSize;
     }
 
-    public int getPages() {
-        return pages;
+    public int getTotalElements() {
+        return totalElements;
     }
 
-    public void setPages(int pages) {
-        this.pages = pages;
+    public void setTotalElements(int totalElements) {
+        this.totalElements = totalElements;
     }
 
-    public int getPrePage() {
-        return prePage;
+    public int getTotalPages() {
+        return totalPages;
     }
 
-    public void setPrePage(int prePage) {
-        this.prePage = prePage;
+    public void setTotalPages(int totalPages) {
+        this.totalPages = totalPages;
     }
 
-    public int getSize() {
-        return size;
+    public List<T> getContent() {
+        return content;
     }
 
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    public int getStartRow() {
-        return startRow;
-    }
-
-    public void setStartRow(int startRow) {
-        this.startRow = startRow;
-    }
-
-    public int getTotal() {
-        return total;
-    }
-
-    public void setTotal(int total) {
-        this.total = total;
-    }
-
-    public List<Integer> getNavigatepageNums() {
-        return navigatepageNums;
-    }
-
-    public void setNavigatepageNums(List<Integer> navigatepageNums) {
-        this.navigatepageNums = navigatepageNums;
-    }
-
-    @Override
-    public String toString() {
-        return "PageResponseBean{" +
-                "list=" + list +
-                ", endRow=" + endRow +
-                ", firstPage=" + firstPage +
-                ", hasNextPage=" + hasNextPage +
-                ", hasPreviousPage=" + hasPreviousPage +
-                ", isFirstPage=" + isFirstPage +
-                ", isLastPage=" + isLastPage +
-                ", lastPage=" + lastPage +
-                ", navigateFirstPage=" + navigateFirstPage +
-                ", navigateLastPage=" + navigateLastPage +
-                ", navigatePages=" + navigatePages +
-                ", nextPage=" + nextPage +
-                ", pageNum=" + pageNum +
-                ", pageSize=" + pageSize +
-                ", pages=" + pages +
-                ", prePage=" + prePage +
-                ", size=" + size +
-                ", startRow=" + startRow +
-                ", total=" + total +
-                ", navigatepageNums=" + navigatepageNums +
-                '}';
+    public void setContent(List<T> content) {
+        this.content = content;
     }
 }

@@ -24,7 +24,7 @@ import com.uwork.happymoment.bean.TabEntity;
 import com.uwork.happymoment.mvp.social.chat.fragment.ChatListFragment;
 import com.uwork.happymoment.mvp.social.circleTest.activity.test.ActivityLauncher;
 import com.uwork.happymoment.mvp.social.circleTest.fragment.CircleListFragment;
-import com.uwork.happymoment.mvp.social.track.fragment.TrackFragment;
+import com.uwork.happymoment.mvp.social.cirle.fragment.CircleFragment;
 import com.uwork.happymoment.ui.StickyNavLayout;
 import com.uwork.librx.mvp.BaseFragment;
 import com.uwork.libtoolbar.ToolbarTitle;
@@ -127,9 +127,10 @@ public class SocialFragment extends BaseFragment {
 
     private void initFragment() {
         mFragments = new ArrayList<>();
-        mFragments.add(CircleListFragment.newInstance());
+        mFragments.add(CircleFragment.newInstance());
         mFragments.add(ChatListFragment.newInstance());
-        mFragments.add(TrackFragment.newInstance());
+        mFragments.add(CircleListFragment.newInstance());
+//        mFragments.add(TrackFragment.newInstance());
     }
 
     private void initTab() {
@@ -201,10 +202,10 @@ public class SocialFragment extends BaseFragment {
             public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                 //当滑到顶部的时候下面的子fragment中的列表才可以下拉刷新
                 if (scrollY == 0){
-                    TrackFragment.newInstance().setRefresh(true);
+//                    TrackFragment.newInstance().setRefresh(true);
                     CircleListFragment.newInstance().setRefresh(true);
                 }else {
-                    TrackFragment.newInstance().setRefresh(false);
+//                    TrackFragment.newInstance().setRefresh(false);
                     CircleListFragment.newInstance().setRefresh(false);
                 }
             }

@@ -12,7 +12,9 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.uwork.happymoment.R;
 import com.uwork.happymoment.mvp.social.chat.adapter.SearchNewFriendAdapter;
 import com.uwork.happymoment.mvp.social.chat.bean.SearchNewFriendBean;
+import com.uwork.happymoment.mvp.social.chat.contract.IApplyAddFriendContract;
 import com.uwork.happymoment.mvp.social.chat.contract.ISearchNewFriendContract;
+import com.uwork.happymoment.mvp.social.chat.presenter.IApplyAddFriendPresenter;
 import com.uwork.happymoment.mvp.social.chat.presenter.ISearchNewFriendPresenter;
 import com.uwork.happymoment.ui.DividerItemLineDecoration;
 import com.uwork.librx.mvp.BaseActivity;
@@ -24,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SearchNewFriendActivity extends BaseActivity implements ISearchNewFriendContract.View{
+public class SearchNewFriendActivity extends BaseActivity implements ISearchNewFriendContract.View,IApplyAddFriendContract.View{
 
     @BindView(R.id.etSearchFriend)
     EditText mEtSearchFriend;
@@ -33,6 +35,7 @@ public class SearchNewFriendActivity extends BaseActivity implements ISearchNewF
 
     private SearchNewFriendAdapter mSearchNewFriendAdapter;
     private ISearchNewFriendPresenter mISearchNewFriendPresenter;
+    private IApplyAddFriendPresenter mIApplyAddFriendPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +53,9 @@ public class SearchNewFriendActivity extends BaseActivity implements ISearchNewF
             list = new ArrayList();
         }
         mISearchNewFriendPresenter = new ISearchNewFriendPresenter(this);
+        mIApplyAddFriendPresenter = new IApplyAddFriendPresenter(this);
         list.add(mISearchNewFriendPresenter);
+        list.add(mIApplyAddFriendPresenter);
         return list;
     }
 
@@ -68,6 +73,16 @@ public class SearchNewFriendActivity extends BaseActivity implements ISearchNewF
             }
         });
         mRvSearchFriend.addItemDecoration(new DividerItemDecoration(this, DividerItemLineDecoration.VERTICAL_LIST));
+
+        mSearchNewFriendAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                if (view.getId() == R.id.tvAdd){
+                    SearchNewFriendBean searchNewFriendBean = (SearchNewFriendBean) adapter.getData().get(position);
+                    mIApplyAddFriendPresenter.applyAddFriend(searchNewFriendBean.getId()+"");
+                }
+            }
+        });
     }
 
 
@@ -98,5 +113,10 @@ public class SearchNewFriendActivity extends BaseActivity implements ISearchNewF
     @Override
     public void empty() {
         mSearchNewFriendAdapter.setEmptyView(this,"暂无此用户");
+    }
+
+    @Override
+    public void applySuccess() {
+        showToast("已发送申请");
     }
 }
