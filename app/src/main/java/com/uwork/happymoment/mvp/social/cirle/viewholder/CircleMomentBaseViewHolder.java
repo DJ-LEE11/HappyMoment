@@ -1,12 +1,16 @@
 package com.uwork.happymoment.mvp.social.cirle.viewholder;
 
+import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.circle_base_library.utils.StringUtil;
+import com.example.circle_base_library.utils.TimeUtil;
+import com.example.circle_base_library.utils.ToolUtil;
 import com.example.circle_base_ui.base.adapter.BaseMultiRecyclerViewHolder;
 import com.example.circle_base_ui.imageloader.ImageLoadMnanger;
 import com.example.circle_base_ui.util.UIHelper;
@@ -17,8 +21,15 @@ import com.example.circle_base_ui.widget.common.ClickShowMoreLayout;
 import com.example.circle_common.common.entity.CommentInfo;
 import com.socks.library.KLog;
 import com.uwork.happymoment.R;
+import com.uwork.happymoment.manager.UserManager;
 import com.uwork.happymoment.mvp.social.cirle.bean.MomentItemBean;
+import com.uwork.happymoment.mvp.social.cirle.bean.MomentLikeBean;
 import com.uwork.happymoment.mvp.social.cirle.presenter.ICirclePresenter;
+import com.uwork.happymoment.mvp.social.cirle.ui.CommentLikePopup;
+import com.uwork.happymoment.mvp.social.cirle.ui.GiveLikeWidget;
+import com.uwork.libutil.ToastUtils;
+
+import java.util.List;
 
 
 /**
@@ -34,19 +45,19 @@ public abstract class CircleMomentBaseViewHolder extends BaseMultiRecyclerViewHo
     protected ClickShowMoreLayout userText;
 
     //底部
-//    protected TextView createTime;
-//    protected TextView deleteMoments;
-//    protected ImageView commentImage;
-//    protected FrameLayout menuButton;
-//    protected LinearLayout commentAndPraiseLayout;
-//    protected PraiseWidget praiseWidget;
-//    protected View line;
+    protected TextView createTime;
+    protected TextView deleteMoments;
+    protected ImageView commentImage;
+    protected FrameLayout menuButton;
+    protected LinearLayout commentAndPraiseLayout;
+    protected GiveLikeWidget giveLikeWidget;
+    protected View line;
 //    protected CommentContentsLayout commentLayout;
 
     //内容区
     protected LinearLayout contentLayout;
 
-//    private CommentPopup commentPopup;
+    private CommentLikePopup commentLikePopup;
 //    private DeleteCommentPopup deleteCommentPopup;
 
     private ICirclePresenter mICirclePresenter;
@@ -70,13 +81,13 @@ public abstract class CircleMomentBaseViewHolder extends BaseMultiRecyclerViewHo
         });
 
         //bottom
-//        createTime = (TextView) findView(createTime, R.id.create_time);
-//        deleteMoments = (TextView) findView(deleteMoments, R.id.tv_delete_moment);
-//        commentImage = (ImageView) findView(commentImage, R.id.menu_img);
-//        menuButton = (FrameLayout) findView(menuButton, R.id.menu_button);
-//        commentAndPraiseLayout = (LinearLayout) findView(commentAndPraiseLayout, R.id.comment_praise_layout);
-//        praiseWidget = (PraiseWidget) findView(praiseWidget, R.id.praise);
-//        line = findView(line, R.id.divider);
+        createTime = (TextView) findView(createTime, R.id.create_time);
+        deleteMoments = (TextView) findView(deleteMoments, R.id.tv_delete_moment);
+        commentImage = (ImageView) findView(commentImage, R.id.menu_img);
+        menuButton = (FrameLayout) findView(menuButton, R.id.menu_button);
+        commentAndPraiseLayout = (LinearLayout) findView(commentAndPraiseLayout, R.id.comment_praise_layout);
+        giveLikeWidget = (GiveLikeWidget) findView(giveLikeWidget, R.id.giveLike);
+        line = findView(line, R.id.divider);
 //        commentLayout = (CommentContentsLayout) findView(commentLayout, R.id.comment_layout);
 //        commentLayout.setMode(CommentContentsLayout.Mode.EXPANDABLE);
 //        commentLayout.setOnCommentItemClickListener(onCommentItemClickListener);
@@ -87,10 +98,10 @@ public abstract class CircleMomentBaseViewHolder extends BaseMultiRecyclerViewHo
         contentLayout = (LinearLayout) findView(contentLayout, R.id.content);
 
         //评论弹出框
-//        if (commentPopup == null) {
-//            commentPopup = new CommentPopup((Activity) getContext());
-//            commentPopup.setOnCommentPopupClickListener(onCommentPopupClickListener);
-//        }
+        if (commentLikePopup == null) {
+            commentLikePopup = new CommentLikePopup((Activity) getContext());
+            commentLikePopup.setOnCommentPopupClickListener(onCommentPopupClickListener);
+        }
 
         //删除评论弹出框
 //        if (deleteCommentPopup == null) {
@@ -120,9 +131,9 @@ public abstract class CircleMomentBaseViewHolder extends BaseMultiRecyclerViewHo
         //通用数据绑定
         onBindMutualDataToViews(data);
         //点击事件
-//        menuButton.setOnClickListener(onMenuButtonClickListener);
-//        menuButton.setTag(R.id.momentinfo_data_tag_id, data);
-//        deleteMoments.setOnClickListener(onDeleteMomentClickListener);
+        menuButton.setOnClickListener(onMenuButtonClickListener);
+        menuButton.setTag(R.id.momentinfo_data_tag_id, data);
+        deleteMoments.setOnClickListener(onDeleteMomentClickListener);
         //传递到子类
         onBindDataToView(data, position, getViewType());
     }
@@ -137,16 +148,20 @@ public abstract class CircleMomentBaseViewHolder extends BaseMultiRecyclerViewHo
                 View.VISIBLE : View.GONE, userText);
 
         //bottom
-//        createTime.setText(TimeUtil.getTimeStringFromBmob(data.getCreatedAt()));
+        createTime.setText(TimeUtil.getTimeStringFromBmob(data.getCreateTime()));
 //        //是否显示删除状态
-//        ViewUtil.setViewsVisible(TextUtils.equals(momentsInfo.getAuthor().getUserid(), LocalHostManager.INSTANCE.getUserid()) ?
-//                View.VISIBLE : View.GONE, deleteMoments);
-//        boolean needPraiseData = addLikes(data.getLikesList());
+
+        ViewUtil.setViewsVisible(momentsInfo.getAuthorId() == UserManager.getInstance().getUserId(getContext()) ?
+                View.VISIBLE : View.GONE, deleteMoments);
+
+        boolean needPraiseData = addLikes(data.getLikesList());
+
+
 //        boolean needCommentData = commentLayout.addComments(data.getCommentList());
-//        praiseWidget.setVisibility(needPraiseData ? View.VISIBLE : View.GONE);
+        giveLikeWidget.setVisibility(needPraiseData ? View.VISIBLE : View.GONE);
 //        commentLayout.setVisibility(needCommentData ? View.VISIBLE : View.GONE);
-//        line.setVisibility(needPraiseData && needCommentData ? View.VISIBLE : View.GONE);
-//        commentAndPraiseLayout.setVisibility(needCommentData || needPraiseData ? View.VISIBLE : View.GONE);
+        line.setVisibility(needPraiseData ? View.VISIBLE : View.GONE);
+        commentAndPraiseLayout.setVisibility(needPraiseData ? View.VISIBLE : View.GONE);
 
     }
 
@@ -170,14 +185,14 @@ public abstract class CircleMomentBaseViewHolder extends BaseMultiRecyclerViewHo
      * @param likesList
      * @return ture=显示点赞，false=不显示点赞
      */
-//    private boolean addLikes(List<LikesInfo> likesList) {
-//        if (ToolUtil.isListEmpty(likesList)) {
-//            return false;
-//        }
-//        praiseWidget.setDatas(likesList);
-//        return true;
-//    }
-//
+    private boolean addLikes(List<MomentLikeBean> likesList) {
+        if (ToolUtil.isListEmpty(likesList)) {
+            return false;
+        }
+        giveLikeWidget.setDatas(likesList);
+        return true;
+    }
+
 //    private CommentContentsLayout.OnCommentItemClickListener onCommentItemClickListener = new CommentContentsLayout.OnCommentItemClickListener() {
 //        @Override
 //        public void onCommentWidgetClick(@NonNull CommentWidget widget) {
@@ -194,59 +209,60 @@ public abstract class CircleMomentBaseViewHolder extends BaseMultiRecyclerViewHo
 //            }
 //        }
 //    };
-//
+
 //    private CommentContentsLayout.OnCommentItemLongClickListener onCommentItemLongClickListener = new CommentContentsLayout.OnCommentItemLongClickListener() {
 //        @Override
 //        public boolean onCommentWidgetLongClick(@NonNull CommentWidget widget) {
 //            return false;
 //        }
 //    };
-//
-//    //删除评论回调
+
+    //删除评论回调
 //    private DeleteCommentPopup.OnDeleteCommentClickListener onDeleteCommentClickListener = new DeleteCommentPopup.OnDeleteCommentClickListener() {
 //        @Override
 //        public void onDelClick(CommentInfo commentInfo) {
 //            momentPresenter.deleteComment(itemPosition, commentInfo.getCommentid(), momentsInfo.getCommentList());
 //        }
 //    };
-//
-//    //删除动态
-//    private View.OnClickListener onDeleteMomentClickListener = new View.OnClickListener() {
-//        @Override
-//        public void onClick(View v) {
-//            momentPresenter.deleteMoments(v.getContext(), momentsInfo);
-//        }
-//    };
-//
-//    //点赞/取消点赞，评论
-//    private View.OnClickListener onMenuButtonClickListener = new View.OnClickListener() {
-//        @Override
-//        public void onClick(View v) {
-//            MomentsInfo info = (MomentsInfo) v.getTag(R.id.momentinfo_data_tag_id);
-//            if (info != null) {
-//                commentPopup.updateMomentInfo(info);
-//                commentPopup.showPopupWindow(commentImage);
-//            }
-//        }
-//    };
-//
-//    //点赞/取消点赞，评论的回调方法
-//    private CommentPopup.OnCommentPopupClickListener onCommentPopupClickListener = new CommentPopup.OnCommentPopupClickListener() {
-//        @Override
-//        public void onLikeClick(View v, @NonNull MomentsInfo info, boolean hasLiked) {
-//            if (hasLiked) {//取消点赞
-//                momentPresenter.unLike(itemPosition, info.getLikesObjectid(), info.getLikesList());
-//            } else {//点赞
-//                momentPresenter.addLike(itemPosition, info.getMomentid(), info.getLikesList());
-//            }
-//
-//        }
-//
-//        @Override//评论
-//        public void onCommentClick(View v, @NonNull MomentsInfo info) {
+
+    //删除动态
+    private View.OnClickListener onDeleteMomentClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            mICirclePresenter.deleteMoment(itemPosition,momentsInfo.getAuthorId());
+        }
+    };
+
+    //点赞/取消点赞，评论
+    private View.OnClickListener onMenuButtonClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            MomentItemBean info = (MomentItemBean) v.getTag(R.id.momentinfo_data_tag_id);
+            if (info != null) {
+                commentLikePopup.updateMomentInfo(info);
+                commentLikePopup.showPopupWindow(commentImage);
+            }
+        }
+    };
+
+    //点赞/取消点赞，评论的回调方法
+    private CommentLikePopup.OnCommentPopupClickListener onCommentPopupClickListener = new CommentLikePopup.OnCommentPopupClickListener() {
+        @Override
+        public void onLikeClick(View v, @NonNull MomentItemBean info, boolean hasLiked) {
+            if (hasLiked) {//取消点赞
+                ToastUtils.show(getContext(), "取消点赞");
+            } else {//点赞
+                mICirclePresenter.giveLikeMoment(itemPosition,info.getLikesList() ,info.getMomentId());
+            }
+
+        }
+
+        @Override//评论
+        public void onCommentClick(View v, @NonNull MomentItemBean info) {
+            ToastUtils.show(getContext(), "评论");
 //            momentPresenter.showCommentBox(itemView, itemPosition, info.getMomentid(), null);
-//        }
-//    };
+        }
+    };
 
     /**
      * ============  tools method block

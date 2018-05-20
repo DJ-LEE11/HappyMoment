@@ -4,6 +4,8 @@ import com.example.circle_base_ui.base.adapter.MultiType;
 import com.example.circle_common.common.MomentsType;
 import com.socks.library.KLog;
 
+import java.util.List;
+
 /**
  * Created by jie on 2018/5/19.
  */
@@ -18,6 +20,9 @@ public class MomentItemBean implements MultiType {
 
     //内容
     private MomentContentBean content;
+    //点赞
+    private List<MomentLikeBean> likesList;
+    //评论
 
     public MomentItemBean(int momentId, int authorId, String authorName, String authorAvatar, String createTime, MomentContentBean content) {
         this.momentId = momentId;
@@ -26,6 +31,16 @@ public class MomentItemBean implements MultiType {
         this.authorAvatar = authorAvatar;
         this.createTime = createTime;
         this.content = content;
+    }
+
+    public MomentItemBean(int momentId, int authorId, String authorName, String authorAvatar, String createTime, MomentContentBean content, List<MomentLikeBean> likesList) {
+        this.momentId = momentId;
+        this.authorId = authorId;
+        this.authorName = authorName;
+        this.authorAvatar = authorAvatar;
+        this.createTime = createTime;
+        this.content = content;
+        this.likesList = likesList;
     }
 
 
@@ -89,5 +104,13 @@ public class MomentItemBean implements MultiType {
 
     public void setContent(MomentContentBean content) {
         this.content = content;
+    }
+
+    public List<MomentLikeBean> getLikesList() {
+        return likesList;
+    }
+
+    public void setLikesList(List<MomentLikeBean> likesList) {
+        this.likesList = likesList;
     }
 }

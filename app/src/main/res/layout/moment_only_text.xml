@@ -30,5 +30,6 @@
 
 
     <!--点赞控件/评论控件-->
+    <include layout="@layout/include_moment_bottom"/>
 
 </LinearLayout>

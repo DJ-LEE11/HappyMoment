@@ -2,6 +2,7 @@ package com.uwork.happymoment.mvp.social.cirle.presenter;
 
 import android.content.Context;
 
+import com.uwork.happymoment.mvp.social.cirle.bean.MomentLikeBean;
 import com.uwork.happymoment.mvp.social.cirle.bean.MomentsItemResponseBean;
 import com.uwork.happymoment.mvp.social.cirle.contract.ICircleContract;
 import com.uwork.happymoment.mvp.social.cirle.model.ICircleModel;
@@ -10,6 +11,8 @@ import com.uwork.librx.mvp.presenter.IBaseListPagePresenter;
 import com.uwork.librx.rx.http.ApiException;
 import com.uwork.librx.rx.interfaces.OnModelCallBack;
 
+import java.util.List;
+
 /**
  * Created by jie on 2018/5/19.
  */
@@ -17,15 +20,13 @@ import com.uwork.librx.rx.interfaces.OnModelCallBack;
 public class ICirclePresenter<T extends ICircleContract.View & IBaseActivityContract.View>
         extends IBaseListPagePresenter<T, MomentsItemResponseBean> implements ICircleContract.Presenter {
 
-    private ICircleModel mICircleModel;
-
     public ICirclePresenter(Context context) {
         super(context);
         mModel = new ICircleModel(context);
     }
 
     @Override
-    public void giveLikeMoment(Integer messageId) {
+    public void giveLikeMoment(int itemPosition, List<MomentLikeBean> momentLikeBeanList, Integer messageId) {
         addSubscription(((ICircleModel) mModel).giveLikeMoment(messageId, new OnModelCallBack<Boolean>() {
             @Override
             public void onStart() {
@@ -40,7 +41,7 @@ public class ICirclePresenter<T extends ICircleContract.View & IBaseActivityCont
             @Override
             public void onSuccess(Boolean value) {
                 getView().dismissLoading();
-                getView().giveLikeSuccess();
+                getView().giveLikeSuccess(itemPosition,momentLikeBeanList);
             }
 
             @Override
@@ -57,7 +58,7 @@ public class ICirclePresenter<T extends ICircleContract.View & IBaseActivityCont
     }
 
     @Override
-    public void deleteMoment(Integer messageId) {
+    public void deleteMoment(int itemPosition,Integer messageId) {
         addSubscription(((ICircleModel) mModel).deleteMoment(messageId, new OnModelCallBack<Boolean>() {
             @Override
             public void onStart() {
@@ -72,7 +73,7 @@ public class ICirclePresenter<T extends ICircleContract.View & IBaseActivityCont
             @Override
             public void onSuccess(Boolean value) {
                 getView().dismissLoading();
-                getView().deleteMomentSuccess();
+                getView().deleteMomentSuccess(itemPosition);
             }
 
             @Override

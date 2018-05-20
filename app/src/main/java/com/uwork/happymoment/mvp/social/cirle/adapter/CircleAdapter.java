@@ -8,7 +8,6 @@ import com.example.circle_base_ui.base.adapter.BaseRecyclerViewHolder;
 import com.uwork.happymoment.mvp.social.cirle.bean.MomentItemBean;
 import com.uwork.happymoment.mvp.social.cirle.presenter.ICirclePresenter;
 import com.uwork.happymoment.mvp.social.cirle.viewholder.CircleMomentBaseViewHolder;
-import com.uwork.happymoment.ui.circle.viewholder.CircleBaseViewHolder;
 
 import java.util.List;
 
@@ -26,7 +25,7 @@ public class CircleAdapter extends BaseMultiRecyclerViewAdapter<CircleAdapter, M
 
     @Override
     protected void onInitViewHolder(BaseRecyclerViewHolder holder) {
-        if (holder instanceof CircleBaseViewHolder) {
+        if (holder instanceof CircleMomentBaseViewHolder) {
             ((CircleMomentBaseViewHolder) holder).setPresenter(mICirclePresenter);
         }
     }

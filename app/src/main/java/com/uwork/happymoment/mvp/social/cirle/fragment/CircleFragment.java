@@ -9,15 +9,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.circle_base_library.utils.ToolUtil;
 import com.example.circle_common.common.MomentsType;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.uwork.happymoment.R;
+import com.uwork.happymoment.manager.UserManager;
+import com.uwork.happymoment.mvp.login.bean.UserBean;
 import com.uwork.happymoment.mvp.social.cirle.adapter.CircleAdapter;
 import com.uwork.happymoment.mvp.social.cirle.bean.MomentContentBean;
 import com.uwork.happymoment.mvp.social.cirle.bean.MomentItemBean;
+import com.uwork.happymoment.mvp.social.cirle.bean.MomentLikeBean;
 import com.uwork.happymoment.mvp.social.cirle.bean.MomentsItemResponseBean;
 import com.uwork.happymoment.mvp.social.cirle.contract.ICircleContract;
 import com.uwork.happymoment.mvp.social.cirle.presenter.ICirclePresenter;
@@ -131,12 +135,12 @@ public class CircleFragment extends BaseFragment implements ICircleContract.View
         if (mCircleAdapter != null && mRefreshLayout != null) {
             if (mIsRefresh && pager.isFirst()) {
                 if (pager.getContent() != null && pager.getContent().size() > 0) {
-                    dealData(pager.getContent(),mIsRefresh);
+                    dealData(pager.getContent(), mIsRefresh);
                 } else {
                     showEmptyView();
                 }
             } else {
-                dealData(pager.getContent(),mIsRefresh);
+                dealData(pager.getContent(), mIsRefresh);
             }
             if (pager.isLast()) {
                 mRefreshLayout.setLoadmoreFinished(true);
@@ -173,30 +177,53 @@ public class CircleFragment extends BaseFragment implements ICircleContract.View
     private void dealData(List<MomentsItemResponseBean> momentList, boolean isRefresh) {
         List<MomentItemBean> data = new ArrayList<>();
 
-        for (MomentsItemResponseBean bean : momentList){
-            MomentContentBean content = new MomentContentBean(bean.getContent(),bean.getPicture());
-                    data.add(new MomentItemBean(bean.getId(),bean.getUserId(),bean.getName(),
-                    bean.getAvatar(),bean.getCreateTime(),content));
+        for (MomentsItemResponseBean bean : momentList) {
+            //内容
+            MomentContentBean content = new MomentContentBean(bean.getContent(), bean.getPicture());
+            //点赞
+            List<MomentLikeBean> likeList = null;
+            List<MomentsItemResponseBean.MomentsFavourResponseBeansBean> momentsFavourResponseBeans = bean.getMomentsFavourResponseBeans();
+            if (momentsFavourResponseBeans != null && momentsFavourResponseBeans.size() > 0) {
+                likeList = new ArrayList<>();
+                for (MomentsItemResponseBean.MomentsFavourResponseBeansBean likeBean : momentsFavourResponseBeans) {
+                    likeList.add(new MomentLikeBean(likeBean.getId(), likeBean.getName(), likeBean.getAvatar()));
+                }
+            }
+            data.add(new MomentItemBean(bean.getId(), bean.getUserId(), bean.getName(),
+                    bean.getAvatar(), bean.getCreateTime(), content, likeList));
         }
 
-        if (isRefresh){
+        if (isRefresh) {
             mCircleAdapter.updateData(data);
-        }else {
+        } else {
             mCircleAdapter.addMore(data);
 
         }
 
     }
 
-
     //点赞
     @Override
-    public void giveLikeSuccess() {
+    public void giveLikeSuccess(int itemPosition,List<MomentLikeBean> momentLikeBeanList) {
+        List<MomentLikeBean> resultLikeList = new ArrayList<>();
+        if (!ToolUtil.isListEmpty(momentLikeBeanList)) {
+            resultLikeList.addAll(momentLikeBeanList);
+        }
+        UserBean user = UserManager.getInstance().getUser(getContext());
+        MomentLikeBean bean = new MomentLikeBean(user.getId(), user.getNickName(), user.getAvatar());
+        resultLikeList.add(bean);
+
+
+        MomentItemBean momentsInfo = mCircleAdapter.findData(itemPosition);
+        if (momentsInfo != null) {
+            momentsInfo.setLikesList(resultLikeList);
+            mCircleAdapter.notifyDataSetChanged();
+        }
     }
 
     //删除动态
     @Override
-    public void deleteMomentSuccess() {
+    public void deleteMomentSuccess(int itemPosition) {
 
     }
 
