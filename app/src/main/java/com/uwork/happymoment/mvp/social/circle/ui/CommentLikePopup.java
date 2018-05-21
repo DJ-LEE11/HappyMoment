@@ -176,7 +176,8 @@ public class CommentLikePopup extends BasePopupWindow implements View.OnClickLis
                 }
             }
         }
-        mLikeText.setText(hasLiked ? "取消" : "赞");
+//        mLikeText.setText(hasLiked ? "取消" : "赞");
+        mLikeText.setText("赞");
     }
 
     //=============================================================InterFace

@@ -252,7 +252,8 @@ public class CircleFragment extends BaseFragment implements ICircleContract.View
     //删除动态
     @Override
     public void deleteMomentSuccess(int itemPosition) {
-
+        if (itemPosition < 0) return;
+        mCircleAdapter.deleteData(itemPosition);
     }
 
     @Override

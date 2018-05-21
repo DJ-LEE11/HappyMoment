@@ -149,7 +149,7 @@ public interface ApiService {
     /**
      * 删动态
      */
-    @POST("/api/moments/favourMoments")
+    @POST("/api/moments/deleteMoments")
     Flowable<BaseResult<Boolean>> deleteMoment(@Query("messageId") Integer messageId);
 
     /**

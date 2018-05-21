@@ -38,8 +38,9 @@ public class GiveLikeClick extends ClickableSpanEx {
 
     @Override
     public void onClick(View widget) {
-        if (mMomentLikeBean!=null)
-            UIHelper.ToastMessage("当前用户名是： " + mMomentLikeBean.getName() + "   它的ID是： " + mMomentLikeBean.getId());
+        if (mMomentLikeBean!=null) {
+//            UIHelper.ToastMessage("当前用户名是： " + mMomentLikeBean.getName() + "   它的ID是： " + mMomentLikeBean.getId());
+        }
     }
 
     @Override

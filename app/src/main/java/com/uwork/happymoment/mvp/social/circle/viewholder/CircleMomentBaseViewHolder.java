@@ -1,7 +1,9 @@
 package com.uwork.happymoment.mvp.social.circle.viewholder;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -229,7 +231,17 @@ public abstract class CircleMomentBaseViewHolder extends BaseMultiRecyclerViewHo
     private View.OnClickListener onDeleteMomentClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            mICirclePresenter.deleteMoment(itemPosition,momentsInfo.getAuthorId());
+            new AlertDialog.Builder(getContext())
+                    .setTitle("删除动态")
+                    .setMessage("确定删除吗？")
+                    .setNegativeButton("取消", null)
+                    .setPositiveButton("删除", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            mICirclePresenter.deleteMoment(itemPosition,momentsInfo.getMomentId());
+                        }
+                    }).show();
         }
     };
 
@@ -250,7 +262,7 @@ public abstract class CircleMomentBaseViewHolder extends BaseMultiRecyclerViewHo
         @Override
         public void onLikeClick(View v, @NonNull MomentItemBean info, boolean hasLiked) {
             if (hasLiked) {//取消点赞
-                ToastUtils.show(getContext(), "取消点赞");
+                ToastUtils.show(getContext(), "已点赞");
             } else {//点赞
                 mICirclePresenter.giveLikeMoment(itemPosition,info.getLikesList() ,info.getMomentId());
             }
