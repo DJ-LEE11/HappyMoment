@@ -3,6 +3,7 @@ package com.uwork.happymoment.api;
 import com.uwork.happymoment.mvp.login.bean.LoginRequestBean;
 import com.uwork.happymoment.mvp.login.bean.RegisterRequestBean;
 import com.uwork.happymoment.mvp.login.bean.ResetPasswordRequestBean;
+import com.uwork.happymoment.mvp.login.bean.UploadBean;
 import com.uwork.happymoment.mvp.login.bean.UserBean;
 import com.uwork.happymoment.mvp.social.chat.bean.AddCreateGroupRequestBean;
 import com.uwork.happymoment.mvp.social.chat.bean.AddGroupBean;
@@ -14,15 +15,19 @@ import com.uwork.happymoment.mvp.social.chat.bean.SearchNewFriendBean;
 import com.uwork.happymoment.mvp.social.chat.bean.SearchNewFriendForCodeRequestBean;
 import com.uwork.happymoment.mvp.social.chat.bean.SearchNewFriendForPhoneRequestBean;
 import com.uwork.happymoment.mvp.social.chat.bean.UpdateFriendInfoRequestBean;
-import com.uwork.happymoment.mvp.social.cirle.bean.MomentsItemResponseBean;
+import com.uwork.happymoment.mvp.social.circle.bean.MomentsItemResponseBean;
+import com.uwork.happymoment.mvp.social.circle.bean.SendCircleRequestBean;
 import com.uwork.librx.bean.PageResponseBean;
 import com.uwork.librx.rx.BaseResult;
 
 import java.util.List;
 
 import io.reactivex.Flowable;
+import okhttp3.MultipartBody;
 import retrofit2.http.Body;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 /**
@@ -57,6 +62,13 @@ public interface ApiService {
      */
     @POST("/user/resetPassword")
     Flowable<BaseResult<String>> resetPassword(@Body ResetPasswordRequestBean resetPasswordRequestBean);
+
+    /**
+     * 上传图片
+     */
+    @Multipart
+    @POST("/file/uploadImage")
+    Flowable<BaseResult<UploadBean>> uploadImage(@Part() MultipartBody.Part image);
 
     //===========================================================================>幸福时刻模块
 
@@ -139,4 +151,10 @@ public interface ApiService {
      */
     @POST("/api/moments/favourMoments")
     Flowable<BaseResult<Boolean>> deleteMoment(@Query("messageId") Integer messageId);
+
+    /**
+     * 发动态
+     */
+    @POST("/api/moments/issueMoments")
+    Flowable<BaseResult<Boolean>> sendMoment(@Body SendCircleRequestBean sendCircleRequestBean);
 }

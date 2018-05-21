@@ -20,7 +20,6 @@ import com.example.circle_base_ui.widget.common.HackyViewPager;
 import com.example.circle_base_ui.widget.imageview.GalleryPhotoView;
 import com.example.circle_base_ui.widget.indicator.DotIndicator;
 import com.example.circle_common.common.entity.PhotoBrowseInfo;
-import com.example.circle_common.util.BmobUrlUtil;
 import com.example.circle_photoview.PhotoView;
 import com.example.circle_photoview.PhotoViewAttacher;
 import com.socks.library.KLog;
@@ -154,7 +153,7 @@ public class PhotoBrowseActivity extends BaseActivity {
         public Object instantiateItem(ViewGroup container, int position) {
             GalleryPhotoView photoView = viewBuckets.get(position);
             String photoUrl = photoBrowseInfo.getPhotoUrls().get(position);
-            ImageLoadMnanger.INSTANCE.glide(photoView, BmobUrlUtil.getThumbImageUrl(photoUrl, 50))
+            ImageLoadMnanger.INSTANCE.glide(photoView, photoUrl)
                     .apply(ImageLoadMnanger.OPTION_TRANSLATE_PLACEHOLDER.dontAnimate())
                     .into(photoView);
             container.addView(photoView);

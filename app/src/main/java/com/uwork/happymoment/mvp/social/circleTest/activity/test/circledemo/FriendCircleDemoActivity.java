@@ -33,7 +33,7 @@ import com.example.circle_common.common.request.MomentsRequest;
 import com.example.circle_common.common.router.RouterList;
 import com.socks.library.KLog;
 import com.uwork.happymoment.R;
-import com.uwork.happymoment.mvp.social.circleTest.activity.test.ActivityLauncher;
+import com.uwork.happymoment.mvp.social.circle.activity.ActivityLauncher;
 import com.uwork.happymoment.mvp.social.circleTest.mvp.presenter.impl.MomentPresenter;
 import com.uwork.happymoment.mvp.social.circleTest.mvp.view.IMomentView;
 import com.uwork.happymoment.ui.circle.adapter.CircleMomentsAdapter;

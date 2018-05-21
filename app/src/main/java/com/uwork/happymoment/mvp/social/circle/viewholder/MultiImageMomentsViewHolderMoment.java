@@ -1,4 +1,4 @@
-package com.uwork.happymoment.ui.circle.viewholder;
+package com.uwork.happymoment.mvp.social.circle.viewholder;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,12 +10,11 @@ import android.widget.ImageView;
 import com.example.circle_base_ui.base.adapter.LayoutId;
 import com.example.circle_base_ui.imageloader.ImageLoadMnanger;
 import com.example.circle_base_ui.widget.imageview.ForceClickImageView;
-import com.example.circle_common.common.entity.MomentsInfo;
 import com.example.circle_common.common.entity.PhotoBrowseInfo;
-import com.example.circle_common.util.BmobUrlUtil;
 import com.socks.library.KLog;
 import com.uwork.happymoment.R;
 import com.uwork.happymoment.mvp.social.circle.activity.ActivityLauncher;
+import com.uwork.happymoment.mvp.social.circle.bean.MomentItemBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,21 +23,20 @@ import razerdp.github.com.widget.PhotoContents;
 import razerdp.github.com.widget.adapter.PhotoContentsBaseAdapter;
 
 /**
- * Created by 大灯泡 on 2016/11/3.
  * <p>
  * 九宮格圖片的vh
  *
  *
  */
 
-@LayoutId(id = R.layout.moments_multi_image)
-public class MultiImageMomentsVH extends CircleBaseViewHolder implements PhotoContents.OnItemClickListener {
+@LayoutId(id = R.layout.moment_multi_image)
+public class MultiImageMomentsViewHolderMoment extends CircleMomentBaseViewHolder implements PhotoContents.OnItemClickListener {
 
 
     private PhotoContents imageContainer;
     private InnerContainerAdapter adapter;
 
-    public MultiImageMomentsVH(View itemView, int viewType) {
+    public MultiImageMomentsViewHolderMoment(View itemView, int viewType) {
         super(itemView, viewType);
     }
 
@@ -52,12 +50,11 @@ public class MultiImageMomentsVH extends CircleBaseViewHolder implements PhotoCo
     }
 
     @Override
-    public void onBindDataToView(@NonNull MomentsInfo data, int position, int viewType) {
+    public void onBindDataToView(@NonNull MomentItemBean data, int position, int viewType) {
         if (adapter == null) {
             adapter = new InnerContainerAdapter(getContext(), data.getContent().getPics());
             imageContainer.setAdapter(adapter);
         } else {
-            KLog.i("update image" + data.getAuthor().getNick() + "     :  " + data.getContent().getPics().size());
             adapter.updateData(data.getContent().getPics());
         }
     }
@@ -95,11 +92,11 @@ public class MultiImageMomentsVH extends CircleBaseViewHolder implements PhotoCo
             int width = convertView.getWidth();
             int height = convertView.getHeight();
             String imageUrl = datas.get(position);
-            if (width > 0 && height > 0) {
-                imageUrl = BmobUrlUtil.getThumbImageUrl(imageUrl, width, height);
-            } else {
-                imageUrl = BmobUrlUtil.getThumbImageUrl(imageUrl, 25);
-            }
+//            if (width > 0 && height > 0) {
+//                imageUrl = BmobUrlUtil.getThumbImageUrl(imageUrl, width, height);
+//            } else {
+//                imageUrl = BmobUrlUtil.getThumbImageUrl(imageUrl, 25);
+//            }
             KLog.i("处理的url  >>>  " + imageUrl);
             ImageLoadMnanger.INSTANCE.loadImage(convertView, imageUrl);
         }

@@ -27,7 +27,7 @@ import com.uwork.happymoment.mvp.hotel.fragment.HotelFragment;
 import com.uwork.happymoment.mvp.login.activity.LoginRegisterActivity;
 import com.uwork.happymoment.mvp.main.fragment.HomePageFragment;
 import com.uwork.happymoment.mvp.my.fragment.MyFragment;
-import com.uwork.happymoment.mvp.social.circleTest.activity.test.ActivityLauncher;
+import com.uwork.happymoment.mvp.social.circle.activity.ActivityLauncher;
 import com.uwork.happymoment.mvp.social.fragment.SocialFragment;
 import com.uwork.librx.bean.LoginEvent;
 import com.uwork.librx.mvp.BaseActivity;
@@ -297,9 +297,9 @@ public class MainActivity extends BaseActivity {
                 List<ImageInfo> selectedPhotos = new ArrayList<ImageInfo>();
                 selectedPhotos.add(new ImageInfo(filePath, null, null, 0, 0));
                 ActivityLauncher.startToPublishActivityWithResult(MainActivity.this,
-                        RouterList.PublishActivity.MODE_MULTI,
+                        RouterList.PublishMomentActivity.MODE_MULTI,
                         selectedPhotos,
-                        RouterList.PublishActivity.requestCode);
+                        RouterList.PublishMomentActivity.requestCode);
             }
 
             @Override
@@ -310,11 +310,11 @@ public class MainActivity extends BaseActivity {
         if (requestCode == RouterList.PhotoSelectActivity.requestCode && resultCode == RESULT_OK) {
             List<ImageInfo> selectedPhotos = data.getParcelableArrayListExtra(RouterList.PhotoSelectActivity.key_result);
             if (selectedPhotos != null) {
-                ActivityLauncher.startToPublishActivityWithResult(this, RouterList.PublishActivity.MODE_MULTI, selectedPhotos, RouterList.PublishActivity.requestCode);
+                ActivityLauncher.startToPublishActivityWithResult(this, RouterList.PublishMomentActivity.MODE_MULTI, selectedPhotos, RouterList.PublishMomentActivity.requestCode);
             }
         }
 
-        if (requestCode == RouterList.PublishActivity.requestCode && resultCode == RESULT_OK) {
+        if (requestCode == RouterList.PublishMomentActivity.requestCode && resultCode == RESULT_OK) {
             RxBus.getInstance().send(new RefreshCircleEvent());
         }
     }

@@ -31,6 +31,16 @@ public interface RouterList {
     }
 
     @Retention(RetentionPolicy.SOURCE)
+    @interface PublishMomentActivity {
+        String path = "/publish/edit";
+        String key_mode = "mode";
+        String key_photoList = "photoList";
+        int MODE_TEXT = 0x10;
+        int MODE_MULTI = 0x11;
+        int requestCode = 0x21;
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
     @interface PhotoSelectActivity {
         String path = "/photo/select";
         String key_maxSelectCount = "maxSelectCount";

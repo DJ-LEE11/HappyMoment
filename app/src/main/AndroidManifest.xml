@@ -165,10 +165,15 @@
             android:name=".mvp.social.chat.activity.RemarkNameActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.social.chat.activity.SearchFriendActivity"
+        <activity
+            android:name=".mvp.social.chat.activity.SearchFriendActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".mvp.social.chat.activity.SearchNewFriendActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.social.chat.activity.SearchNewFriendActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity android:name=".mvp.social.circle.activity.PublishMomentActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
     </application>

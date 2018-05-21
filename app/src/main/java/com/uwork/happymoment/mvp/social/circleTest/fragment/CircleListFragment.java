@@ -209,7 +209,9 @@ public class CircleListFragment extends BaseFragment  implements IMomentView {
     };
 
     public void setRefresh(boolean isRefresh){
-        mRefreshLayout.setEnableRefresh(isRefresh);
+        if (mRefreshLayout!=null){
+            mRefreshLayout.setEnableRefresh(isRefresh);
+        }
     }
 
     //发完朋友圈后刷新

@@ -12,6 +12,7 @@ import android.view.animation.Animation;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.circle_base_library.base.BaseFragment;
@@ -23,7 +24,6 @@ import com.example.circle_base_library.manager.localphoto.LocalPhotoManager;
 import com.example.circle_base_ui.itemdecoration.GridItemDecoration;
 import com.example.circle_base_ui.util.UIHelper;
 import com.example.circle_base_ui.util.ViewUtil;
-import com.example.circle_base_ui.widget.popup.PopupProgress;
 import com.example.circle_common.common.entity.photo.PhotoBrowserInfo;
 import com.example.circle_common.common.router.RouterList;
 import com.example.circle_photoselect.R;
@@ -78,27 +78,28 @@ public class PhotoGridFragement extends BaseFragment {
 
     private void scanImgSyncWithProgress() {
         AppSetting.saveBooleanPreferenceByKey(AppSetting.APP_HAS_SCAN_IMG, true);
-        final PopupProgress popupProgress = new PopupProgress(getActivity());
-        popupProgress.setProgressTips("正在扫描系统相册...");
+//        final PopupProgress popupProgress = new PopupProgress(getActivity());
+//        popupProgress.setProgressTips("正在扫描系统相册...");
+        Toast.makeText(getContext(),"正在扫描系统相册",Toast.LENGTH_LONG).show();
         LocalPhotoManager.INSTANCE.scanImg(new LocalPhotoManager.OnScanProgresslistener() {
 
             @Override
             public void onStart() {
-                popupProgress.showPopupWindow();
-                popupProgress.setProgress(0);
+//                popupProgress.showPopupWindow();
+//                popupProgress.setProgress(0);
                 KLog.i(TAG, "onStart");
             }
 
             @Override
             public void onProgress(int progress) {
-                popupProgress.setProgress(progress);
+//                popupProgress.setProgress(progress);
             }
 
             @Override
             public void onFinish() {
                 KLog.i(TAG, "onFinish");
                 AppSetting.saveBooleanPreferenceByKey(AppSetting.APP_HAS_SCAN_IMG, true);
-                popupProgress.dismiss();
+//                popupProgress.dismiss();
                 initView();
             }
 
@@ -106,7 +107,7 @@ public class PhotoGridFragement extends BaseFragment {
             public void onError(LPException e) {
                 KLog.e(TAG, e);
                 UIHelper.ToastMessage(e.getMessage());
-                popupProgress.dismiss();
+//                popupProgress.dismiss();
             }
         });
     }

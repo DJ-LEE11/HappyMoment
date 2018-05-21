@@ -1,4 +1,4 @@
-package com.example.circlepublish;
+package com.uwork.happymoment.mvp.social.circle.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,14 +16,11 @@ import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.circle_base_library.common.entity.ImageInfo;
-import com.example.circle_base_library.helper.AppSetting;
 import com.example.circle_base_library.interfaces.adapter.TextWatcherAdapter;
 import com.example.circle_base_library.manager.compress.CompressManager;
 import com.example.circle_base_library.manager.compress.OnCompressListener;
-import com.example.circle_base_library.network.base.OnResponseListener;
 import com.example.circle_base_library.utils.StringUtil;
 import com.example.circle_base_library.utils.ToolUtil;
-import com.example.circle_base_ui.base.BaseTitleBarActivity;
 import com.example.circle_base_ui.helper.PhotoHelper;
 import com.example.circle_base_ui.imageloader.ImageLoadMnanger;
 import com.example.circle_base_ui.util.SwitchActivityTransitionUtil;
@@ -34,27 +31,26 @@ import com.example.circle_base_ui.widget.imageview.PreviewImageView;
 import com.example.circle_base_ui.widget.popup.PopupProgress;
 import com.example.circle_base_ui.widget.popup.SelectPhotoMenuPopup;
 import com.example.circle_common.common.entity.photo.PhotoBrowserInfo;
-import com.example.circle_common.common.manager.LocalHostManager;
-import com.example.circle_common.common.request.AddMomentsRequest;
 import com.example.circle_common.common.router.RouterList;
 import com.socks.library.KLog;
+import com.uwork.happymoment.R;
+import com.uwork.happymoment.manager.UserManager;
+import com.uwork.happymoment.mvp.login.contract.IUploadImageContract;
+import com.uwork.happymoment.mvp.login.presenter.IUploadImagePresenter;
+import com.uwork.happymoment.mvp.social.circle.contract.ISendMomentContract;
+import com.uwork.happymoment.mvp.social.circle.presenter.ISendMomentPresenter;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
-import cn.bmob.v3.datatype.BmobFile;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.UploadBatchListener;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
-
-/**
- * Created by 大灯泡 on 2017/3/1.
- * <p>
- * 发布朋友圈页面
- */
-
-@Route(path = RouterList.PublishActivity.path)
-public class PublishActivity extends BaseTitleBarActivity {
-    @Autowired(name = RouterList.PublishActivity.key_mode)
+@Route(path = RouterList.PublishMomentActivity.path)
+public class PublishMomentActivity extends PublishTitleActivity implements ISendMomentContract.View, IUploadImageContract.View {
+    @Autowired(name = RouterList.PublishMomentActivity.key_mode)
     int mode = -1;
 
     private boolean canTitleRightClick = false;
@@ -66,32 +62,59 @@ public class PublishActivity extends BaseTitleBarActivity {
     private SelectPhotoMenuPopup mSelectPhotoMenuPopup;
     private PopupProgress mPopupProgress;
 
+    private ISendMomentPresenter mISendMomentPresenter;
+    private IUploadImagePresenter mIUploadImagePresenter;
+
+
     @Override
-    public void onHandleIntent(Intent intent) {
-        mode = intent.getIntExtra(RouterList.PublishActivity.key_mode, -1);
-        selectedPhotos = intent.getParcelableArrayListExtra(RouterList.PublishActivity.key_photoList);
+    protected int getLayoutResId() {
+        return 0;
+    }
+
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected List createPresenter(List list) {
+        if (list == null) {
+            list = new ArrayList();
+        }
+        mISendMomentPresenter = new ISendMomentPresenter(this);
+        mIUploadImagePresenter = new IUploadImagePresenter(this);
+        list.add(mISendMomentPresenter);
+        list.add(mIUploadImagePresenter);
+        return list;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_publish);
+        setContentView(R.layout.activity_publish_moment);
         if (mode == -1) {
             finish();
             return;
-        } else if (mode == RouterList.PublishActivity.MODE_MULTI && selectedPhotos == null) {
+        } else if (mode == RouterList.PublishMomentActivity.MODE_MULTI && selectedPhotos == null) {
             finish();
             return;
         }
         initView();
     }
 
+
+    @Override
+    public void onHandleIntent(Intent intent) {
+        mode = intent.getIntExtra(RouterList.PublishMomentActivity.key_mode, -1);
+        selectedPhotos = intent.getParcelableArrayListExtra(RouterList.PublishMomentActivity.key_photoList);
+    }
+
     private void initView() {
         initTitle();
         mInputContent = findView(R.id.publish_input);
         mPreviewImageView = findView(R.id.preview_image_content);
-        ViewUtil.setViewsVisible(mode == RouterList.PublishActivity.MODE_TEXT ? View.GONE : View.VISIBLE, mPreviewImageView);
-        mInputContent.setHint(mode == RouterList.PublishActivity.MODE_MULTI ? "这一刻的想法..." : null);
+        ViewUtil.setViewsVisible(mode == RouterList.PublishMomentActivity.MODE_TEXT ? View.GONE : View.VISIBLE, mPreviewImageView);
+        mInputContent.setHint(mode == RouterList.PublishMomentActivity.MODE_MULTI ? "这一刻的想法..." : null);
         mInputContent.addTextChangedListener(new TextWatcherAdapter() {
             @Override
             public void afterTextChanged(Editable s) {
@@ -99,11 +122,11 @@ public class PublishActivity extends BaseTitleBarActivity {
             }
         });
 
-        if (mode == RouterList.PublishActivity.MODE_TEXT) {
+        if (mode == RouterList.PublishMomentActivity.MODE_TEXT) {
             UIHelper.showInputMethod(mInputContent, 300);
         }
 
-        if (mode == RouterList.PublishActivity.MODE_MULTI) {
+        if (mode == RouterList.PublishMomentActivity.MODE_MULTI) {
             initPreviewImageView();
             loadImage();
         }
@@ -119,12 +142,13 @@ public class PublishActivity extends BaseTitleBarActivity {
                         .build(RouterList.PhotoMultiBrowserActivity.path)
                         .withParcelable(RouterList.PhotoMultiBrowserActivity.key_browserinfo, info)
                         .withInt(RouterList.PhotoMultiBrowserActivity.key_maxSelectCount, selectedPhotos.size())
-                        .navigation(PublishActivity.this, RouterList.PhotoMultiBrowserActivity.requestCode);
+                        .navigation(PublishMomentActivity.this, RouterList.PhotoMultiBrowserActivity.requestCode);
             }
         });
         mPreviewImageView.setOnAddPhotoClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                closeInput();
                 showSelectPhotoPopup();
             }
         });
@@ -146,7 +170,7 @@ public class PublishActivity extends BaseTitleBarActivity {
             mSelectPhotoMenuPopup.setOnSelectPhotoMenuClickListener(new SelectPhotoMenuPopup.OnSelectPhotoMenuClickListener() {
                 @Override
                 public void onShootClick() {
-                    PhotoHelper.fromCamera(PublishActivity.this, false);
+                    PhotoHelper.fromCamera(PublishMomentActivity.this, false);
                 }
 
                 @Override
@@ -154,7 +178,7 @@ public class PublishActivity extends BaseTitleBarActivity {
                     ARouter.getInstance()
                             .build(RouterList.PhotoSelectActivity.path)
                             .withInt(RouterList.PhotoSelectActivity.key_maxSelectCount, mPreviewImageView.getRestPhotoCount())
-                            .navigation(PublishActivity.this, RouterList.PhotoSelectActivity.requestCode);
+                            .navigation(PublishMomentActivity.this, RouterList.PhotoSelectActivity.requestCode);
                 }
             });
         }
@@ -163,8 +187,8 @@ public class PublishActivity extends BaseTitleBarActivity {
 
     //title init
     private void initTitle() {
-        setTitle(mode == RouterList.PublishActivity.MODE_TEXT ? "发表文字" : null);
-        setTitleRightTextColor(mode != RouterList.PublishActivity.MODE_TEXT);
+        setTitle(mode == RouterList.PublishMomentActivity.MODE_TEXT ? "发表文字" : null);
+        setTitleRightTextColor(mode != RouterList.PublishMomentActivity.MODE_TEXT);
         setTitleMode(TitleBar.MODE_BOTH);
         setTitleLeftText("取消");
         setTitleLeftIcon(0);
@@ -174,7 +198,7 @@ public class PublishActivity extends BaseTitleBarActivity {
 
 
     private void setTitleRightTextColor(boolean canClick) {
-        setRightTextColor(canClick ? UIHelper.getResourceColor(R.color.wechat_green_bg) : UIHelper.getResourceColor(R.color.wechat_green_transparent));
+        setRightTextColor(canClick ? UIHelper.getResourceColor(com.example.circlepublish.R.color.wechat_green_bg) : UIHelper.getResourceColor(com.example.circlepublish.R.color.wechat_green_transparent));
         canTitleRightClick = canClick;
     }
 
@@ -212,10 +236,10 @@ public class PublishActivity extends BaseTitleBarActivity {
     private void refreshTitleRightClickable() {
         String inputContent = mInputContent.getText().toString();
         switch (mode) {
-            case RouterList.PublishActivity.MODE_MULTI:
+            case RouterList.PublishMomentActivity.MODE_MULTI:
                 setTitleRightTextColor(!ToolUtil.isListEmpty(mPreviewImageView.getDatas()) && StringUtil.noEmpty(inputContent));
                 break;
-            case RouterList.PublishActivity.MODE_TEXT:
+            case RouterList.PublishMomentActivity.MODE_TEXT:
                 setTitleRightTextColor(StringUtil.noEmpty(inputContent));
                 break;
         }
@@ -234,9 +258,9 @@ public class PublishActivity extends BaseTitleBarActivity {
 
     //关闭键盘
     private void closeInput() {
-        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-        if(imm.isActive()&&getCurrentFocus()!=null){
-            if (getCurrentFocus().getWindowToken()!=null) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm.isActive() && getCurrentFocus() != null) {
+            if (getCurrentFocus().getWindowToken() != null) {
                 imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
             }
         }
@@ -306,67 +330,63 @@ public class PublishActivity extends BaseTitleBarActivity {
         });
     }
 
+    private File mFile;
+    private MultipartBody.Part mBody;
+    private RequestBody mRequestFile;
+    private int mUploadNum;
+    private List<String> mResultUrlList =new ArrayList<>();
+
+    //上传图片
     private void doUpload(final String[] uploadTaskPaths, final String inputContent) {
-        BmobFile.uploadBatch(uploadTaskPaths, new UploadBatchListener() {
-            @Override
-            public void onSuccess(List<BmobFile> list, List<String> list1) {
-                //1、有多少个文件上传，onSuccess方法就会执行多少次;
-                //2、通过onSuccess回调方法中的files或urls集合的大小与上传的总文件个数比较，如果一样，则表示全部文件上传成功。
-                if (!ToolUtil.isListEmpty(list1) && list1.size() == uploadTaskPaths.length) {
-                    publishInternal(inputContent, list1);
-                }
+        showToast("正上传图片");
+        if (uploadTaskPaths != null && uploadTaskPaths.length > 0) {
+            mUploadNum = uploadTaskPaths.length;
+            mResultUrlList.clear();
+            for (int i = 0; i < uploadTaskPaths.length; i++) {
+                //将相册返回的uri转成file
+                mFile = new File(uploadTaskPaths[i]);
+                //将图片设置成上传格式
+                mRequestFile = RequestBody.create(MediaType.parse("multipart/form-data"), mFile);
+                //image为请求参数
+                mBody = MultipartBody.Part.createFormData("image", mFile.getName(), mRequestFile);
+                mIUploadImagePresenter.uploadImage(mBody);
             }
-
-            @Override
-            public void onProgress(int curIndex, int curPercent, int total, int totalPercent) {
-                //1、curIndex--表示当前第几个文件正在上传
-                //2、curPercent--表示当前上传文件的进度值（百分比）
-                //3、total--表示总的上传文件数
-                //4、totalPercent--表示总的上传进度（百分比）
-                mPopupProgress.setProgressTips("正在上传第" + curIndex + "/" + total + "张图片");
-                mPopupProgress.setProgress(totalPercent);
-                if (!mPopupProgress.isShowing()) {
-                    mPopupProgress.showPopupWindow();
-                }
-            }
-
-            @Override
-            public void onError(int i, String s) {
-                mPopupProgress.dismiss();
-                UIHelper.ToastMessage(s);
-            }
-        });
+        }
     }
 
-    private void publishInternal(String input, List<String> uploadPicPaths) {
-        mPopupProgress.setProgressTips("正在发布");
-        if (!mPopupProgress.isShowing()) {
-            mPopupProgress.showPopupWindow();
-        }
-        AddMomentsRequest addMomentsRequest = new AddMomentsRequest();
-        addMomentsRequest.setAuthId(LocalHostManager.INSTANCE.getUserid())
-                //暂时Host强制使用开发者id
-                .setHostId(AppSetting.loadStringPreferenceByKey(AppSetting.HOST_ID, "MMbKLCCU"))
-                .addText(input);
-        if (!ToolUtil.isListEmpty(uploadPicPaths)) {
-            for (String uploadPicPath : uploadPicPaths) {
-                addMomentsRequest.addPicture(uploadPicPath);
-            }
-        }
-        addMomentsRequest.setOnResponseListener(new OnResponseListener.SimpleResponseListener<String>() {
-            @Override
-            public void onSuccess(String response, int requestType) {
-                mPopupProgress.dismiss();
-                UIHelper.ToastMessage("发布成功");
-                setResult(RESULT_OK);
-                finish();
-            }
 
-            @Override
-            public void onError(BmobException e, int requestType) {
-                UIHelper.ToastMessage(e.toString());
+    //上传成功
+    @Override
+    public void loadHead(String url) {
+        mResultUrlList.add(url);
+        if (mResultUrlList.size() == mUploadNum) {
+            publishInternal(mInputContent.getText().toString(),mResultUrlList);
+        }
+    }
+
+    //发送朋友圈
+    private void publishInternal(String input, List<String> uploadPicPaths) {
+        String photoList = "";
+        if (uploadPicPaths!=null&&uploadPicPaths.size()>0){
+            for (int i=0;i<uploadPicPaths.size();i++){
+                if (i == uploadPicPaths.size()-1){
+                    photoList = photoList+uploadPicPaths.get(i);
+                }else {
+                    photoList = photoList+uploadPicPaths.get(i)+",";
+                }
             }
-        });
-        addMomentsRequest.execute();
+        }
+        mISendMomentPresenter.sendMoment(UserManager.getInstance().getUserId(this),
+                input, photoList, "", "", "", "", new ArrayList<>());
+
+    }
+
+
+    //发送朋友圈成功
+    @Override
+    public void sendMomentSuccess() {
+        UIHelper.ToastMessage("发布成功");
+        setResult(RESULT_OK);
+        finish();
     }
 }

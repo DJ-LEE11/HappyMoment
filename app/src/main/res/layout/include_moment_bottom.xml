@@ -62,7 +62,7 @@
         android:background="@drawable/comment_praise"
         android:orientation="vertical">
 
-        <com.uwork.happymoment.mvp.social.cirle.ui.GiveLikeWidget
+        <com.uwork.happymoment.mvp.social.circle.ui.GiveLikeWidget
             android:id="@+id/giveLike"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
