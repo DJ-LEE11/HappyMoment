@@ -11,7 +11,6 @@ import com.example.circle_base_ui.util.SwitchActivityTransitionUtil;
 import com.example.circle_common.common.entity.PhotoBrowseInfo;
 import com.example.circle_common.common.router.RouterList;
 import com.example.circle_photoselect.photoselect.PhotoSelectActivity;
-import com.uwork.happymoment.mvp.social.circleTest.activity.test.gallery.PhotoBrowseActivity;
 
 import java.util.ArrayList;
 import java.util.List;

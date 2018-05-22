@@ -152,7 +152,7 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.social.circleTest.activity.test.gallery.PhotoBrowseActivity"
+            android:name=".mvp.social.circle.activity.PhotoBrowseActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"

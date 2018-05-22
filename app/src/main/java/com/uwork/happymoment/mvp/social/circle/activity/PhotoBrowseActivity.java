@@ -1,4 +1,4 @@
-package com.uwork.happymoment.mvp.social.circleTest.activity.test.gallery;
+package com.uwork.happymoment.mvp.social.circle.activity;
 
 import android.app.Activity;
 import android.content.Context;

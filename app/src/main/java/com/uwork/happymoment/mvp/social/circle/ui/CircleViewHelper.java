@@ -1,4 +1,4 @@
-package com.uwork.happymoment.mvp.social.circleTest.activity.test.circledemo;
+package com.uwork.happymoment.mvp.social.circle.ui;
 
 import android.app.Activity;
 import android.graphics.Rect;
@@ -15,14 +15,14 @@ import com.socks.library.KLog;
  * Created by 大灯泡 on 2017/9/6.
  */
 
-public class CircleViewTestHelper {
+public class CircleViewHelper {
     Activity mActivity;
 
     //评论时对应的参照View
     private View commentAnchorView;
     private int commentItemDataPosition;
 
-    public CircleViewTestHelper(Activity activity) {
+    public CircleViewHelper(Activity activity) {
         mActivity = activity;
     }
 

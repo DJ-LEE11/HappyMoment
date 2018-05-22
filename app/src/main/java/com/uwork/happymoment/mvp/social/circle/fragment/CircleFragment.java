@@ -40,7 +40,7 @@ import com.uwork.happymoment.mvp.social.circle.viewholder.EmptyMomentsViewHolder
 import com.uwork.happymoment.mvp.social.circle.viewholder.MultiImageMomentsViewHolderMoment;
 import com.uwork.happymoment.mvp.social.circle.viewholder.TextOnlyMomentsViewHolderMoment;
 import com.uwork.happymoment.mvp.social.circle.viewholder.WebMomentsViewHolderMoment;
-import com.uwork.happymoment.mvp.social.circleTest.activity.test.circledemo.CircleViewHelper;
+import com.uwork.happymoment.mvp.social.circle.ui.CircleViewHelper;
 import com.uwork.librx.bean.PageResponseBean;
 import com.uwork.librx.mvp.BaseFragment;
 
