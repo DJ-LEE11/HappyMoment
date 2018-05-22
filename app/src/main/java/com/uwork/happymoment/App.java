@@ -7,6 +7,7 @@ import android.support.multidex.MultiDexApplication;
 import com.example.circle_base_library.api.AppContext;
 import com.example.circle_base_library.manager.localphoto.LocalPhotoManager;
 import com.uwork.happymoment.listener.RongConnectionStatusListener;
+import com.uwork.happymoment.listener.RongReceiveMessageListener;
 
 import io.rong.imkit.RongIM;
 
@@ -27,6 +28,8 @@ public class App extends MultiDexApplication {
         RongIM.init(this);
         //融云连接状态监听
         RongIM.setConnectionStatusListener(new RongConnectionStatusListener(getApplicationContext()));
+        //融云接受消息监听
+        RongIM.setOnReceiveMessageListener(new RongReceiveMessageListener(getApplicationContext()));
     }
 
     public static String getCurProcessName(Context context) {

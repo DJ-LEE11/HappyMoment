@@ -292,23 +292,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-//        PhotoHelper.handleActivityResult(this, requestCode, resultCode, data, new PhotoHelper.PhotoCallback() {
-//            @Override
-//            public void onFinish(String filePath) {
-//                List<ImageInfo> selectedPhotos = new ArrayList<ImageInfo>();
-//                selectedPhotos.add(new ImageInfo(PhotoHelper.getImageAbsolutePath(MainActivity.this,data.getData()), null, null, 0, 0));
-//                ActivityLauncher.startToPublishActivityWithResult(MainActivity.this,
-//                        RouterList.PublishMomentActivity.MODE_MULTI,
-//                        selectedPhotos,
-//                        RouterList.PublishMomentActivity.requestCode);
-//            }
-//
-//            @Override
-//            public void onError(String msg) {
-//                UIHelper.ToastMessage(msg);
-//            }
-//        });
-
         if (requestCode == REQUEST_FROM_CAMERA && resultCode == RESULT_OK){
             if (PhotoHelper.imageUriFromCamera == null) return;
             List<ImageInfo> selectedPhotos = new ArrayList<ImageInfo>();

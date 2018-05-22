@@ -15,6 +15,9 @@ import io.rong.push.notification.PushNotificationMessage;
 public class SealNotificationReceiver extends PushMessageReceiver {
     @Override
     public boolean onNotificationMessageArrived(Context context, PushNotificationMessage message) {
+        if (message.getConversationType() == RongPushClient.ConversationType.PRIVATE){
+
+        }
         return false; // 返回 false, 会弹出融云 SDK 默认通知; 返回 true, 融云 SDK 不会弹通知, 通知需要由您自定义。
     }
 

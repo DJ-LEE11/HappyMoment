@@ -10,6 +10,7 @@ import com.uwork.happymoment.mvp.social.chat.bean.AddGroupBean;
 import com.uwork.happymoment.mvp.social.chat.bean.ApplyAddFriendRequestBean;
 import com.uwork.happymoment.mvp.social.chat.bean.FriendDetailBean;
 import com.uwork.happymoment.mvp.social.chat.bean.FriendIndexBean;
+import com.uwork.happymoment.mvp.social.chat.bean.GroupBean;
 import com.uwork.happymoment.mvp.social.chat.bean.NewFriendResponseBean;
 import com.uwork.happymoment.mvp.social.chat.bean.SearchNewFriendBean;
 import com.uwork.happymoment.mvp.social.chat.bean.SearchNewFriendForCodeRequestBean;
@@ -95,6 +96,12 @@ public interface ApiService {
      */
     @POST("/group/createGroup")
     Flowable<BaseResult<AddGroupBean>> addGroup(@Body AddCreateGroupRequestBean addCreateGroupRequestBean);
+
+    /**
+     * 群聊列表
+     */
+    @POST("/group/groupList")
+    Flowable<BaseResult<List<GroupBean>>> getGroupList();
 
     /**
      * 新朋友

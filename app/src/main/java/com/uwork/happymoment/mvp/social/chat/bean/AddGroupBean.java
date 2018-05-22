@@ -7,19 +7,28 @@ import java.io.Serializable;
  */
 
 public class AddGroupBean implements Serializable{
+
     /**
+     * avatar : string
      * createTime : string
      * id : 0
      * name : string
      * updateTime : string
-     * userIds : string
      */
 
+    private String avatar;
     private String createTime;
     private int id;
     private String name;
     private String updateTime;
-    private String userIds;
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
     public String getCreateTime() {
         return createTime;
@@ -51,13 +60,5 @@ public class AddGroupBean implements Serializable{
 
     public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
-    }
-
-    public String getUserIds() {
-        return userIds;
-    }
-
-    public void setUserIds(String userIds) {
-        this.userIds = userIds;
     }
 }

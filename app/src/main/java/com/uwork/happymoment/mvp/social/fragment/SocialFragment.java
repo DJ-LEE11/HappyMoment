@@ -25,7 +25,7 @@ import com.uwork.happymoment.mvp.social.chat.fragment.ChatListFragment;
 import com.uwork.happymoment.mvp.social.circle.activity.ActivityLauncher;
 import com.uwork.happymoment.mvp.social.circle.fragment.CircleFragment;
 import com.uwork.happymoment.mvp.social.track.fragment.TrackFragment;
-import com.uwork.happymoment.ui.StickyNavLayout;
+import com.uwork.happymoment.ui.StickyLayout;
 import com.uwork.librx.mvp.BaseFragment;
 import com.uwork.libtoolbar.ToolbarTitle;
 
@@ -50,8 +50,8 @@ public class SocialFragment extends BaseFragment {
     @BindView(R.id.id_sticky_view_pager)
     ViewPager mStickyViewPager;
     Unbinder unbinder;
-    @BindView(R.id.stickyNavLayout)
-    StickyNavLayout mStickyNavLayout;
+    @BindView(R.id.stickyLayout)
+    StickyLayout mStickyNavLayout;
 
 
     private ArrayList<Fragment> mFragments;
@@ -196,19 +196,19 @@ public class SocialFragment extends BaseFragment {
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void initStickyLayout() {
         mStickyNavLayout.setNestedScrollingEnabled(true);
-        mStickyNavLayout.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                //当滑到顶部的时候下面的子fragment中的列表才可以下拉刷新
-                if (scrollY == 0){
-                    CircleFragment.newInstance().setRefresh(true);
-                    TrackFragment.newInstance().setRefresh(true);
-                }else {
-                    CircleFragment.newInstance().setRefresh(false);
-                    TrackFragment.newInstance().setRefresh(false);
-                }
-            }
-        });
+//        mStickyNavLayout.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+//            @Override
+//            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+//                //当滑到顶部的时候下面的子fragment中的列表才可以下拉刷新
+//                if (scrollY == 0){
+//                    CircleFragment.newInstance().setRefresh(true);
+//                    TrackFragment.newInstance().setRefresh(true);
+//                }else {
+//                    CircleFragment.newInstance().setRefresh(false);
+//                    TrackFragment.newInstance().setRefresh(false);
+//                }
+//            }
+//        });
     }
 
     @Override

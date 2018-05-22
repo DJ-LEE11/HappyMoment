@@ -11,16 +11,16 @@
         android:id="@+id/headerBtnLayout"
         layout="@layout/header_btn_layout" />
 
-    <!--<com.uwork.happymoment.ui.StickyLayout-->
+    <com.uwork.happymoment.ui.StickyLayout
+        android:id="@+id/stickyLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        stick:isStickNav="false">
+
+    <!--<com.uwork.happymoment.ui.StickyNavLayout-->
         <!--android:id="@+id/stickyLayout"-->
         <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--stick:isStickNav="false">-->
-
-    <com.uwork.happymoment.ui.StickyNavLayout
-        android:id="@+id/stickyNavLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        <!--android:layout_height="match_parent">-->
 
 
     <RelativeLayout
@@ -69,5 +69,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never"/>
-    </com.uwork.happymoment.ui.StickyNavLayout>
+    </com.uwork.happymoment.ui.StickyLayout>
 </LinearLayout>

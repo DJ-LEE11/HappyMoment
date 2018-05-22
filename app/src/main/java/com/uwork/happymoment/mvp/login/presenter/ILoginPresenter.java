@@ -7,10 +7,14 @@ import com.uwork.happymoment.manager.UserManager;
 import com.uwork.happymoment.mvp.login.bean.UserBean;
 import com.uwork.happymoment.mvp.login.contract.ILoginContract;
 import com.uwork.happymoment.mvp.login.model.ILoginModel;
+import com.uwork.happymoment.mvp.social.chat.bean.FriendIndexBean;
+import com.uwork.happymoment.mvp.social.chat.bean.GroupBean;
 import com.uwork.librx.mvp.contract.IBaseActivityContract;
 import com.uwork.librx.mvp.presenter.IBasePresenterImpl;
 import com.uwork.librx.rx.http.ApiException;
 import com.uwork.librx.rx.interfaces.OnModelCallBack;
+
+import java.util.List;
 
 /**
  * Created by jie on 2018/5/9.
@@ -42,8 +46,8 @@ public class ILoginPresenter <T extends ILoginContract.View & IBaseActivityContr
             @Override
             public void onSuccess(UserBean value) {
                 getView().dismissLoading();
-                connectIM(value);
                 saveToken(value);
+                getFriend();
             }
 
             @Override
@@ -62,12 +66,74 @@ public class ILoginPresenter <T extends ILoginContract.View & IBaseActivityContr
     @Override
     public void saveToken(UserBean userBean) {
         UserManager.getInstance().saveUserInfo(getContext(),userBean);
-        getView().loginSuccess();
+    }
+
+    @Override
+    public void getFriend() {
+        addSubscription(mModel.getFriendIndex(new OnModelCallBack<List<FriendIndexBean>>() {
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onSuccess(List<FriendIndexBean> value) {
+                IMRongManager.addUserInfo(mContext,value);
+                getGroup();
+            }
+
+            @Override
+            public void onError(ApiException e) {
+                getView().handleException(e);
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        }));
+    }
+
+    @Override
+    public void getGroup() {
+        addSubscription(mModel.getGroupList(new OnModelCallBack<List<GroupBean>>() {
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onSuccess(List<GroupBean> value) {
+                IMRongManager.addGroupInfo(mContext,value);
+                connectIM(UserManager.getInstance().getUser(mContext));
+                getView().loginSuccess();
+            }
+
+            @Override
+            public void onError(ApiException e) {
+                getView().handleException(e);
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        }));
     }
 
     //连接融云
     @Override
     public void connectIM(UserBean userBean) {
-        IMRongManager.imConnect(mContext,userBean.getImtoken(),userBean.getNickName(),userBean.getAvatar());
+        IMRongManager.imConnect(mContext,userBean.getImtoken());
     }
 }

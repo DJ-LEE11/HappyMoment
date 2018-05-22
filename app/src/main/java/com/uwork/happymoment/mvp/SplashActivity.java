@@ -68,7 +68,7 @@ public class SplashActivity extends BaseActivity {
         if (UserManager.getInstance().isLogin(this)){
             UserBean user = UserManager.getInstance().getUser(this);
             //连接融云
-            IMRongManager.imConnect(this,user.getImtoken(),user.getNickName(),user.getAvatar());
+            IMRongManager.imConnect(this,user.getImtoken());
         }
         mHandler.sendEmptyMessageDelayed(GOTO_NEXT_PAGE, 1000);
     }

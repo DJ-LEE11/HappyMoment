@@ -2,31 +2,33 @@ package com.uwork.happymoment.mvp.social.chat.presenter;
 
 import android.content.Context;
 
-import com.uwork.happymoment.mvp.social.chat.bean.AddGroupBean;
-import com.uwork.happymoment.mvp.social.chat.contract.IAddGroupContract;
-import com.uwork.happymoment.mvp.social.chat.model.IAddGroupModel;
+import com.uwork.happymoment.mvp.social.chat.bean.GroupBean;
+import com.uwork.happymoment.mvp.social.chat.contract.IGetGroupListContract;
+import com.uwork.happymoment.mvp.social.chat.model.IGetGroupListModel;
 import com.uwork.librx.mvp.contract.IBaseActivityContract;
 import com.uwork.librx.mvp.presenter.IBasePresenterImpl;
 import com.uwork.librx.rx.http.ApiException;
 import com.uwork.librx.rx.interfaces.OnModelCallBack;
 
+import java.util.List;
+
 /**
- * Created by jie on 2018/5/18.
+ * Created by jie on 2018/5/22.
  */
 
-public class IAddGroupPresenter<T extends IAddGroupContract.View & IBaseActivityContract.View> extends IBasePresenterImpl<T>
-        implements IAddGroupContract.Presenter {
+public class IGetGroupListPresenter <T extends IGetGroupListContract.View & IBaseActivityContract.View> extends IBasePresenterImpl<T>
+        implements IGetGroupListContract.Presenter {
 
-    private IAddGroupModel mModel;
+    private IGetGroupListModel mModel;
 
-    public IAddGroupPresenter(Context context) {
+    public IGetGroupListPresenter(Context context) {
         super(context);
-        mModel = new IAddGroupModel(context);
+        mModel = new IGetGroupListModel(context);
     }
 
     @Override
-    public void addGroup(String name, String userIds) {
-        addSubscription(mModel.addGroup(name, userIds, new OnModelCallBack<AddGroupBean>() {
+    public void getGroupList() {
+        addSubscription(mModel.getGroupList(new OnModelCallBack<List<GroupBean>>() {
             @Override
             public void onStart() {
                 getView().showLoading();
@@ -38,10 +40,12 @@ public class IAddGroupPresenter<T extends IAddGroupContract.View & IBaseActivity
             }
 
             @Override
-            public void onSuccess(AddGroupBean value) {
+            public void onSuccess(List<GroupBean> value) {
                 getView().dismissLoading();
-                if (value != null) {
-                    getView().addCreateGroup(value);
+                if (value!=null&& value.size()>0){
+                    getView().showGroupList(value);
+                }else {
+                    getView().showEmpty();
                 }
             }
 

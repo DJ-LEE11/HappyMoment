@@ -63,7 +63,7 @@ public class CircleFragment extends BaseFragment implements ICircleContract.View
 
     private static CircleFragment fragment;
 
-    @BindView(R.id.circleRecyclerView)
+    @BindView(R.id.id_sticky_scrollview)
     RecyclerView mCircleRecyclerView;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout mRefreshLayout;

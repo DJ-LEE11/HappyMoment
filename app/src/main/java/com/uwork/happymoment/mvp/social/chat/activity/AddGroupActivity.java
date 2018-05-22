@@ -2,7 +2,6 @@ package com.uwork.happymoment.mvp.social.chat.activity;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -31,11 +30,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import io.rong.imkit.RongIM;
-import io.rong.imlib.model.Group;
 
 //创建群聊
-public class AddGroupActivity extends BaseTitleActivity implements IGetFriendIndexContract.View,IAddGroupContract.View{
+public class AddGroupActivity extends BaseTitleActivity implements IGetFriendIndexContract.View, IAddGroupContract.View {
 
     @BindView(R.id.rvFriend)
     RecyclerView mRvFriend;
@@ -93,18 +90,18 @@ public class AddGroupActivity extends BaseTitleActivity implements IGetFriendInd
             @Override
             public void onClick(View v) {
                 int i = 0;
-                if (mData!=null && mData.size()>0){
+                if (mData != null && mData.size() > 0) {
                     mSelectId = new ArrayList<>();
-                    for (AddGroupIndexBean bean: mData){
-                        if (bean.isAdd()){
+                    for (AddGroupIndexBean bean : mData) {
+                        if (bean.isAdd()) {
                             i++;
                             mSelectId.add(bean.getId());
                         }
                     }
                 }
-                if (i>0){
+                if (i > 0) {
                     showDialog();
-                }else {
+                } else {
                     showToast("请选择群聊联系人");
                 }
             }
@@ -116,19 +113,27 @@ public class AddGroupActivity extends BaseTitleActivity implements IGetFriendInd
         mInputBaseDialog.onGetInputListener(new InputDialog.onGetInputListener() {
             @Override
             public void onGetInput(String input) {
-                if (mDialog !=null){
+                if (mDialog != null) {
                     mDialog.dismiss();
                 }
-                mIAddGroupPresenter.addGroup(input,mSelectId);
+                String userIds = "";
+                for (int i = 0; i < mSelectId.size(); i++) {
+                    if (i == mSelectId.size() - 1) {
+                        userIds = userIds + mSelectId.get(i);
+                    } else {
+                        userIds = userIds + mSelectId.get(i) + ",";
+                    }
+                }
+                mIAddGroupPresenter.addGroup(input, userIds);
             }
         });
     }
 
-    private void showDialog(){
-        if (mDialog !=null){
+    private void showDialog() {
+        if (mDialog != null) {
             mDialog.dismiss();
         }
-        mDialog = mInputBaseDialog.createInputDialog(this,"请输入群名");
+        mDialog = mInputBaseDialog.createInputDialog(this, "请输入群名");
         mDialog.show();
     }
 
@@ -165,8 +170,8 @@ public class AddGroupActivity extends BaseTitleActivity implements IGetFriendInd
     public void showFriendIndex(List<FriendIndexBean> friendIndexBeanList) {
         if (friendIndexBeanList != null && friendIndexBeanList.size() > 0) {
             mData = new ArrayList<>();
-            for (FriendIndexBean friendIndexBean : friendIndexBeanList){
-                mData.add(new AddGroupIndexBean(friendIndexBean.getId()+"",friendIndexBean.getTarget(),friendIndexBean.getAvatar()));
+            for (FriendIndexBean friendIndexBean : friendIndexBeanList) {
+                mData.add(new AddGroupIndexBean(friendIndexBean.getId() + "", friendIndexBean.getTarget(), friendIndexBean.getAvatar()));
             }
             initData(mData);
         } else {
@@ -184,16 +189,9 @@ public class AddGroupActivity extends BaseTitleActivity implements IGetFriendInd
 
     @Override
     public void addCreateGroup(AddGroupBean addGroupBean) {
+        setResult(RESULT_OK);
         finish();
-        RongIM.setGroupInfoProvider(new RongIM.GroupInfoProvider() {
-            @Override
-            public Group getGroupInfo(String s) {
-                //调用接口获取groupInfo信息。然后刷新 refreshGroupInfoCache(group);
-                Group group=new Group(Integer.valueOf(addGroupBean.getId()).toString(),addGroupBean.getName(),  Uri.parse(""));
-                RongIM.getInstance().refreshGroupInfoCache(group);
-                return group;
-            }
-        }, true);
-        IMRongManager.groupChat(this,addGroupBean.getId()+"",addGroupBean.getName());
+        IMRongManager.updateGroupInfo(this,addGroupBean.getId(),addGroupBean.getName(),addGroupBean.getAvatar());
+        IMRongManager.groupChat(this, addGroupBean.getId() + "", addGroupBean.getName());
     }
 }
