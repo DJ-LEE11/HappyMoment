@@ -62,7 +62,7 @@
         android:background="@drawable/comment_praise"
         android:orientation="vertical">
 
-        <com.uwork.happymoment.mvp.social.circle.ui.GiveLikeWidget
+        <com.uwork.happymoment.mvp.social.circle.ui.like.GiveLikeWidget
             android:id="@+id/giveLike"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -85,12 +85,12 @@
             android:background="@color/line_bg"
             />
 
-        <!--<com.example.circle_base_ui.widget.commentwidget.CommentContentsLayout-->
-            <!--android:id="@+id/comment_layout"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="vertical"-->
-            <!--tools:background="@android:color/holo_red_dark"/>-->
+        <com.uwork.happymoment.mvp.social.circle.ui.comment.MomentCommentLayout
+            android:id="@+id/comment_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:background="@android:color/holo_red_dark"/>
     </LinearLayout>
 
     <View style="@style/base_divider_top_20"/>

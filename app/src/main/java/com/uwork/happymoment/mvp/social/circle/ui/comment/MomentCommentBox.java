@@ -1,4 +1,4 @@
-package com.example.circle_base_ui.widget.commentwidget;
+package com.uwork.happymoment.mvp.social.circle.ui.comment;
 
 import android.content.Context;
 import android.support.annotation.IntDef;
@@ -14,19 +14,19 @@ import android.widget.TextView;
 import com.example.circle_base_library.utils.StringUtil;
 import com.example.circle_base_ui.R;
 import com.example.circle_base_ui.util.UIHelper;
+import com.example.circle_base_ui.widget.commentwidget.IComment;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 
 /**
- * Created by 大灯泡 on 2016/12/8.
  * <p>
  * 评论输入框
  */
 
 // FIXME: 2016/12/13 跟别的控件耦合度较高，后期考虑优化
-public class CommentBox extends FrameLayout {
+public class MomentCommentBox extends FrameLayout {
 
     private EditText mInputContent;
     private TextView mSend;
@@ -51,15 +51,15 @@ public class CommentBox extends FrameLayout {
     }
 
 
-    public CommentBox(Context context) {
+    public MomentCommentBox(Context context) {
         this(context, null);
     }
 
-    public CommentBox(Context context, AttributeSet attrs) {
+    public MomentCommentBox(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public CommentBox(Context context, AttributeSet attrs, int defStyleAttr) {
+    public MomentCommentBox(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initView(context);
     }
@@ -128,7 +128,6 @@ public class CommentBox extends FrameLayout {
         } else {
             showCommentBox(momentid, commentInfo);
         }
-        showCommentBox(momentid, commentInfo);
     }
 
     public boolean isShowing() {

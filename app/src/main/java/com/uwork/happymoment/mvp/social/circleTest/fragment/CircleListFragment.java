@@ -285,7 +285,6 @@ public class CircleListFragment extends BaseFragment  implements IMomentView {
     public void onResume() {
         super.onResume();
         AppFileHelper.initStroagePath(getActivity());
-
     }
 
     @Override

@@ -252,7 +252,6 @@ public abstract class CircleBaseViewHolder extends BaseMultiRecyclerViewHolder<M
             } else {//点赞
                 momentPresenter.addLike(itemPosition, info.getMomentid(), info.getLikesList());
             }
-
         }
 
         @Override//评论

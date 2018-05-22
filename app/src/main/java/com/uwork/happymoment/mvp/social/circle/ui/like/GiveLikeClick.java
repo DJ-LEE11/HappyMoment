@@ -1,4 +1,4 @@
-package com.uwork.happymoment.mvp.social.circle.ui;
+package com.uwork.happymoment.mvp.social.circle.ui.like;
 
 import android.content.Context;
 import android.graphics.Typeface;

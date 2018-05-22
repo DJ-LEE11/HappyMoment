@@ -1,4 +1,4 @@
-package com.uwork.happymoment.mvp.social.circle.ui;
+package com.uwork.happymoment.mvp.social.circle.ui.like;
 
 import android.annotation.TargetApi;
 import android.content.Context;

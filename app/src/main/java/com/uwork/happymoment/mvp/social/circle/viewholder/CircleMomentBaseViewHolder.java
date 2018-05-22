@@ -15,20 +15,20 @@ import com.example.circle_base_library.utils.TimeUtil;
 import com.example.circle_base_library.utils.ToolUtil;
 import com.example.circle_base_ui.base.adapter.BaseMultiRecyclerViewHolder;
 import com.example.circle_base_ui.imageloader.ImageLoadMnanger;
-import com.example.circle_base_ui.util.UIHelper;
 import com.example.circle_base_ui.util.ViewUtil;
-import com.example.circle_base_ui.widget.commentwidget.CommentContentsLayout;
+import com.example.circle_base_ui.widget.commentwidget.CommentWidget;
 import com.example.circle_base_ui.widget.commentwidget.IComment;
 import com.example.circle_base_ui.widget.common.ClickShowMoreLayout;
-import com.example.circle_common.common.entity.CommentInfo;
 import com.socks.library.KLog;
 import com.uwork.happymoment.R;
 import com.uwork.happymoment.manager.UserManager;
+import com.uwork.happymoment.mvp.social.circle.bean.MomentCommentBean;
 import com.uwork.happymoment.mvp.social.circle.bean.MomentItemBean;
 import com.uwork.happymoment.mvp.social.circle.bean.MomentLikeBean;
-import com.uwork.happymoment.mvp.social.circle.presenter.ICirclePresenter;
+import com.uwork.happymoment.mvp.social.circle.presenter.ICircleHandelPresenter;
 import com.uwork.happymoment.mvp.social.circle.ui.CommentLikePopup;
-import com.uwork.happymoment.mvp.social.circle.ui.GiveLikeWidget;
+import com.uwork.happymoment.mvp.social.circle.ui.comment.MomentCommentLayout;
+import com.uwork.happymoment.mvp.social.circle.ui.like.GiveLikeWidget;
 import com.uwork.libutil.ToastUtils;
 
 import java.util.List;
@@ -54,7 +54,7 @@ public abstract class CircleMomentBaseViewHolder extends BaseMultiRecyclerViewHo
     protected LinearLayout commentAndPraiseLayout;
     protected GiveLikeWidget giveLikeWidget;
     protected View line;
-//    protected CommentContentsLayout commentLayout;
+    protected MomentCommentLayout commentLayout;
 
     //内容区
     protected LinearLayout contentLayout;
@@ -62,7 +62,7 @@ public abstract class CircleMomentBaseViewHolder extends BaseMultiRecyclerViewHo
     private CommentLikePopup commentLikePopup;
 //    private DeleteCommentPopup deleteCommentPopup;
 
-    private ICirclePresenter mICirclePresenter;
+    private ICircleHandelPresenter mICirclePresenter;
     private int itemPosition;
     private MomentItemBean momentsInfo;
 
@@ -90,11 +90,11 @@ public abstract class CircleMomentBaseViewHolder extends BaseMultiRecyclerViewHo
         commentAndPraiseLayout = (LinearLayout) findView(commentAndPraiseLayout, R.id.comment_praise_layout);
         giveLikeWidget = (GiveLikeWidget) findView(giveLikeWidget, R.id.giveLike);
         line = findView(line, R.id.divider);
-//        commentLayout = (CommentContentsLayout) findView(commentLayout, R.id.comment_layout);
-//        commentLayout.setMode(CommentContentsLayout.Mode.EXPANDABLE);
-//        commentLayout.setOnCommentItemClickListener(onCommentItemClickListener);
-//        commentLayout.setOnCommentItemLongClickListener(onCommentItemLongClickListener);
-//        commentLayout.setOnCommentWidgetItemClickListener(onCommentWidgetItemClickListener);
+        commentLayout = (MomentCommentLayout) findView(commentLayout, R.id.comment_layout);
+        commentLayout.setMode(MomentCommentLayout.Mode.EXPANDABLE);
+        commentLayout.setOnCommentItemClickListener(onCommentItemClickListener);
+        commentLayout.setOnCommentItemLongClickListener(onCommentItemLongClickListener);
+        commentLayout.setOnCommentWidgetItemClickListener(onCommentWidgetItemClickListener);
 
         //content
         contentLayout = (LinearLayout) findView(contentLayout, R.id.content);
@@ -112,11 +112,11 @@ public abstract class CircleMomentBaseViewHolder extends BaseMultiRecyclerViewHo
 //        }
     }
 
-    public void setPresenter(ICirclePresenter iCirclePresenter) {
+    public void setPresenter(ICircleHandelPresenter iCirclePresenter) {
         this.mICirclePresenter = iCirclePresenter;
     }
 
-    public ICirclePresenter getPresenter() {
+    public ICircleHandelPresenter getPresenter() {
         return mICirclePresenter;
     }
 
@@ -152,18 +152,15 @@ public abstract class CircleMomentBaseViewHolder extends BaseMultiRecyclerViewHo
         //bottom
         createTime.setText(TimeUtil.getTimeStringFromBmob(data.getCreateTime()));
 //        //是否显示删除状态
-
         ViewUtil.setViewsVisible(momentsInfo.getAuthorId() == UserManager.getInstance().getUserId(getContext()) ?
                 View.VISIBLE : View.GONE, deleteMoments);
 
         boolean needPraiseData = addLikes(data.getLikesList());
-
-
-//        boolean needCommentData = commentLayout.addComments(data.getCommentList());
+        boolean needCommentData = commentLayout.addComments(data.getCommentList());
         giveLikeWidget.setVisibility(needPraiseData ? View.VISIBLE : View.GONE);
-//        commentLayout.setVisibility(needCommentData ? View.VISIBLE : View.GONE);
-        line.setVisibility(needPraiseData ? View.VISIBLE : View.GONE);
-        commentAndPraiseLayout.setVisibility(needPraiseData ? View.VISIBLE : View.GONE);
+        commentLayout.setVisibility(needCommentData ? View.VISIBLE : View.GONE);
+        line.setVisibility(needPraiseData && needCommentData ? View.VISIBLE : View.GONE);
+        commentAndPraiseLayout.setVisibility(needCommentData || needPraiseData ? View.VISIBLE : View.GONE);
 
     }
 
@@ -171,11 +168,11 @@ public abstract class CircleMomentBaseViewHolder extends BaseMultiRecyclerViewHo
      * ==================  click listener block
      */
 
-    private CommentContentsLayout.OnCommentWidgetItemClickListener onCommentWidgetItemClickListener = new CommentContentsLayout.OnCommentWidgetItemClickListener() {
+    private MomentCommentLayout.OnCommentWidgetItemClickListener onCommentWidgetItemClickListener = new MomentCommentLayout.OnCommentWidgetItemClickListener() {
         @Override
         public void onCommentItemClicked(@NonNull IComment comment, CharSequence text) {
-            if (comment instanceof CommentInfo) {
-                UIHelper.ToastMessage("点击的用户 ： 【 " + text + " 】");
+            if (comment instanceof MomentCommentBean) {
+//                UIHelper.ToastMessage("点击的用户 ： 【 " + text + " 】");
             }
         }
     };
@@ -195,29 +192,33 @@ public abstract class CircleMomentBaseViewHolder extends BaseMultiRecyclerViewHo
         return true;
     }
 
-//    private CommentContentsLayout.OnCommentItemClickListener onCommentItemClickListener = new CommentContentsLayout.OnCommentItemClickListener() {
-//        @Override
-//        public void onCommentWidgetClick(@NonNull CommentWidget widget) {
-//            IComment comment = widget.getData();
-//            CommentInfo commentInfo = null;
-//            if (comment instanceof CommentInfo) {
-//                commentInfo = (CommentInfo) comment;
-//            }
-//            if (commentInfo == null) return;
-//            if (commentInfo.canDelete()) {
-//                deleteCommentPopup.showPopupWindow(commentInfo);//删除评论对话框
-//            } else {
-//                momentPresenter.showCommentBox(null, itemPosition, momentsInfo.getMomentid(), widget);//回复评论对话框
-//            }
-//        }
-//    };
+    private MomentCommentLayout.OnCommentItemClickListener onCommentItemClickListener = new MomentCommentLayout.OnCommentItemClickListener() {
+        @Override
+        public void onCommentWidgetClick(@NonNull CommentWidget widget) {
+            IComment comment = widget.getData();
+            MomentCommentBean commentInfo = null;
+            if (comment instanceof MomentCommentBean) {
+                commentInfo = (MomentCommentBean) comment;
+            }
+            if (commentInfo == null) return;
+            if (commentInfo.canDelete()) {
+                //删除评论对话框
+//                deleteCommentPopup.showPopupWindow(commentInfo);
+//                ToastUtils.show(getContext(),"删除评论");
+            } else {
+                //回复评论对话框
+//                ToastUtils.show(getContext(),"回复评论");
+                mICirclePresenter.showCommentBox(null, itemPosition, momentsInfo.getMomentId(), widget);
+            }
+        }
+    };
 
-//    private CommentContentsLayout.OnCommentItemLongClickListener onCommentItemLongClickListener = new CommentContentsLayout.OnCommentItemLongClickListener() {
-//        @Override
-//        public boolean onCommentWidgetLongClick(@NonNull CommentWidget widget) {
-//            return false;
-//        }
-//    };
+    private MomentCommentLayout.OnCommentItemLongClickListener onCommentItemLongClickListener = new MomentCommentLayout.OnCommentItemLongClickListener() {
+        @Override
+        public boolean onCommentWidgetLongClick(@NonNull CommentWidget widget) {
+            return false;
+        }
+    };
 
     //删除评论回调
 //    private DeleteCommentPopup.OnDeleteCommentClickListener onDeleteCommentClickListener = new DeleteCommentPopup.OnDeleteCommentClickListener() {
@@ -271,8 +272,7 @@ public abstract class CircleMomentBaseViewHolder extends BaseMultiRecyclerViewHo
 
         @Override//评论
         public void onCommentClick(View v, @NonNull MomentItemBean info) {
-            ToastUtils.show(getContext(), "评论");
-//            momentPresenter.showCommentBox(itemView, itemPosition, info.getMomentid(), null);
+            mICirclePresenter.showCommentBox(itemView, itemPosition, info.getMomentId(), null);
         }
     };
 

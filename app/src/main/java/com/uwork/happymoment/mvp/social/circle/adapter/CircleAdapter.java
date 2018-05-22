@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
 import com.example.circle_base_ui.base.adapter.BaseMultiRecyclerViewAdapter;
 import com.example.circle_base_ui.base.adapter.BaseRecyclerViewHolder;
 import com.uwork.happymoment.mvp.social.circle.bean.MomentItemBean;
-import com.uwork.happymoment.mvp.social.circle.presenter.ICirclePresenter;
+import com.uwork.happymoment.mvp.social.circle.presenter.ICircleHandelPresenter;
 import com.uwork.happymoment.mvp.social.circle.viewholder.CircleMomentBaseViewHolder;
 
 import java.util.List;
@@ -15,10 +15,10 @@ import java.util.List;
 
 public class CircleAdapter extends BaseMultiRecyclerViewAdapter<CircleAdapter, MomentItemBean> {
 
-    protected ICirclePresenter mICirclePresenter;
+    protected ICircleHandelPresenter mICirclePresenter;
 
 
-    public CircleAdapter(@NonNull Context context, @NonNull List<MomentItemBean> data, ICirclePresenter iCirclePresenter) {
+    public CircleAdapter(@NonNull Context context, @NonNull List<MomentItemBean> data, ICircleHandelPresenter iCirclePresenter) {
         super(context, data);
         this.mICirclePresenter = iCirclePresenter;
     }

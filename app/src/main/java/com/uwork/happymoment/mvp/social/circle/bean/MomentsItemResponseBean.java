@@ -8,15 +8,17 @@ import java.util.List;
  */
 
 public class MomentsItemResponseBean implements Serializable{
+
     /**
      * avatar : string
      * content : string
      * createTime : string
      * id : 0
-     * momentsCommentResponseBeans : [{"content":"string","createTime":"string","id":0,"sendUserId":0,"toUserId":0}]
+     * momentsCommentResponseBeans : [{"content":"string","createTime":"string","id":0,"sendUserId":0,"sendUserName":"string","toUserId":0,"toUserName":"string"}]
      * momentsFavourResponseBeans : [{"avatar":"string","id":0,"name":"string"}]
      * name : string
      * picture : ["string"]
+     * self : false
      * userId : 0
      */
 
@@ -25,6 +27,7 @@ public class MomentsItemResponseBean implements Serializable{
     private String createTime;
     private int id;
     private String name;
+    private boolean self;
     private int userId;
     private List<MomentsCommentResponseBeansBean> momentsCommentResponseBeans;
     private List<MomentsFavourResponseBeansBean> momentsFavourResponseBeans;
@@ -70,6 +73,14 @@ public class MomentsItemResponseBean implements Serializable{
         this.name = name;
     }
 
+    public boolean isSelf() {
+        return self;
+    }
+
+    public void setSelf(boolean self) {
+        this.self = self;
+    }
+
     public int getUserId() {
         return userId;
     }
@@ -108,14 +119,18 @@ public class MomentsItemResponseBean implements Serializable{
          * createTime : string
          * id : 0
          * sendUserId : 0
+         * sendUserName : string
          * toUserId : 0
+         * toUserName : string
          */
 
         private String content;
         private String createTime;
         private int id;
         private int sendUserId;
+        private String sendUserName;
         private int toUserId;
+        private String toUserName;
 
         public String getContent() {
             return content;
@@ -149,12 +164,28 @@ public class MomentsItemResponseBean implements Serializable{
             this.sendUserId = sendUserId;
         }
 
+        public String getSendUserName() {
+            return sendUserName;
+        }
+
+        public void setSendUserName(String sendUserName) {
+            this.sendUserName = sendUserName;
+        }
+
         public int getToUserId() {
             return toUserId;
         }
 
         public void setToUserId(int toUserId) {
             this.toUserId = toUserId;
+        }
+
+        public String getToUserName() {
+            return toUserName;
+        }
+
+        public void setToUserName(String toUserName) {
+            this.toUserName = toUserName;
         }
     }
 

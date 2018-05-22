@@ -67,6 +67,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="编辑"
+            android:visibility="gone"
             android:textColor="@color/white"/>
 
         <TextView

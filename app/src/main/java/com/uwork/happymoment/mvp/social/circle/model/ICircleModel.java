@@ -46,22 +46,4 @@ public class ICircleModel extends IBaseListPageModel<MomentsItemResponseBean> im
                 });
     }
 
-    @Override
-    public ResourceSubscriber giveLikeMoment(Integer messageId, OnModelCallBack<Boolean> callBack) {
-        return startObservable(ApiServiceFactory.INSTANCE
-                .create(mContext, BuildConfig.API_BASE_URL, ApiService.class)
-                .giveLikeMoment(messageId)
-                .map(new ServerResultFunc<>())
-                .onErrorResumeNext(new HttpResultFunc<>()), new CustomResourceSubscriber<>(callBack));
-    }
-
-
-    @Override
-    public ResourceSubscriber deleteMoment(Integer messageId, OnModelCallBack<Boolean> callBack) {
-        return startObservable(ApiServiceFactory.INSTANCE
-                .create(mContext, BuildConfig.API_BASE_URL, ApiService.class)
-                .deleteMoment(messageId)
-                .map(new ServerResultFunc<>())
-                .onErrorResumeNext(new HttpResultFunc<>()), new CustomResourceSubscriber<>(callBack));
-    }
 }

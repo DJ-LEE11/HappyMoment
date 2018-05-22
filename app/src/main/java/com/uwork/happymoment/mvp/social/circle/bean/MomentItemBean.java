@@ -23,17 +23,9 @@ public class MomentItemBean implements MultiType {
     //点赞
     private List<MomentLikeBean> likesList;
     //评论
+    private List<MomentCommentBean> commentList;
 
-    public MomentItemBean(int momentId, int authorId, String authorName, String authorAvatar, String createTime, MomentContentBean content) {
-        this.momentId = momentId;
-        this.authorId = authorId;
-        this.authorName = authorName;
-        this.authorAvatar = authorAvatar;
-        this.createTime = createTime;
-        this.content = content;
-    }
-
-    public MomentItemBean(int momentId, int authorId, String authorName, String authorAvatar, String createTime, MomentContentBean content, List<MomentLikeBean> likesList) {
+    public MomentItemBean(int momentId, int authorId, String authorName, String authorAvatar, String createTime, MomentContentBean content, List<MomentLikeBean> likesList, List<MomentCommentBean> commentList) {
         this.momentId = momentId;
         this.authorId = authorId;
         this.authorName = authorName;
@@ -41,8 +33,8 @@ public class MomentItemBean implements MultiType {
         this.createTime = createTime;
         this.content = content;
         this.likesList = likesList;
+        this.commentList = commentList;
     }
-
 
     //返回内容类型(纯文字、图文、链接)
     public int getMomentType() {
@@ -112,5 +104,13 @@ public class MomentItemBean implements MultiType {
 
     public void setLikesList(List<MomentLikeBean> likesList) {
         this.likesList = likesList;
+    }
+
+    public List<MomentCommentBean> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<MomentCommentBean> commentList) {
+        this.commentList = commentList;
     }
 }

@@ -12,7 +12,6 @@ import android.view.View;
 
 import com.example.circle_base_library.common.entity.ImageInfo;
 import com.example.circle_base_library.helper.AppFileHelper;
-import com.example.circle_base_library.manager.KeyboardControlMnanager;
 import com.example.circle_base_library.network.base.OnResponseListener;
 import com.example.circle_base_library.utils.ToolUtil;
 import com.example.circle_base_ui.base.BaseTitleBarActivity;
@@ -77,7 +76,7 @@ public class FriendCircleDemoActivity extends BaseTitleBarActivity implements On
         momentsInfoList = new ArrayList<>();
         momentsRequest = new MomentsRequest();
         initView();
-        initKeyboardHeightObserver();
+//        initKeyboardHeightObserver();
     }
 
     @Override
@@ -120,25 +119,25 @@ public class FriendCircleDemoActivity extends BaseTitleBarActivity implements On
 
     }
 
-    private void initKeyboardHeightObserver() {
-        //观察键盘弹出与消退
-        KeyboardControlMnanager.observerKeyboardVisibleChange(this, new KeyboardControlMnanager.OnKeyboardStateChangeListener() {
-            View anchorView;
-
-            @Override
-            public void onKeyboardChange(int keyboardHeight, boolean isVisible) {
-                int commentType = commentBox.getCommentType();
-                if (isVisible) {
-                    //定位评论框到view
-                    anchorView = mViewHelper.alignCommentBoxToView(circleRecyclerView, commentBox, commentType);
-                } else {
-                    //定位到底部
-                    commentBox.dismissCommentBox(false);
-                    mViewHelper.alignCommentBoxToViewWhenDismiss(circleRecyclerView, commentBox, commentType, anchorView);
-                }
-            }
-        });
-    }
+//    private void initKeyboardHeightObserver() {
+//        //观察键盘弹出与消退
+//        KeyboardControlMnanager.observerKeyboardVisibleChange(this, new KeyboardControlMnanager.OnKeyboardStateChangeListener() {
+//            View anchorView;
+//
+//            @Override
+//            public void onKeyboardChange(int keyboardHeight, boolean isVisible) {
+//                int commentType = commentBox.getCommentType();
+//                if (isVisible) {
+//                    //定位评论框到view
+//                    anchorView = mViewHelper.alignCommentBoxToView(circleRecyclerView, commentBox, commentType);
+//                } else {
+//                    //定位到底部
+//                    commentBox.dismissCommentBox(false);
+//                    mViewHelper.alignCommentBoxToViewWhenDismiss(circleRecyclerView, commentBox, commentType, anchorView);
+//                }
+//            }
+//        });
+//    }
 
     @Override
     public void onRefresh() {

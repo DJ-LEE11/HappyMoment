@@ -139,12 +139,19 @@ public interface ApiService {
     Flowable<BaseResult<Boolean>> giveLikeMoment(@Query("messageId") Integer messageId);
 
     /**
-     * 评论朋友
+     * 评论动态
      */
     @POST("/api/moments/discussMoments")
-    Flowable<BaseResult<Boolean>> discussMoment(@Query("toUserId") Integer toUserId,
-                                                @Query("messageId") Integer messageId,
+    Flowable<BaseResult<Boolean>> discussMoment(@Query("messageId") Integer messageId,
                                                 @Query("comment") String comment);
+
+    /**
+     * 回复动态
+     */
+    @POST("/api/moments/discussMoments")
+    Flowable<BaseResult<Boolean>> replyMoment(@Query("messageId") Integer messageId,
+                                              @Query("toUserId") Integer toUserId,
+                                              @Query("comment") String comment);
 
     /**
      * 删动态
