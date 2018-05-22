@@ -13,7 +13,6 @@ import android.support.v4.app.FragmentTransaction;
 
 import com.example.circle_base_library.common.entity.ImageInfo;
 import com.example.circle_base_ui.helper.PhotoHelper;
-import com.example.circle_base_ui.util.UIHelper;
 import com.example.circle_common.common.router.RouterList;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
@@ -43,6 +42,8 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 import io.rong.imkit.RongIM;
 import io.rong.imkit.fragment.ConversationFragment;
+
+import static com.example.circle_base_ui.helper.PhotoHelper.REQUEST_FROM_CAMERA;
 
 public class MainActivity extends BaseActivity {
 
@@ -291,22 +292,33 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        PhotoHelper.handleActivityResult(this, requestCode, resultCode, data, new PhotoHelper.PhotoCallback() {
-            @Override
-            public void onFinish(String filePath) {
-                List<ImageInfo> selectedPhotos = new ArrayList<ImageInfo>();
-                selectedPhotos.add(new ImageInfo(filePath, null, null, 0, 0));
+//        PhotoHelper.handleActivityResult(this, requestCode, resultCode, data, new PhotoHelper.PhotoCallback() {
+//            @Override
+//            public void onFinish(String filePath) {
+//                List<ImageInfo> selectedPhotos = new ArrayList<ImageInfo>();
+//                selectedPhotos.add(new ImageInfo(PhotoHelper.getImageAbsolutePath(MainActivity.this,data.getData()), null, null, 0, 0));
+//                ActivityLauncher.startToPublishActivityWithResult(MainActivity.this,
+//                        RouterList.PublishMomentActivity.MODE_MULTI,
+//                        selectedPhotos,
+//                        RouterList.PublishMomentActivity.requestCode);
+//            }
+//
+//            @Override
+//            public void onError(String msg) {
+//                UIHelper.ToastMessage(msg);
+//            }
+//        });
+
+        if (requestCode == REQUEST_FROM_CAMERA && resultCode == RESULT_OK){
+            if (PhotoHelper.imageUriFromCamera == null) return;
+            List<ImageInfo> selectedPhotos = new ArrayList<ImageInfo>();
+                selectedPhotos.add(new ImageInfo(PhotoHelper.getImageAbsolutePath(MainActivity.this,PhotoHelper.imageUriFromCamera), null, null, 0, 0));
                 ActivityLauncher.startToPublishActivityWithResult(MainActivity.this,
                         RouterList.PublishMomentActivity.MODE_MULTI,
                         selectedPhotos,
                         RouterList.PublishMomentActivity.requestCode);
-            }
+        }
 
-            @Override
-            public void onError(String msg) {
-                UIHelper.ToastMessage(msg);
-            }
-        });
         if (requestCode == RouterList.PhotoSelectActivity.requestCode && resultCode == RESULT_OK) {
             List<ImageInfo> selectedPhotos = data.getParcelableArrayListExtra(RouterList.PhotoSelectActivity.key_result);
             if (selectedPhotos != null) {
