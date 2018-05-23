@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#ffca00">
+        android:background="@color/theme_color_yellow">
 
         <ImageView
             android:id="@+id/ivBack"
@@ -26,6 +26,16 @@
             android:maxLines="1"
             android:textSize="16dp"
             android:textColor="#4d4d4d"/>
+
+        <ImageView
+            android:id="@+id/ivGroupMember"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@mipmap/ic_group_member"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:visibility="visible"
+            android:paddingRight="15dp"/>
     </RelativeLayout>
     <fragment
         android:id="@+id/conversation"

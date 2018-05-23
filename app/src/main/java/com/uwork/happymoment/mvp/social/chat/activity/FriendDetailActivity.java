@@ -187,6 +187,7 @@ public class FriendDetailActivity extends BaseTitleActivity implements IGetFrien
                         .putExtra(REMARK_NAME,mRemarkName)
                         .putExtra(NICK_NAME,mNickName)
                         .putExtra(FRIEND_ID,mFriendId)
+                        .putExtra(AVATAR,mAvatar)
                         .build()
                         .start();
                 break;

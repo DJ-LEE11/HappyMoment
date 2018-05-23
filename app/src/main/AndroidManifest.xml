@@ -148,10 +148,6 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.social.circleTest.activity.test.circledemo.FriendCircleDemoActivity"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".mvp.social.circle.activity.PhotoBrowseActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask"
@@ -173,7 +169,11 @@
             android:name=".mvp.social.chat.activity.SearchNewFriendActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.social.circle.activity.PublishMomentActivity"
+        <activity
+            android:name=".mvp.social.circle.activity.PublishMomentActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity android:name=".mvp.social.chat.activity.GroupMemberActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
     </application>

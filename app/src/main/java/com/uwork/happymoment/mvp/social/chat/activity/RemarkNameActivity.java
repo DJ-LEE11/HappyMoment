@@ -12,6 +12,7 @@ import com.kw.rxbus.RxBus;
 import com.uwork.happymoment.R;
 import com.uwork.happymoment.activity.BaseTitleActivity;
 import com.uwork.happymoment.event.RemarkNameEvent;
+import com.uwork.happymoment.manager.IMRongManager;
 import com.uwork.happymoment.mvp.social.chat.contract.IUpdateFriendInfoContract;
 import com.uwork.happymoment.mvp.social.chat.presenter.IUpdateFriendInfoPresenter;
 
@@ -21,6 +22,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.uwork.happymoment.mvp.social.chat.activity.FriendDetailActivity.AVATAR;
 import static com.uwork.happymoment.mvp.social.chat.activity.FriendDetailActivity.FRIEND_ID;
 
 public class RemarkNameActivity extends BaseTitleActivity implements IUpdateFriendInfoContract.View{
@@ -60,6 +62,7 @@ public class RemarkNameActivity extends BaseTitleActivity implements IUpdateFrie
     private String mRemarkName;
     private String mModifyRemarkName;
     private String mFriendId;
+    private String mAvatar;
     private List<String> mPhoneList = new ArrayList<>();
     private IUpdateFriendInfoPresenter mIUpdateFriendInfoPresenter;
 
@@ -115,6 +118,9 @@ public class RemarkNameActivity extends BaseTitleActivity implements IUpdateFrie
     public void updateFriendInfoSuccess() {
         RxBus.getInstance().send(new RemarkNameEvent());
         showToast("修改成功");
+        if (mIsModifyRemarkName()){
+            IMRongManager.updateUserInfo(this,mFriendId,mModifyRemarkName,mAvatar);
+        }
         finish();
     }
 
@@ -168,6 +174,7 @@ public class RemarkNameActivity extends BaseTitleActivity implements IUpdateFrie
         mPhone = getIntent().getStringExtra(PHONE);
         mNickName = getIntent().getStringExtra(NICK_NAME);
         mRemarkName = getIntent().getStringExtra(REMARK_NAME);
+        mAvatar = getIntent().getStringExtra(AVATAR);
         if (!TextUtils.isEmpty(mRemarkName)) {
             mEtRemarkName.setText(mRemarkName);
         }

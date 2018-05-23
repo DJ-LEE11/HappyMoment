@@ -11,7 +11,9 @@ import com.uwork.happymoment.mvp.social.chat.bean.ApplyAddFriendRequestBean;
 import com.uwork.happymoment.mvp.social.chat.bean.FriendDetailBean;
 import com.uwork.happymoment.mvp.social.chat.bean.FriendIndexBean;
 import com.uwork.happymoment.mvp.social.chat.bean.GroupBean;
+import com.uwork.happymoment.mvp.social.chat.bean.GroupMemberBean;
 import com.uwork.happymoment.mvp.social.chat.bean.NewFriendResponseBean;
+import com.uwork.happymoment.mvp.social.chat.bean.SearchFriendBean;
 import com.uwork.happymoment.mvp.social.chat.bean.SearchNewFriendBean;
 import com.uwork.happymoment.mvp.social.chat.bean.SearchNewFriendForCodeRequestBean;
 import com.uwork.happymoment.mvp.social.chat.bean.SearchNewFriendForPhoneRequestBean;
@@ -86,6 +88,12 @@ public interface ApiService {
     Flowable<BaseResult<FriendDetailBean>> getFriendDetail(@Query("friendId") String friendId);
 
     /**
+     * 搜索好友
+     */
+    @POST("/friend/searchFriend")
+    Flowable<BaseResult<List<SearchFriendBean>>> getSearchFriend(@Query("keyWord") String keyWord);
+
+    /**
      * 更改好友信息
      */
     @POST("/friend/update")
@@ -102,6 +110,12 @@ public interface ApiService {
      */
     @POST("/group/groupList")
     Flowable<BaseResult<List<GroupBean>>> getGroupList();
+
+    /**
+     * 群聊成员
+     */
+    @POST("/group/groupUsers")
+    Flowable<BaseResult<List<GroupMemberBean>>> getGroupMember(@Query("groupId") Integer groupId);
 
     /**
      * 新朋友
