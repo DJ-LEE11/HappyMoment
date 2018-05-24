@@ -137,9 +137,9 @@ public class SocialFragment extends BaseFragment {
 
         String[] mTitles = getResources().getStringArray(R.array.social_tab);
         int[] mIconUnSelectIds = {
-                R.mipmap.ic_home_default, R.mipmap.ic_social_default, R.mipmap.ic_my_default};
+                R.mipmap.ic_circle_default, R.mipmap.ic_chat_default, R.mipmap.ic_track_default};
         int[] mIconSelectIds = {
-                R.mipmap.ic_home_select, R.mipmap.ic_social_select, R.mipmap.ic_my_select};
+                R.mipmap.ic_circle_select, R.mipmap.ic_chat_select, R.mipmap.ic_track_select};
 
         for (int i = 0; i < mTitles.length; i++) {
             mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnSelectIds[i]));
