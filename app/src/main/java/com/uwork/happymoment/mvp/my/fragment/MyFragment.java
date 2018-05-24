@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.uwork.happymoment.R;
-import com.uwork.happymoment.manager.IMRongManager;
+import com.uwork.happymoment.mvp.my.activity.PersonInfoActivity;
 import com.uwork.librx.mvp.BaseFragment;
 
 import java.util.List;
@@ -53,14 +53,14 @@ public class MyFragment extends BaseFragment {
         return view;
     }
 
+    @OnClick(R.id.btnPerson)
+    public void onViewClicked() {
+        goTo(PersonInfoActivity.class);
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
-    }
-
-    @OnClick(R.id.tvMy)
-    public void onViewClicked() {
-        IMRongManager.privateChat(getActivity(),"6","嘿嘿");
     }
 }

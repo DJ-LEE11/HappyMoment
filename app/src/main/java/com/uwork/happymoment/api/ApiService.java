@@ -206,4 +206,11 @@ public interface ApiService {
     @POST("/api/moments/getMomentsListOther")
     Flowable<BaseResult<PageResponseBean<HomeCircleBean>>> getMomentsListOther(@Query("userId") Integer userId,@Query("pageNum") Integer pageNum, @Query("pageSize") Integer pageSize);
 
+    //===========================================================================>我的
+
+    /**
+     * 退出登录
+     */
+    @POST("/user/logout")
+    Flowable<BaseResult<String>> logout();
 }

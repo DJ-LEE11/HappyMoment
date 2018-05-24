@@ -1,10 +1,14 @@
 package com.uwork.happymoment.mvp.social.chat.activity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -20,6 +24,7 @@ import com.uwork.happymoment.mvp.social.chat.contract.IMakeFriendContract;
 import com.uwork.happymoment.mvp.social.chat.presenter.IGetNewFriendPresenter;
 import com.uwork.happymoment.mvp.social.chat.presenter.IMakeFriendPresenter;
 import com.uwork.happymoment.ui.DividerItemLineDecoration;
+import com.uwork.happymoment.util.scanCode.ScanActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,9 +75,44 @@ public class NewFriendActivity extends BaseTitleActivity implements IGetNewFrien
         setRightClick(0, "添加朋友", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showToast("添加朋友");
+                openScan();
             }
         });
+    }
+
+    private static final int PERMISSION_REQUEST = 100;
+    private static final int SCAN_REQUEST_CODE = 0x001;
+
+    //打开二维码扫码
+    private void openScan() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED ||
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.VIBRATE)
+                        != PackageManager.PERMISSION_GRANTED) {
+            // 申请一个（或多个）权限，并提供用于回调返回的获取码（用户定义）
+            ActivityCompat.requestPermissions(NewFriendActivity.this, new String[]{Manifest.permission.CAMERA, Manifest.permission.VIBRATE}, PERMISSION_REQUEST);
+        } else {
+            startActivityForResult(new Intent(this, ScanActivity.class), SCAN_REQUEST_CODE);
+        }
+    }
+
+    public static final String PHONE_NUMBER = "PHONE";
+    //扫描二维码后的回调
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case SCAN_REQUEST_CODE:
+                    String result = data.getStringExtra("result");
+                    if (!TextUtils.isEmpty(result) && result.length() == 11){
+                        goTo(SearchNewFriendActivity.class,false,PHONE_NUMBER,result);
+                    }else {
+                        showToast("请扫描有效二维码");
+                    }
+                    break;
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private String mUserId;

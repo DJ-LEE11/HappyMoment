@@ -1,5 +1,6 @@
 package com.uwork.happymoment.mvp.social.chat.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,6 +26,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.uwork.happymoment.mvp.social.chat.activity.NewFriendActivity.PHONE_NUMBER;
 
 public class SearchNewFriendActivity extends BaseActivity implements ISearchNewFriendContract.View,IApplyAddFriendContract.View{
 
@@ -84,6 +87,14 @@ public class SearchNewFriendActivity extends BaseActivity implements ISearchNewF
         });
     }
 
+    @Override
+    protected void initData(Intent intent, Bundle savedInstanceState) {
+        String phone = intent.getStringExtra(PHONE_NUMBER);
+        if (!TextUtils.isEmpty(phone) && phone.length() == 11){
+            mEtSearchFriend.setText(phone);
+            mISearchNewFriendPresenter.searchNewFriendForPhone(phone);
+        }
+    }
 
     @OnClick({R.id.ivBack, R.id.tvSearch})
     public void onViewClicked(View view) {
