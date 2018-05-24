@@ -17,7 +17,7 @@ import java.util.List;
 
 import butterknife.OnClick;
 
-public class PersonInfoActivity extends BaseTitleActivity implements ILogoutContract.View{
+public class PersonInfoActivity extends BaseTitleActivity implements ILogoutContract.View {
 
     private ILogoutPresenter mILogoutPresenter;
     private Dialog mDialog;
@@ -29,7 +29,7 @@ public class PersonInfoActivity extends BaseTitleActivity implements ILogoutCont
 
     @Override
     protected List createPresenter(List list) {
-        if (list==null){
+        if (list == null) {
             list = new ArrayList();
         }
         mILogoutPresenter = new ILogoutPresenter(this);
@@ -48,9 +48,16 @@ public class PersonInfoActivity extends BaseTitleActivity implements ILogoutCont
         setBackClick();
     }
 
-    @OnClick(R.id.tvQuit)
-    public void onViewClicked() {
-        showDialog();
+    @OnClick({R.id.tvCode, R.id.tvQuit})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tvCode:
+                goTo(MyCodeActivity.class);
+                break;
+            case R.id.tvQuit:
+                showDialog();
+                break;
+        }
     }
 
     @Override
@@ -78,4 +85,5 @@ public class PersonInfoActivity extends BaseTitleActivity implements ILogoutCont
                 });
         mDialog.show();
     }
+
 }

@@ -189,12 +189,17 @@
             android:name=".mvp.social.circle.activity.OtherHomeActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.my.activity.PersonInfoActivity"
+        <activity
+            android:name=".mvp.my.activity.PersonInfoActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".util.scanCode.ScanActivity"
+        <activity
+            android:name=".util.scanCode.ScanActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
+        <activity android:name=".mvp.my.activity.MyCodeActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
