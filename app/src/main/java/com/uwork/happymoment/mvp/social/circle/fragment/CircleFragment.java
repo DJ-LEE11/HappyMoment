@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.circle_base_library.helper.AppFileHelper;
 import com.example.circle_base_library.manager.KeyboardControlMnanager;
@@ -36,11 +37,11 @@ import com.uwork.happymoment.mvp.social.circle.contract.ICircleContract;
 import com.uwork.happymoment.mvp.social.circle.contract.ICircleHandelContract;
 import com.uwork.happymoment.mvp.social.circle.presenter.ICircleHandelPresenter;
 import com.uwork.happymoment.mvp.social.circle.presenter.ICirclePresenter;
+import com.uwork.happymoment.mvp.social.circle.ui.CircleViewHelper;
 import com.uwork.happymoment.mvp.social.circle.viewholder.EmptyMomentsViewHolderMoment;
 import com.uwork.happymoment.mvp.social.circle.viewholder.MultiImageMomentsViewHolderMoment;
 import com.uwork.happymoment.mvp.social.circle.viewholder.TextOnlyMomentsViewHolderMoment;
 import com.uwork.happymoment.mvp.social.circle.viewholder.WebMomentsViewHolderMoment;
-import com.uwork.happymoment.mvp.social.circle.ui.CircleViewHelper;
 import com.uwork.librx.bean.PageResponseBean;
 import com.uwork.librx.mvp.BaseFragment;
 
@@ -57,7 +58,7 @@ import io.reactivex.functions.Consumer;
  * Created by jie on 2018/5/19.
  */
 
-public class CircleFragment extends BaseFragment implements ICircleContract.View<MomentsItemResponseBean> ,ICircleHandelContract.View{
+public class CircleFragment extends BaseFragment implements ICircleContract.View<MomentsItemResponseBean>, ICircleHandelContract.View {
 
     public static final String TAG = CircleFragment.class.getSimpleName();
 
@@ -73,6 +74,8 @@ public class CircleFragment extends BaseFragment implements ICircleContract.View
 
 
     protected ICirclePresenter mICirclePresenter;
+    @BindView(R.id.tvNoData)
+    TextView mTvNoData;
     private ICircleHandelPresenter mICircleHandelPresenter;
     protected CircleAdapter mCircleAdapter;
     protected boolean mIsRefresh;
@@ -174,6 +177,7 @@ public class CircleFragment extends BaseFragment implements ICircleContract.View
     //添加数据
     @Override
     public void addList(PageResponseBean<MomentsItemResponseBean> pager) {
+        mTvNoData.setVisibility(View.GONE);
         if (mCircleAdapter != null && mRefreshLayout != null) {
             if (mIsRefresh && pager.isFirst()) {
                 if (pager.getContent() != null && pager.getContent().size() > 0) {
@@ -195,7 +199,7 @@ public class CircleFragment extends BaseFragment implements ICircleContract.View
 
     @Override
     public void showEmptyView() {
-
+        mTvNoData.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -343,19 +347,19 @@ public class CircleFragment extends BaseFragment implements ICircleContract.View
     //回复动态
     @Override
     public void replyMomentSuccess(int itemPosition, Integer toUserId, String toUserName, String comment, List<MomentCommentBean> momentCommentBeanList) {
-            List<MomentCommentBean> commentList = new ArrayList<>();
-            if (!ToolUtil.isListEmpty(momentCommentBeanList)) {
-                commentList.addAll(momentCommentBeanList);
-            }
-            UserBean user = UserManager.getInstance().getUser(getContext());
-            MomentCommentBean momentCommentBean = new MomentCommentBean(0, user.getId(), user.getNickName(), toUserId, toUserName, user.getId(), comment, "");
-            commentList.add(momentCommentBean);
-            MomentItemBean momentItemBean = mCircleAdapter.findData(itemPosition);
-            if (momentItemBean != null) {
-                momentItemBean.setCommentList(commentList);
-                mCircleAdapter.notifyItemChanged(itemPosition);
-            }
-            showToast("回复成功");
+        List<MomentCommentBean> commentList = new ArrayList<>();
+        if (!ToolUtil.isListEmpty(momentCommentBeanList)) {
+            commentList.addAll(momentCommentBeanList);
+        }
+        UserBean user = UserManager.getInstance().getUser(getContext());
+        MomentCommentBean momentCommentBean = new MomentCommentBean(0, user.getId(), user.getNickName(), toUserId, toUserName, user.getId(), comment, "");
+        commentList.add(momentCommentBean);
+        MomentItemBean momentItemBean = mCircleAdapter.findData(itemPosition);
+        if (momentItemBean != null) {
+            momentItemBean.setCommentList(commentList);
+            mCircleAdapter.notifyItemChanged(itemPosition);
+        }
+        showToast("回复成功");
     }
 
     //删除动态

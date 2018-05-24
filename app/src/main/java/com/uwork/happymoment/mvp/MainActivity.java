@@ -27,6 +27,7 @@ import com.uwork.happymoment.mvp.login.activity.LoginRegisterActivity;
 import com.uwork.happymoment.mvp.main.fragment.HomePageFragment;
 import com.uwork.happymoment.mvp.my.fragment.MyFragment;
 import com.uwork.happymoment.mvp.social.circle.activity.ActivityLauncher;
+import com.uwork.happymoment.mvp.social.circle.activity.PersonHomeCircleActivity;
 import com.uwork.happymoment.mvp.social.fragment.SocialFragment;
 import com.uwork.librx.bean.LoginEvent;
 import com.uwork.librx.mvp.BaseActivity;
@@ -146,7 +147,7 @@ public class MainActivity extends BaseActivity {
         if (!UserManager.getInstance().isLogin(this)){
             goTo(LoginRegisterActivity.class);
         }else {
-//            IMRongManager.groupChat(this,"2","hahah");
+            goTo(PersonHomeCircleActivity.class);
         }
     }
 

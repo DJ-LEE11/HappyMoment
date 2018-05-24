@@ -1,6 +1,7 @@
 package com.uwork.happymoment.mvp.social.chat.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by jie on 2018/5/18.
@@ -11,33 +12,27 @@ public class SearchNewFriendBean implements Serializable{
      * account : string
      * avatar : string
      * city : string
-     * country : string
+     * friend : true
      * id : 0
-     * imtoken : string
+     * images : ["string"]
+     * labelNames : [{"id":0,"name":"string"}]
      * nickName : string
-     * password : string
-     * phone : string
      * province : string
-     * qrCode : string
-     * sex : 0
-     * sign : string
-     * token : string
+     * remarkPhone : string
+     * remarksName : string
      */
 
     private String account;
     private String avatar;
     private String city;
-    private String country;
+    private boolean friend;
     private int id;
-    private String imtoken;
     private String nickName;
-    private String password;
-    private String phone;
     private String province;
-    private String qrCode;
-    private int sex;
-    private String sign;
-    private String token;
+    private String remarkPhone;
+    private String remarksName;
+    private List<String> images;
+    private List<LabelNamesBean> labelNames;
 
     public String getAccount() {
         return account;
@@ -63,12 +58,12 @@ public class SearchNewFriendBean implements Serializable{
         this.city = city;
     }
 
-    public String getCountry() {
-        return country;
+    public boolean isFriend() {
+        return friend;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setFriend(boolean friend) {
+        this.friend = friend;
     }
 
     public int getId() {
@@ -79,36 +74,12 @@ public class SearchNewFriendBean implements Serializable{
         this.id = id;
     }
 
-    public String getImtoken() {
-        return imtoken;
-    }
-
-    public void setImtoken(String imtoken) {
-        this.imtoken = imtoken;
-    }
-
     public String getNickName() {
         return nickName;
     }
 
     public void setNickName(String nickName) {
         this.nickName = nickName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public String getProvince() {
@@ -119,35 +90,61 @@ public class SearchNewFriendBean implements Serializable{
         this.province = province;
     }
 
-    public String getQrCode() {
-        return qrCode;
+    public String getRemarkPhone() {
+        return remarkPhone;
     }
 
-    public void setQrCode(String qrCode) {
-        this.qrCode = qrCode;
+    public void setRemarkPhone(String remarkPhone) {
+        this.remarkPhone = remarkPhone;
     }
 
-    public int getSex() {
-        return sex;
+    public String getRemarksName() {
+        return remarksName;
     }
 
-    public void setSex(int sex) {
-        this.sex = sex;
+    public void setRemarksName(String remarksName) {
+        this.remarksName = remarksName;
     }
 
-    public String getSign() {
-        return sign;
+    public List<String> getImages() {
+        return images;
     }
 
-    public void setSign(String sign) {
-        this.sign = sign;
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 
-    public String getToken() {
-        return token;
+    public List<LabelNamesBean> getLabelNames() {
+        return labelNames;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setLabelNames(List<LabelNamesBean> labelNames) {
+        this.labelNames = labelNames;
+    }
+
+    public static class LabelNamesBean {
+        /**
+         * id : 0
+         * name : string
+         */
+
+        private int id;
+        private String name;
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
     }
 }

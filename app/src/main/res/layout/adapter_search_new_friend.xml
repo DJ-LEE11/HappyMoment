@@ -33,11 +33,23 @@
         android:layout_width="60dp"
         android:layout_height="30dp"
         android:text="添加"
+        android:visibility="gone"
         android:gravity="center"
         android:background="@drawable/shape_yellow_left_right_radius"
         android:textColor="@color/white_color"
         android:textSize="@dimen/text_size_14"
         android:layout_marginRight="25dp"
         />
+
+    <TextView
+        android:id="@+id/tvHadAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="已添加"
+        android:textColor="@color/text_color_02"
+        android:textSize="@dimen/text_size_14"
+        android:layout_marginRight="35dp"
+        />
+
 
 </LinearLayout>

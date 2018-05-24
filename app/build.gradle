@@ -113,6 +113,7 @@ dependencies {
     implementation rootProject.ext.dependencies.MultiDex
     implementation rootProject.ext.dependencies.SmartRefreshLayout
     implementation rootProject.ext.dependencies.SmartRefreshHeader
+    implementation rootProject.ext.dependencies.photoview
     annotationProcessor rootProject.ext.dependencies.arouter_compiler
     implementation project(':lib.rx')
     implementation project(':lib.util')

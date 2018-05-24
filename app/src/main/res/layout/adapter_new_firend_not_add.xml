@@ -32,7 +32,7 @@
         android:id="@+id/tvLook"
         android:layout_width="60dp"
         android:layout_height="30dp"
-        android:text="查看"
+        android:text="添加"
         android:gravity="center"
         android:background="@drawable/shape_yellow_left_right_radius"
         android:textColor="@color/white_color"

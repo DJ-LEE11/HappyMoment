@@ -69,7 +69,6 @@ public class SearchNewFriendActivity extends BaseActivity implements ISearchNewF
         mSearchNewFriendAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                showToast("第"+position);
             }
         });
         mRvSearchFriend.addItemDecoration(new DividerItemDecoration(this, DividerItemLineDecoration.VERTICAL_LIST));

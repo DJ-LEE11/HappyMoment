@@ -99,7 +99,8 @@ public class TrackFragment extends BaseFragment {
             }
         });
         mRefreshLayout.setEnableLoadmoreWhenContentNotFull(true);
-        mTradeAdapter.setNewData(initData());
+        mTradeAdapter.setEmptyView(getActivity());
+//        mTradeAdapter.setNewData(initData());
     }
 
     public void setRefresh(boolean isRefresh){

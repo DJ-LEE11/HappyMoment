@@ -11,6 +11,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.uwork.happymoment.R;
 import com.uwork.happymoment.activity.BaseTitleActivity;
+import com.uwork.happymoment.manager.IMRongManager;
 import com.uwork.happymoment.mvp.social.chat.adapter.NewFriendAdapter;
 import com.uwork.happymoment.mvp.social.chat.bean.NewFriendBean;
 import com.uwork.happymoment.mvp.social.chat.bean.NewFriendResponseBean;
@@ -74,6 +75,9 @@ public class NewFriendActivity extends BaseTitleActivity implements IGetNewFrien
         });
     }
 
+    private String mUserId;
+    private String mName;
+    private String mAvatar;
     private void initList() {
         mRvFriend.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mNewFriendAdapter = new NewFriendAdapter(new ArrayList<>());
@@ -86,6 +90,9 @@ public class NewFriendActivity extends BaseTitleActivity implements IGetNewFrien
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 if (view.getId() == R.id.tvLook){
                     NewFriendBean newFriendBean = (NewFriendBean) adapter.getData().get(position);
+                    mUserId = newFriendBean.getId();
+                    mName = newFriendBean.getNickName();
+                    mAvatar = newFriendBean.getAvatar();
                     mIMakeFriendPresenter.makeFriend(Integer.valueOf(newFriendBean.getId()));
                 }
             }
@@ -113,7 +120,6 @@ public class NewFriendActivity extends BaseTitleActivity implements IGetNewFrien
             }
         }
         mNewFriendAdapter.setNewData(mData);
-        dismissLoading();
     }
 
     @OnClick(R.id.llSearch)
@@ -124,6 +130,7 @@ public class NewFriendActivity extends BaseTitleActivity implements IGetNewFrien
     @Override
     public void makeFriendSuccess() {
         showToast("添加成功");
+        IMRongManager.updateUserInfo(this,mUserId,mName,mAvatar);
         mIGetNewFriendPresenter.getNewFriend();
     }
 }

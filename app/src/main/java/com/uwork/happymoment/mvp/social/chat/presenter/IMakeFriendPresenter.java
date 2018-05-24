@@ -34,24 +34,24 @@ public class IMakeFriendPresenter<T extends IMakeFriendContract.View & IBaseActi
 
             @Override
             public void onCancel() {
-                getView().dismissLoadingDialog();
+                getView().dismissLoading();
             }
 
             @Override
             public void onSuccess(BaseResult<String> value) {
-                getView().dismissLoadingDialog();
+                getView().dismissLoading();
                 getView().makeFriendSuccess();
             }
 
             @Override
             public void onError(ApiException e) {
-                getView().dismissLoadingDialog();
+                getView().dismissLoading();
                 getView().handleException(e);
             }
 
             @Override
             public void onComplete() {
-                getView().dismissLoadingDialog();
+                getView().dismissLoading();
             }
         }));
     }

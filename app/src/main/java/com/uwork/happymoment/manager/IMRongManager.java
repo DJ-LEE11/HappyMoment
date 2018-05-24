@@ -9,7 +9,7 @@ import com.uwork.happymoment.App;
 import com.uwork.happymoment.mvp.social.chat.bean.FriendBean;
 import com.uwork.happymoment.mvp.social.chat.bean.FriendIndexBean;
 import com.uwork.happymoment.mvp.social.chat.bean.GroupBean;
-import com.uwork.happymoment.mvp.social.chat.presenter.IRefreshGroupPresenter;
+import com.uwork.happymoment.mvp.social.chat.presenter.IRefreshChatInfoPresenter;
 
 import java.util.List;
 
@@ -61,7 +61,7 @@ public class IMRongManager {
             });
         }
     }
-
+    private static IRefreshChatInfoPresenter mIRefreshChatInfoPresenter;
     //设置用户信息
     public static void setUserInfo(Context context) {
         RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
@@ -73,6 +73,11 @@ public class IMRongManager {
                 FriendBean friend = FriendManager.getInstance().getFriend(context, userId);
                 if (friend != null) {
                     return new UserInfo(userId, friend.getName(), Uri.parse(friend.getAvatar()));
+                }else {
+                    if (mIRefreshChatInfoPresenter ==null){
+                        mIRefreshChatInfoPresenter = new IRefreshChatInfoPresenter(context);
+                    }
+                    mIRefreshChatInfoPresenter.refreshUser(userId);
                 }
                 return null;
             }
@@ -105,11 +110,13 @@ public class IMRongManager {
                     return null;
                 }
                 GroupBean groupBean = GroupManager.getInstance().getGroup(context, groupId);
-                if (groupBean != null){
+                if (groupBean != null){//先从本地获取，若没有在从网络获取
                     return  new Group(groupId, groupBean.getName(), Uri.parse(groupBean.getAvatar()));
                 }else {
-                    IRefreshGroupPresenter iRefreshGroupPresenter = new IRefreshGroupPresenter(context);
-                    iRefreshGroupPresenter.refreshGroup(groupId);
+                    if (mIRefreshChatInfoPresenter ==null){
+                        mIRefreshChatInfoPresenter = new IRefreshChatInfoPresenter(context);
+                    }
+                    mIRefreshChatInfoPresenter.refreshGroup(groupId);
                 }
                 return null;
             }

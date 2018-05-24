@@ -16,8 +16,10 @@ import com.uwork.happymoment.mvp.social.chat.bean.NewFriendResponseBean;
 import com.uwork.happymoment.mvp.social.chat.bean.SearchFriendBean;
 import com.uwork.happymoment.mvp.social.chat.bean.SearchNewFriendBean;
 import com.uwork.happymoment.mvp.social.chat.bean.SearchNewFriendForCodeRequestBean;
+import com.uwork.happymoment.mvp.social.chat.bean.SearchNewFriendForIdRequestBean;
 import com.uwork.happymoment.mvp.social.chat.bean.SearchNewFriendForPhoneRequestBean;
 import com.uwork.happymoment.mvp.social.chat.bean.UpdateFriendInfoRequestBean;
+import com.uwork.happymoment.mvp.social.circle.bean.HomeCircleBean;
 import com.uwork.happymoment.mvp.social.circle.bean.MomentsItemResponseBean;
 import com.uwork.happymoment.mvp.social.circle.bean.SendCircleRequestBean;
 import com.uwork.librx.bean.PageResponseBean;
@@ -136,6 +138,12 @@ public interface ApiService {
     Flowable<BaseResult<SearchNewFriendBean>> searchNewFriendForCode(@Body SearchNewFriendForCodeRequestBean searchNewFriendForCodeRequestBean);
 
     /**
+     * 搜索新朋友(通过id)
+     */
+    @POST("/user/searchUser")
+    Flowable<BaseResult<SearchNewFriendBean>> searchNewFriendForId(@Body SearchNewFriendForIdRequestBean searchNewFriendForIdRequestBean);
+
+    /**
      * 申请添加好友
      */
     @POST("/apply/insert")
@@ -145,7 +153,7 @@ public interface ApiService {
      * 通过验证添加好友
      */
     @POST("/friend/makeFriend")
-    Flowable<BaseResult<String>> makeFriend(@Query("friendIs") Integer friendIs);
+    Flowable<BaseResult<String>> makeFriend(@Query("friendId") Integer friendId);
 
     /**
      * 查看朋友圈列表
@@ -185,4 +193,17 @@ public interface ApiService {
      */
     @POST("/api/moments/issueMoments")
     Flowable<BaseResult<Boolean>> sendMoment(@Body SendCircleRequestBean sendCircleRequestBean);
+
+    /**
+     * 查看自己动态
+     */
+    @POST("/api/moments/getMomentsListSelf")
+    Flowable<BaseResult<PageResponseBean<HomeCircleBean>>> getMomentsListSelf(@Query("pageNum") Integer pageNum, @Query("pageSize") Integer pageSize);
+
+    /**
+     * 查看他人动态
+     */
+    @POST("/api/moments/getMomentsListOther")
+    Flowable<BaseResult<PageResponseBean<HomeCircleBean>>> getMomentsListOther(@Query("userId") Integer userId,@Query("pageNum") Integer pageNum, @Query("pageSize") Integer pageSize);
+
 }

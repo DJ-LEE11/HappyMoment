@@ -21,6 +21,7 @@ import com.uwork.happymoment.mvp.social.chat.adapter.FriendDetailPhoneAdapter;
 import com.uwork.happymoment.mvp.social.chat.bean.FriendDetailBean;
 import com.uwork.happymoment.mvp.social.chat.contract.IGetFriendDetailContract;
 import com.uwork.happymoment.mvp.social.chat.presenter.IGetFriendDetailPresenter;
+import com.uwork.happymoment.mvp.social.circle.activity.OtherHomeActivity;
 import com.uwork.libutil.IntentUtils;
 
 import java.util.ArrayList;
@@ -34,6 +35,8 @@ import io.reactivex.functions.Consumer;
 import static com.uwork.happymoment.mvp.social.chat.activity.RemarkNameActivity.NICK_NAME;
 import static com.uwork.happymoment.mvp.social.chat.activity.RemarkNameActivity.PHONE;
 import static com.uwork.happymoment.mvp.social.chat.activity.RemarkNameActivity.REMARK_NAME;
+import static com.uwork.happymoment.mvp.social.circle.activity.OtherHomeActivity.FRIEND_NAME;
+import static com.uwork.happymoment.mvp.social.circle.activity.OtherHomeActivity.USER_ID;
 
 public class FriendDetailActivity extends BaseTitleActivity implements IGetFriendDetailContract.View{
 
@@ -192,6 +195,13 @@ public class FriendDetailActivity extends BaseTitleActivity implements IGetFrien
                         .start();
                 break;
             case R.id.rlPhoto:
+                new IntentUtils.Builder(FriendDetailActivity.this)
+                        .to(OtherHomeActivity.class)
+                        .putExtra(USER_ID,Integer.valueOf(mFriendId))
+                        .putExtra(FRIEND_NAME,mTvNameFirst.getText().toString())
+                        .build()
+                        .start();
+
                 break;
             case R.id.tvSendMessage:
                 String title = TextUtils.isEmpty(mRemarkName) ? mNickName : mRemarkName;

@@ -24,6 +24,14 @@ public class SearchNewFriendAdapter extends BaseAdapter<SearchNewFriendBean> {
     protected void convert(BaseViewHolder helper, SearchNewFriendBean bean) {
         ImageLoadMnanger.INSTANCE.loadImage(helper.getView(R.id.ivAvatar), bean.getAvatar());
         helper.setText(R.id.tvNickName, bean.getNickName());
-        helper.addOnClickListener(R.id.tvAdd);
+        helper.setGone(R.id.tvAdd,false);
+        helper.setGone(R.id.tvHadAdd,false);
+        if (bean.isFriend()){
+            helper.setVisible(R.id.tvHadAdd,true);
+        }else {
+            helper.setVisible(R.id.tvAdd,true);
+            helper.addOnClickListener(R.id.tvAdd);
+        }
+
     }
 }

@@ -173,7 +173,17 @@
             android:name=".mvp.social.circle.activity.PublishMomentActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.social.chat.activity.GroupMemberActivity"
+        <activity
+            android:name=".mvp.social.chat.activity.GroupMemberActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity android:name=".mvp.social.circle.activity.PersonHomeCircleActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".mvp.social.circle.activity.CirclePhotoActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".mvp.social.circle.activity.OtherHomeActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
     </application>
