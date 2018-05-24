@@ -4,6 +4,8 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 
+import com.baidu.mapapi.CoordType;
+import com.baidu.mapapi.SDKInitializer;
 import com.example.circle_base_library.api.AppContext;
 import com.example.circle_base_library.manager.localphoto.LocalPhotoManager;
 import com.uwork.happymoment.listener.RongConnectionStatusListener;
@@ -30,6 +32,9 @@ public class App extends MultiDexApplication {
         RongIM.setConnectionStatusListener(new RongConnectionStatusListener(getApplicationContext()));
         //融云接受消息监听
         RongIM.setOnReceiveMessageListener(new RongReceiveMessageListener(getApplicationContext()));
+        //初始化百度地图
+        SDKInitializer.initialize(this);
+        SDKInitializer.setCoordType(CoordType.BD09LL);
     }
 
     public static String getCurProcessName(Context context) {

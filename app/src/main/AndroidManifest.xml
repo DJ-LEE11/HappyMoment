@@ -197,7 +197,21 @@
             android:name=".util.scanCode.ScanActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.my.activity.MyCodeActivity"
+        <activity
+            android:name=".mvp.my.activity.MyCodeActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <!-- 配置百度地图开始 -->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="${BaiDu_AppKey}" />
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+        <!-- 配置百度地图结束 -->
+        <activity android:name=".mvp.my.activity.MapActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
     </application>

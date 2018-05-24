@@ -53,7 +53,7 @@ android {
             minifyEnabled false
 //            signingConfig signingConfigs.config
             manifestPlaceholders = [
-                    BaiDu_AppKey: "N9dgGGB6sOdt89tPY0tCMcOR1ww8B3Zn",
+                    BaiDu_AppKey: "uNgCWfWxOV7va5p5qxdKT5yORX2QuOT0",
                     UMENG_APPKEY: "5a139e128f4a9d4e4400005f"
             ]
         }
@@ -73,7 +73,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 //            signingConfig signingConfigs.config
             manifestPlaceholders = [
-                    BaiDu_AppKey: "N9dgGGB6sOdt89tPY0tCMcOR1ww8B3Zn",
+                    BaiDu_AppKey: "uNgCWfWxOV7va5p5qxdKT5yORX2QuOT0",
                     UMENG_APPKEY: "5a139e128f4a9d4e4400005f"
             ]
         }
@@ -127,6 +127,7 @@ dependencies {
     implementation project(':circle_base_ui')
     implementation project(':circle_photoselect')
     implementation project(':circle_publish')
+    implementation files('libs/BaiduLBS_Android.jar')
     configurations {
         all*.exclude group: 'com.google.code.gson'
         all*.exclude group: 'com.squareup.okio'
