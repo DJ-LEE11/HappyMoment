@@ -5,7 +5,7 @@
     <color name="line_color">#f1f2f5</color>
 
     <!-- 字体颜色 -->
-    <color name="text_color_01">#55606F</color>
+    <color name="text_color_01">#191919</color>
     <color name="text_color_02">#858D9C</color>
     <color name="text_color_03">#A8B4C4</color>
     <color name="text_color_theme">#ffca00</color>

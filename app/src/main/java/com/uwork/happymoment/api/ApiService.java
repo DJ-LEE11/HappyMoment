@@ -5,6 +5,8 @@ import com.uwork.happymoment.mvp.login.bean.RegisterRequestBean;
 import com.uwork.happymoment.mvp.login.bean.ResetPasswordRequestBean;
 import com.uwork.happymoment.mvp.login.bean.UploadBean;
 import com.uwork.happymoment.mvp.login.bean.UserBean;
+import com.uwork.happymoment.mvp.main.bean.BannerBean;
+import com.uwork.happymoment.mvp.main.bean.RecommendBean;
 import com.uwork.happymoment.mvp.social.chat.bean.AddCreateGroupRequestBean;
 import com.uwork.happymoment.mvp.social.chat.bean.AddGroupBean;
 import com.uwork.happymoment.mvp.social.chat.bean.ApplyAddFriendRequestBean;
@@ -213,4 +215,20 @@ public interface ApiService {
      */
     @POST("/user/logout")
     Flowable<BaseResult<String>> logout();
+
+    //===========================================================================>首页
+
+    /**
+     * 轮播图
+     * type:1为首页头部 2为首页中部 4为幸福驿站 8为桃源客栈
+     */
+    @POST("/banner/banners")
+    Flowable<BaseResult<List<BannerBean>>> getBanner(@Query("type") Integer type);
+
+    /**
+     * 热门推荐
+     */
+    @POST("/recommend/recommends")
+    Flowable<BaseResult<List<RecommendBean>>> getRecommend();
+
 }

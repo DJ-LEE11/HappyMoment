@@ -80,6 +80,9 @@ ext {
             //photoview缩放
             photoview                    : 'com.bm.photoview:library:1.4.1',
             //二维码
-            ZXing                        : 'com.google.zxing:core:3.3.0'
+            ZXing                        : 'com.google.zxing:core:3.3.0',
+            //轮播图
+            Nineoldandroids : 'com.nineoldandroids:library:2.4.0',
+            FlycoBanner     : 'com.flyco.banner:FlycoBanner_Lib:2.0.2@aar'
     ]
 }
