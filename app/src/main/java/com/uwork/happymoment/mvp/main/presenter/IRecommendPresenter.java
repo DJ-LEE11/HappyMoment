@@ -2,7 +2,7 @@ package com.uwork.happymoment.mvp.main.presenter;
 
 import android.content.Context;
 
-import com.uwork.happymoment.mvp.main.bean.RecommendBean;
+import com.uwork.happymoment.mvp.main.bean.VideoBean;
 import com.uwork.happymoment.mvp.main.contract.IRecommendContract;
 import com.uwork.happymoment.mvp.main.model.IRecommendModel;
 import com.uwork.librx.mvp.contract.IBaseActivityContract;
@@ -28,7 +28,7 @@ public class IRecommendPresenter <T extends IRecommendContract.View & IBaseActiv
 
     @Override
     public void getRecommend() {
-        addSubscription(mModel.getRecommend(new OnModelCallBack<List<RecommendBean>>() {
+        addSubscription(mModel.getRecommend(new OnModelCallBack<List<VideoBean>>() {
             @Override
             public void onStart() {
                 getView().showLoading();
@@ -40,7 +40,7 @@ public class IRecommendPresenter <T extends IRecommendContract.View & IBaseActiv
             }
 
             @Override
-            public void onSuccess(List<RecommendBean> value) {
+            public void onSuccess(List<VideoBean> value) {
                 getView().dismissLoading();
                 if (value!=null && value.size()>0){
                     getView().showRecommend(value);

@@ -1,6 +1,6 @@
 package com.uwork.happymoment.mvp.main.contract;
 
-import com.uwork.happymoment.mvp.main.bean.RecommendBean;
+import com.uwork.happymoment.mvp.main.bean.VideoBean;
 import com.uwork.librx.rx.interfaces.OnModelCallBack;
 
 import java.util.List;
@@ -14,7 +14,7 @@ import io.reactivex.subscribers.ResourceSubscriber;
 public interface IRecommendContract {
 
     interface View {
-        void showRecommend(List<RecommendBean> recommendBeanList);
+        void showRecommend(List<VideoBean> videoBean);
 
         void showEmpty();
     }
@@ -24,6 +24,6 @@ public interface IRecommendContract {
     }
 
     interface Model {
-        ResourceSubscriber getRecommend(OnModelCallBack<List<RecommendBean>> callBack);
+        ResourceSubscriber getRecommend(OnModelCallBack<List<VideoBean>> callBack);
     }
 }

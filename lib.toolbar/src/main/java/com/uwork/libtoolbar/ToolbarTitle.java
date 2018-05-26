@@ -23,7 +23,6 @@ import android.widget.PopupWindow;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-
 import java.lang.ref.WeakReference;
 import java.util.List;
 import java.util.Map;
@@ -166,8 +165,9 @@ public class ToolbarTitle<V extends View> {
         headerMenu3 = (TextView) mViewReference.get().findViewById(R.id.headerMenu3);
         headerMenu2.setText(textLeft);
         if (resLeft!= 0 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            headerMenu2.setCompoundDrawablesWithIntrinsicBounds(null,
-                    null, mContext.getResources().getDrawable(resLeft, null), null);
+            headerMenu2.setCompoundDrawablesWithIntrinsicBounds(mContext.getResources().getDrawable(resLeft, null),
+                    null, null, null);
+            headerMenu2.setCompoundDrawablePadding(DisplayUtil.dp2px(mContext,8));
         }
         headerMenu2.setOnClickListener(left);
         headerMenu3.setText(textRight);
@@ -185,8 +185,9 @@ public class ToolbarTitle<V extends View> {
         headerMenu3 = (TextView) mViewReference.get().findViewById(R.id.headerMenu3);
         headerMenu2.setText(textLeft);
         if (resLeft!= 0 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            headerMenu2.setCompoundDrawablesWithIntrinsicBounds(null,
-                    null, mContext.getResources().getDrawable(resLeft, null), null);
+            headerMenu2.setCompoundDrawablesWithIntrinsicBounds(mContext.getResources().getDrawable(resLeft, null),
+                    null, null, null);
+            headerMenu2.setCompoundDrawablePadding(DisplayUtil.dp2px(mContext,8));
         }
         headerMenu2.setOnClickListener(left);
         headerMenu2.setOnLongClickListener(leftLong);
@@ -207,8 +208,9 @@ public class ToolbarTitle<V extends View> {
         headerMenu2.setText(textLeft);
         headerMenu2.setTextColor(mContext.getResources().getColor(textLeftColor));
         if (resLeft!= 0 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            headerMenu2.setCompoundDrawablesWithIntrinsicBounds(null,
-                    null, mContext.getResources().getDrawable(resLeft, null), null);
+            headerMenu2.setCompoundDrawablesWithIntrinsicBounds(mContext.getResources().getDrawable(resLeft, null),
+                    null, null, null);
+            headerMenu2.setCompoundDrawablePadding(DisplayUtil.dp2px(mContext,8));
         }
         headerMenu2.setOnClickListener(left);
         headerMenu3.setText(textRight);

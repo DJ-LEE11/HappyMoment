@@ -168,10 +168,10 @@ public abstract class BaseFragment<T extends IBaseContract.Presenter> extends Fr
 
     @Override
     public void showLoading() {
-        loadingDialog = new LoadingDialog.Builder(getActivity())
-                .message("请稍后...")
-                .cancelable(true)
-                .build();
+            loadingDialog = new LoadingDialog.Builder(getContext())
+                    .message("请稍后...")
+                    .cancelable(true)
+                    .build();
         loadingDialog.show();
     }
 

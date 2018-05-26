@@ -1,3 +1,3 @@
-include ':app', ':lib.util', ':lib.toolbar', ':lib.style', ':lib.rx', ':lib.banner', ':lib.marqueeview',
+include ':app', ':lib.util', ':lib.toolbar', ':lib.style', ':lib.rx', ':lib.banner', ':lib.marqueeview', ':lib.video',
         ':IMLib', ':imkit', ':lib.index', ':circle_publish', ':circle_common',
         ':circle_base_library', ':circle_base_ui', ':circle_photoselect', ':circle_photoview'

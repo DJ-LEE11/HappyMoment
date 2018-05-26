@@ -3,6 +3,8 @@ package com.uwork.happymoment.mvp.main.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,10 +17,15 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.example.libmarqueeview.SimpleMF;
 import com.example.libmarqueeview.SimpleMarqueeView;
+import com.example.libvideo.NiceVideoPlayer;
+import com.example.libvideo.NiceVideoPlayerManager;
 import com.flyco.banner.widget.Banner.BaseIndicatorBanner;
 import com.uwork.happymoment.R;
+import com.uwork.happymoment.mvp.main.activity.MessageCenterActivity;
+import com.uwork.happymoment.mvp.main.adapter.VideoAdapter;
+import com.uwork.happymoment.mvp.main.adapter.VideoViewHolder;
 import com.uwork.happymoment.mvp.main.bean.BannerBean;
-import com.uwork.happymoment.mvp.main.bean.RecommendBean;
+import com.uwork.happymoment.mvp.main.bean.VideoBean;
 import com.uwork.happymoment.mvp.main.contract.IBannerContract;
 import com.uwork.happymoment.mvp.main.contract.IRecommendContract;
 import com.uwork.happymoment.mvp.main.presenter.IBannerPresenter;
@@ -38,7 +45,7 @@ import butterknife.Unbinder;
  * Created by jie on 2018/5/9.
  */
 
-public class HomePageFragment extends BaseFragment implements IBannerContract.View ,IRecommendContract.View{
+public class HomePageFragment extends BaseFragment implements IBannerContract.View, IRecommendContract.View {
 
     public static final String TAG = HomePageFragment.class.getSimpleName();
 
@@ -52,6 +59,8 @@ public class HomePageFragment extends BaseFragment implements IBannerContract.Vi
     HomeTopBanner mHomeCentreBanner;
     @BindView(R.id.marqueeView)
     SimpleMarqueeView mMarqueeView;
+    @BindView(R.id.rvVideo)
+    RecyclerView mRvVideo;
 
     public static HomePageFragment newInstance() {
         if (null == fragment) {
@@ -153,26 +162,38 @@ public class HomePageFragment extends BaseFragment implements IBannerContract.Vi
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.llLocation:
-                showToast("位置");
                 break;
             case R.id.llMessage:
-                showToast("消息");
+                goTo(MessageCenterActivity.class);
                 break;
             case R.id.llStage:
                 showToast("客栈");
                 break;
             case R.id.llLoveHelp:
-                showToast("帮助");
+                showToast("敬请期待");
                 break;
             case R.id.llHealthManager:
-                showToast("健康");
+                showToast("敬请期待");
                 break;
         }
     }
 
     @Override
-    public void showRecommend(List<RecommendBean> recommendBeanList) {
-
+    public void showRecommend(List<VideoBean> videoBean) {
+        mRvVideo.setNestedScrollingEnabled(false);
+        mRvVideo.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRvVideo.setHasFixedSize(true);
+        VideoAdapter adapter = new VideoAdapter(getActivity(), videoBean);
+        mRvVideo.setAdapter(adapter);
+        mRvVideo.setRecyclerListener(new RecyclerView.RecyclerListener() {
+            @Override
+            public void onViewRecycled(RecyclerView.ViewHolder holder) {
+                NiceVideoPlayer niceVideoPlayer = ((VideoViewHolder) holder).mVideoPlayer;
+                if (niceVideoPlayer == NiceVideoPlayerManager.instance().getCurrentNiceVideoPlayer()) {
+                    NiceVideoPlayerManager.instance().releaseNiceVideoPlayer();
+                }
+            }
+        });
     }
 
     @Override
@@ -203,6 +224,12 @@ public class HomePageFragment extends BaseFragment implements IBannerContract.Vi
 
         public void onReceivePoi(BDLocation poiLocation) {
         }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        NiceVideoPlayerManager.instance().releaseNiceVideoPlayer();
     }
 
     @Override

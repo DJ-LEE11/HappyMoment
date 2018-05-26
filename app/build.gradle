@@ -121,6 +121,7 @@ dependencies {
     implementation project(':lib.toolbar')
     implementation project(':lib.style')
     implementation project(':lib.banner')
+    implementation project(':lib.video')
     implementation project(':IMLib')
     implementation project(':imkit')
     implementation project(':lib.index')

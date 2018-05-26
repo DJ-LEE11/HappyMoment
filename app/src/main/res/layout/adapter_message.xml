@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="1dp"
+    android:background="@color/white_color"
+    android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/text_color_01"
+            android:textSize="@dimen/text_size_14"/>
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2017年03月01日"
+            android:textColor="#C3C8CD"
+            android:textSize="@dimen/text_size_10"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingMultiplier="1.3"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/text_color_01"
+        android:text="由于天气原因，您参加的多人游戏：扫码大战无法正常进行，门票已自动退还，金额退还到您的账户余..."
+        android:textSize="@dimen/text_size_12"/>
+
+
+</LinearLayout>

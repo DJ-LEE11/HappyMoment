@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentTransaction;
 import com.example.circle_base_library.common.entity.ImageInfo;
 import com.example.circle_base_ui.helper.PhotoHelper;
 import com.example.circle_common.common.router.RouterList;
+import com.example.libvideo.NiceVideoPlayerManager;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
@@ -280,6 +281,8 @@ public class MainActivity extends BaseActivity {
     //客服
     @Override
     public void onBackPressed() {
+        // 在全屏或者小窗口时按返回键要先退出全屏或小窗口，
+        if (NiceVideoPlayerManager.instance().onBackPressd()) return;
         ConversationFragment fragment = (ConversationFragment) getSupportFragmentManager().findFragmentById(R.id.conversation);
         if (fragment!=null){
             if(!fragment.onBackPressed()) {

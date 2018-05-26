@@ -6,7 +6,7 @@ import com.uwork.happymoment.mvp.login.bean.ResetPasswordRequestBean;
 import com.uwork.happymoment.mvp.login.bean.UploadBean;
 import com.uwork.happymoment.mvp.login.bean.UserBean;
 import com.uwork.happymoment.mvp.main.bean.BannerBean;
-import com.uwork.happymoment.mvp.main.bean.RecommendBean;
+import com.uwork.happymoment.mvp.main.bean.VideoRespondBean;
 import com.uwork.happymoment.mvp.social.chat.bean.AddCreateGroupRequestBean;
 import com.uwork.happymoment.mvp.social.chat.bean.AddGroupBean;
 import com.uwork.happymoment.mvp.social.chat.bean.ApplyAddFriendRequestBean;
@@ -229,6 +229,6 @@ public interface ApiService {
      * 热门推荐
      */
     @POST("/recommend/recommends")
-    Flowable<BaseResult<List<RecommendBean>>> getRecommend();
+    Flowable<BaseResult<List<VideoRespondBean>>> getRecommend();
 
 }

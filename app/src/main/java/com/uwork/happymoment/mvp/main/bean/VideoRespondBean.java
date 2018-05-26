@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by jie on 2018/5/25.
  */
 
-public class RecommendBean implements Serializable{
+public class VideoRespondBean implements Serializable{
     /**
      * id : 1
      * title : 养老

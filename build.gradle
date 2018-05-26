@@ -32,7 +32,7 @@ task clean(type: Delete) {
 
 
 ext {
-    minSdkVersion = 16
+    minSdkVersion = 21
     targetSdkVersion = 23
     compileSdkVersion = 27
 
@@ -82,7 +82,7 @@ ext {
             //二维码
             ZXing                        : 'com.google.zxing:core:3.3.0',
             //轮播图
-            Nineoldandroids : 'com.nineoldandroids:library:2.4.0',
-            FlycoBanner     : 'com.flyco.banner:FlycoBanner_Lib:2.0.2@aar'
+            Nineoldandroids              : 'com.nineoldandroids:library:2.4.0',
+            FlycoBanner                  : 'com.flyco.banner:FlycoBanner_Lib:2.0.2@aar',
     ]
 }

@@ -50,7 +50,7 @@ public abstract class BaseActivity<T extends IBaseContract.Presenter> extends Ap
         initData(intent, savedInstanceState);
     }
 
-    protected void initSystemBar(){
+    protected void initSystemBar() {
         SystemBarManager.applyKitKatTranslucency(this, Color.TRANSPARENT);
     }
 
@@ -61,7 +61,7 @@ public abstract class BaseActivity<T extends IBaseContract.Presenter> extends Ap
     protected abstract void initView(Bundle savedInstanceState);
 
     //初始化数据
-    protected void initData(Intent intent, Bundle savedInstanceState){
+    protected void initData(Intent intent, Bundle savedInstanceState) {
 
     }
 
@@ -103,14 +103,14 @@ public abstract class BaseActivity<T extends IBaseContract.Presenter> extends Ap
         }
     }
 
-    protected void goTo(Class clazz){
+    protected void goTo(Class clazz) {
         new IntentUtils.Builder(this)
                 .to(clazz)
                 .build()
                 .start();
     }
 
-    protected void goToFinish(Class clazz){
+    protected void goToFinish(Class clazz) {
         new IntentUtils.Builder(this)
                 .to(clazz)
                 .finish(true)
@@ -118,28 +118,28 @@ public abstract class BaseActivity<T extends IBaseContract.Presenter> extends Ap
                 .start();
     }
 
-    protected void goTo(Class clazz, boolean isFinish, String key, String value){
+    protected void goTo(Class clazz, boolean isFinish, String key, String value) {
         new IntentUtils.Builder(this)
                 .to(clazz)
-                .putExtra(key,value)
+                .putExtra(key, value)
                 .finish(isFinish)
                 .build()
                 .start();
     }
 
-    protected void goTo(Class clazz, boolean isFinish, String key, int value){
+    protected void goTo(Class clazz, boolean isFinish, String key, int value) {
         new IntentUtils.Builder(this)
                 .to(clazz)
-                .putExtra(key,value)
+                .putExtra(key, value)
                 .finish(isFinish)
                 .build()
                 .start();
     }
 
-    protected void goTo(Class clazz, boolean isFinish, String key, boolean value){
+    protected void goTo(Class clazz, boolean isFinish, String key, boolean value) {
         new IntentUtils.Builder(this)
                 .to(clazz)
-                .putExtra(key,value)
+                .putExtra(key, value)
                 .finish(isFinish)
                 .build()
                 .start();
@@ -364,7 +364,7 @@ public abstract class BaseActivity<T extends IBaseContract.Presenter> extends Ap
         }
     }
 
-    protected void dealServerError(ApiException e){
+    protected void dealServerError(ApiException e) {
         showToast(e.getDisplayMessage());//默认情况，直接Toast提示。
     }
 

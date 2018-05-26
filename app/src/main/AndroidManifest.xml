@@ -211,7 +211,11 @@
             android:enabled="true"
             android:process=":remote" />
         <!-- 配置百度地图结束 -->
-        <activity android:name=".mvp.my.activity.MapActivity"
+        <activity
+            android:name=".mvp.my.activity.MapActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity android:name=".mvp.main.activity.MessageCenterActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
     </application>
