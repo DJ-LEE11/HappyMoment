@@ -16,18 +16,18 @@ import com.uwork.happymoment.R;
 import com.uwork.happymoment.mvp.main.bean.BannerBean;
 import com.uwork.happymoment.util.ViewFindUtils;
 
-public class HomeTopBanner extends BaseIndicatorBanner<BannerBean, HomeTopBanner> {
+public class HomeCenterBanner extends BaseIndicatorBanner<BannerBean, HomeCenterBanner> {
     private ColorDrawable colorDrawable;
 
-    public HomeTopBanner(Context context) {
+    public HomeCenterBanner(Context context) {
         this(context, null, 0);
     }
 
-    public HomeTopBanner(Context context, AttributeSet attrs) {
+    public HomeCenterBanner(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public HomeTopBanner(Context context, AttributeSet attrs, int defStyle) {
+    public HomeCenterBanner(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         colorDrawable = new ColorDrawable(Color.parseColor("#555555"));
     }
@@ -45,7 +45,7 @@ public class HomeTopBanner extends BaseIndicatorBanner<BannerBean, HomeTopBanner
 
         final BannerBean item = mDatas.get(position);
         int itemWidth = mDisplayMetrics.widthPixels;
-        int itemHeight = (int) (itemWidth /2);
+        int itemHeight = (int) (itemWidth * 0.18);
         iv.setLayoutParams(new LinearLayout.LayoutParams(itemWidth, itemHeight));
 
         String imgUrl = item.getPicture();

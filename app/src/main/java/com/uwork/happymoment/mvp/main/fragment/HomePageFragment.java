@@ -15,6 +15,7 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.libmarqueeview.SimpleMF;
 import com.example.libmarqueeview.SimpleMarqueeView;
 import com.example.libvideo.NiceVideoPlayer;
@@ -22,14 +23,15 @@ import com.example.libvideo.NiceVideoPlayerManager;
 import com.flyco.banner.widget.Banner.BaseIndicatorBanner;
 import com.uwork.happymoment.R;
 import com.uwork.happymoment.mvp.main.activity.MessageCenterActivity;
-import com.uwork.happymoment.mvp.main.adapter.VideoAdapter;
-import com.uwork.happymoment.mvp.main.adapter.VideoViewHolder;
+import com.uwork.happymoment.mvp.main.activity.StageActivity;
+import com.uwork.happymoment.mvp.main.adapter.ReCommendAdapter;
 import com.uwork.happymoment.mvp.main.bean.BannerBean;
 import com.uwork.happymoment.mvp.main.bean.VideoBean;
 import com.uwork.happymoment.mvp.main.contract.IBannerContract;
 import com.uwork.happymoment.mvp.main.contract.IRecommendContract;
 import com.uwork.happymoment.mvp.main.presenter.IBannerPresenter;
 import com.uwork.happymoment.mvp.main.presenter.IRecommendPresenter;
+import com.uwork.happymoment.ui.banner.HomeCenterBanner;
 import com.uwork.happymoment.ui.banner.HomeTopBanner;
 import com.uwork.librx.mvp.BaseFragment;
 
@@ -56,7 +58,7 @@ public class HomePageFragment extends BaseFragment implements IBannerContract.Vi
     @BindView(R.id.tvCity)
     TextView mTvCity;
     @BindView(R.id.homeCentreBanner)
-    HomeTopBanner mHomeCentreBanner;
+    HomeCenterBanner mHomeCentreBanner;
     @BindView(R.id.marqueeView)
     SimpleMarqueeView mMarqueeView;
     @BindView(R.id.rvVideo)
@@ -78,6 +80,7 @@ public class HomePageFragment extends BaseFragment implements IBannerContract.Vi
 
     private IBannerPresenter mIBannerPresenter;
     private IRecommendPresenter mIRecommendPresenter;
+    private ReCommendAdapter mReCommendAdapter;
 
     @Override
     protected void lazyLoad() {
@@ -103,8 +106,26 @@ public class HomePageFragment extends BaseFragment implements IBannerContract.Vi
         unbinder = ButterKnife.bind(this, view);
         initLocation();
         showRollBAr();
+        initList();
         initData();
         return view;
+    }
+
+    private void initList() {
+        mRvVideo.setNestedScrollingEnabled(false);
+        mRvVideo.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRvVideo.setHasFixedSize(true);
+        mReCommendAdapter = new ReCommendAdapter(new ArrayList<>());
+        mRvVideo.setAdapter(mReCommendAdapter);
+        mRvVideo.setRecyclerListener(new RecyclerView.RecyclerListener() {
+            @Override
+            public void onViewRecycled(RecyclerView.ViewHolder holder) {
+                NiceVideoPlayer niceVideoPlayer = ((BaseViewHolder) holder).getView(R.id.video);
+                if (niceVideoPlayer == NiceVideoPlayerManager.instance().getCurrentNiceVideoPlayer()) {
+                    NiceVideoPlayerManager.instance().releaseNiceVideoPlayer();
+                }
+            }
+        });
     }
 
     private void showRollBAr() {
@@ -167,7 +188,7 @@ public class HomePageFragment extends BaseFragment implements IBannerContract.Vi
                 goTo(MessageCenterActivity.class);
                 break;
             case R.id.llStage:
-                showToast("客栈");
+                goTo(StageActivity.class);
                 break;
             case R.id.llLoveHelp:
                 showToast("敬请期待");
@@ -180,25 +201,12 @@ public class HomePageFragment extends BaseFragment implements IBannerContract.Vi
 
     @Override
     public void showRecommend(List<VideoBean> videoBean) {
-        mRvVideo.setNestedScrollingEnabled(false);
-        mRvVideo.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRvVideo.setHasFixedSize(true);
-        VideoAdapter adapter = new VideoAdapter(getActivity(), videoBean);
-        mRvVideo.setAdapter(adapter);
-        mRvVideo.setRecyclerListener(new RecyclerView.RecyclerListener() {
-            @Override
-            public void onViewRecycled(RecyclerView.ViewHolder holder) {
-                NiceVideoPlayer niceVideoPlayer = ((VideoViewHolder) holder).mVideoPlayer;
-                if (niceVideoPlayer == NiceVideoPlayerManager.instance().getCurrentNiceVideoPlayer()) {
-                    NiceVideoPlayerManager.instance().releaseNiceVideoPlayer();
-                }
-            }
-        });
+        mReCommendAdapter.setNewData(videoBean);
     }
 
     @Override
     public void showEmpty() {
-
+        mReCommendAdapter.setEmptyView(getActivity());
     }
 
 

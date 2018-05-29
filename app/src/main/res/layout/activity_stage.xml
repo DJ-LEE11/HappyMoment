@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srlEnableRefresh="false">
+
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srlClassicsSpinnerStyle="FixedBehind"
+            app:srlAccentColor="@color/text_color_01"
+            app:srlPrimaryColor="@color/white_color"/>
+
+
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white_color"
+            android:focusable="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <com.uwork.happymoment.ui.banner.HomeTopBanner
+                        android:id="@+id/homeTopBanner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:bb_barPaddingBottom="1dp"
+                        app:bb_barPaddingRight="15dp"
+                        app:bb_indicatorGap="0dp"
+                        app:bb_indicatorGravity="RIGHT"
+                        app:bb_indicatorHeight="14dp"
+                        app:bb_indicatorWidth="14dp"
+                        app:bb_scale="0.5" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/status_bar_height"
+                        android:padding="8dp">
+
+                        <LinearLayout
+                            android:id="@+id/llFinish"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@mipmap/ic_back_black"
+                                android:padding="4dp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="4dp"
+                                android:text="幸福驿站"
+                                android:textColor="@color/text_color_01"
+                                android:textSize="@dimen/text_size_14" />
+
+                            </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/llSearch"
+                            android:layout_width="200dp"
+                            android:layout_height="30dp"
+                            android:layout_centerInParent="true"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/shape_search_gray_bg">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@mipmap/ic_search_white"
+                                android:paddingLeft="15dp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="搜索你想要的内容"
+                                android:paddingLeft="20dp"
+                                android:textColor="@color/white_color"
+                                android:textSize="@dimen/text_size_14"/>
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:background="@color/line_color"/>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="@color/white_color"
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/ic_happy_stage"
+                        android:paddingRight="10dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="旅居乐园"
+                        android:textColor="@color/text_color_01"
+                        android:textSize="@dimen/text_size_14" />
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvVideo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/line_color">
+
+                </android.support.v7.widget.RecyclerView>
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
+<TextView
+    android:id="@+id/tvCall"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:background="@drawable/shape_oval_red"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentRight="true"
+    android:layout_marginRight="15dp"
+    android:layout_marginBottom="30dp"
+    android:gravity="center"
+    android:textColor="@color/white_color"
+    android:text="一键\n管家"/>
+</RelativeLayout>

@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:focusableInTouchMode="true"
-        android:fitsSystemWindows="true"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -29,7 +28,7 @@
                 app:bb_indicatorGravity="RIGHT"
                 app:bb_indicatorHeight="14dp"
                 app:bb_indicatorWidth="14dp"
-                app:bb_scale="0.41" />
+                app:bb_scale="0.5" />
 
             <LinearLayout
                 android:id="@+id/llLocation"
@@ -37,6 +36,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
+                android:layout_marginTop="@dimen/status_bar_height"
                 android:padding="8dp">
 
                 <ImageView
@@ -59,6 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:gravity="center_horizontal"
+                android:layout_marginTop="@dimen/status_bar_height"
                 android:orientation="vertical"
                 android:padding="8dp">
 
@@ -186,7 +187,7 @@
             android:layout_height="5dp"
             android:background="@color/line_color"/>
 
-        <com.uwork.happymoment.ui.banner.HomeTopBanner
+        <com.uwork.happymoment.ui.banner.HomeCenterBanner
             android:id="@+id/homeCentreBanner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

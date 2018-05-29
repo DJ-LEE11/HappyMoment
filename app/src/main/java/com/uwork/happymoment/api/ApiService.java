@@ -5,6 +5,7 @@ import com.uwork.happymoment.mvp.login.bean.RegisterRequestBean;
 import com.uwork.happymoment.mvp.login.bean.ResetPasswordRequestBean;
 import com.uwork.happymoment.mvp.login.bean.UploadBean;
 import com.uwork.happymoment.mvp.login.bean.UserBean;
+import com.uwork.happymoment.mvp.main.bean.StageItemBean;
 import com.uwork.happymoment.mvp.main.bean.BannerBean;
 import com.uwork.happymoment.mvp.main.bean.VideoRespondBean;
 import com.uwork.happymoment.mvp.social.chat.bean.AddCreateGroupRequestBean;
@@ -230,5 +231,12 @@ public interface ApiService {
      */
     @POST("/recommend/recommends")
     Flowable<BaseResult<List<VideoRespondBean>>> getRecommend();
+
+    /**
+     * 幸福驿站
+     * name不传返回全部
+     */
+    @POST("/stage/list")
+    Flowable<BaseResult<List<StageItemBean>>> getStageList(@Query("name") String name);
 
 }
