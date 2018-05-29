@@ -32,6 +32,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.uwork.happymoment.mvp.main.activity.StageActivityActivity.ACTIVITY_ID;
 import static com.uwork.happymoment.mvp.main.activity.StageMapActivity.STAGE_LAT;
 import static com.uwork.happymoment.mvp.main.activity.StageMapActivity.STAGE_LON;
 
@@ -119,7 +120,7 @@ public class StageActivity extends BaseActivity implements IBannerContract.View,
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 StageItemBean stageItemBean = (StageItemBean) adapter.getData().get(position);
-                showToast(stageItemBean.getPictureUrl());
+                goTo(StageActivityActivity.class,false,ACTIVITY_ID,stageItemBean.getId());
             }
         });
     }

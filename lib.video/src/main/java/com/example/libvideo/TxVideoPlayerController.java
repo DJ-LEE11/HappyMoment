@@ -80,6 +80,8 @@ public class TxVideoPlayerController
 
     private boolean hasRegisterBatteryReceiver; // 是否已经注册了电池广播
 
+    private boolean mIsRestart;
+
     public TxVideoPlayerController(Context context) {
         super(context);
         mContext = context;
@@ -238,10 +240,12 @@ public class TxVideoPlayerController
                 mError.setVisibility(View.VISIBLE);
                 break;
             case NiceVideoPlayer.STATE_COMPLETED:
-                cancelUpdateProgressTimer();
-                setTopBottomVisible(false);
-                mImage.setVisibility(View.VISIBLE);
-                mCompleted.setVisibility(View.VISIBLE);
+                mIsRestart = true;
+                reset();
+//                cancelUpdateProgressTimer();
+//                setTopBottomVisible(false);
+//                mImage.setVisibility(View.VISIBLE);
+//                mCompleted.setVisibility(View.VISIBLE);
                 break;
         }
     }
@@ -348,6 +352,10 @@ public class TxVideoPlayerController
             if (mNiceVideoPlayer.isIdle()) {
                 mTitle.setVisibility(GONE);
                 mNiceVideoPlayer.start();
+                return;
+            }else if (mIsRestart){
+                mTitle.setVisibility(GONE);
+                mNiceVideoPlayer.restart();
             }
         } else if (v == mBack) {
             if (mNiceVideoPlayer.isFullScreen()) {

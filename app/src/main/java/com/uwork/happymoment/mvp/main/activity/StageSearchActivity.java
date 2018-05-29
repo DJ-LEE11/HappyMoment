@@ -26,10 +26,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.uwork.happymoment.mvp.main.activity.StageActivityActivity.ACTIVITY_ID;
 import static com.uwork.happymoment.mvp.main.activity.StageMapActivity.STAGE_LAT;
 import static com.uwork.happymoment.mvp.main.activity.StageMapActivity.STAGE_LON;
 
-public class StageSearchActivity extends BaseActivity implements IStageListContract.View{
+public class StageSearchActivity extends BaseActivity implements IStageListContract.View {
 
     @BindView(R.id.etSearchStage)
     EditText mEtSearch;
@@ -69,7 +70,7 @@ public class StageSearchActivity extends BaseActivity implements IStageListContr
         mRvVideo.setNestedScrollingEnabled(false);
         mRvVideo.setLayoutManager(new LinearLayoutManager(this));
         mRvVideo.setHasFixedSize(true);
-        mStageAdapter= new StageAdapter(new ArrayList<>());
+        mStageAdapter = new StageAdapter(new ArrayList<>());
         mRvVideo.setAdapter(mStageAdapter);
         mRvVideo.setRecyclerListener(new RecyclerView.RecyclerListener() {
             @Override
@@ -83,22 +84,22 @@ public class StageSearchActivity extends BaseActivity implements IStageListContr
         mStageAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                if (view.getId() == R.id.llLocation){
+                if (view.getId() == R.id.llLocation) {
                     StageItemBean stageItemBean = (StageItemBean) adapter.getData().get(position);
                     String lngLat = stageItemBean.getLngLat();
-                    if (!TextUtils.isEmpty(lngLat)){
+                    if (!TextUtils.isEmpty(lngLat)) {
                         String[] location = lngLat.split(",");
-                        if (location.length==2){
+                        if (location.length == 2) {
                             new IntentUtils.Builder(StageSearchActivity.this)
                                     .to(StageMapActivity.class)
-                                    .putExtra(STAGE_LON,Double.valueOf(location[0]))
-                                    .putExtra(STAGE_LAT,Double.valueOf(location[1]))
+                                    .putExtra(STAGE_LON, Double.valueOf(location[0]))
+                                    .putExtra(STAGE_LAT, Double.valueOf(location[1]))
                                     .build()
                                     .start();
-                        }else {
+                        } else {
                             showToast("暂无活动地址");
                         }
-                    }else {
+                    } else {
                         showToast("暂无活动地址");
                     }
                 }
@@ -108,7 +109,7 @@ public class StageSearchActivity extends BaseActivity implements IStageListContr
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 StageItemBean stageItemBean = (StageItemBean) adapter.getData().get(position);
-                showToast(stageItemBean.getPictureUrl());
+                goTo(StageActivityActivity.class, false, ACTIVITY_ID, stageItemBean.getId());
             }
         });
     }
@@ -122,9 +123,9 @@ public class StageSearchActivity extends BaseActivity implements IStageListContr
                 break;
             case R.id.tvSearch:
                 String searchText = mEtSearch.getText().toString();
-                if (!TextUtils.isEmpty(searchText)){
+                if (!TextUtils.isEmpty(searchText)) {
                     mIStageListPresenter.getStageList(searchText);
-                }else {
+                } else {
                     showToast("请输入搜索驿站");
                 }
                 break;
@@ -138,7 +139,7 @@ public class StageSearchActivity extends BaseActivity implements IStageListContr
 
     @Override
     public void showEmpty() {
-        mStageAdapter.setEmptyView(this,"搜不到当前驿站");
+        mStageAdapter.setEmptyView(this, "搜不到当前驿站");
     }
 
     @Override
@@ -147,6 +148,7 @@ public class StageSearchActivity extends BaseActivity implements IStageListContr
         // 在onStop时释放掉播放器
         NiceVideoPlayerManager.instance().releaseNiceVideoPlayer();
     }
+
     @Override
     public void onBackPressed() {
         // 在全屏或者小窗口时按返回键要先退出全屏或小窗口，

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minWidth="1000dp"
+    android:layout_gravity="bottom"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_color"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:gravity="center"
+            android:text="分享到"
+            android:textColor="@color/text_color_01"
+            android:textSize="@dimen/text_size_16"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line_color"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <RelativeLayout
+                android:id="@+id/rlWeChat"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tvShareWeChat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingTop="20dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_centerInParent="true"
+                    android:paddingBottom="10dp"
+                    android:drawableTop="@mipmap/ic_wechat"
+                    android:textSize="14dp"
+                    android:textColor="#4d4d4d"
+                    android:drawablePadding="5dp"
+                    android:text="微信好友"/>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rlQq"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tvShareQQ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingTop="20dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_centerInParent="true"
+                    android:paddingBottom="10dp"
+                    android:drawableTop="@mipmap/ic_qq"
+                    android:textSize="14dp"
+                    android:textColor="#4d4d4d"
+                    android:drawablePadding="5dp"
+                    android:text="QQ好友"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlWeChatCircle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tvWeChatCircle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingTop="20dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_centerInParent="true"
+                    android:paddingBottom="10dp"
+                    android:drawableTop="@mipmap/ic_wechat_circle"
+                    android:textSize="14dp"
+                    android:textColor="#4d4d4d"
+                    android:drawablePadding="5dp"
+                    android:text="朋友圈"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/line_color"/>
+
+    <TextView
+        android:id="@+id/tvCancel"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:gravity="center"
+        android:text="取消"
+        android:background="@color/white_color"
+        android:textColor="@color/text_color_01"
+        android:textSize="@dimen/text_size_14"/>
+
+</LinearLayout>

@@ -5,6 +5,8 @@ import com.uwork.happymoment.mvp.login.bean.RegisterRequestBean;
 import com.uwork.happymoment.mvp.login.bean.ResetPasswordRequestBean;
 import com.uwork.happymoment.mvp.login.bean.UploadBean;
 import com.uwork.happymoment.mvp.login.bean.UserBean;
+import com.uwork.happymoment.mvp.main.bean.JoinStageActivityRequestBean;
+import com.uwork.happymoment.mvp.main.bean.StageActivityDetailBean;
 import com.uwork.happymoment.mvp.main.bean.StageItemBean;
 import com.uwork.happymoment.mvp.main.bean.BannerBean;
 import com.uwork.happymoment.mvp.main.bean.VideoRespondBean;
@@ -238,5 +240,17 @@ public interface ApiService {
      */
     @POST("/stage/list")
     Flowable<BaseResult<List<StageItemBean>>> getStageList(@Query("name") String name);
+
+    /**
+     * 驿站活动详情
+     */
+    @POST("/stage/detail")
+    Flowable<BaseResult<StageActivityDetailBean>> getStageActivityDetail(@Query("id") Integer id);
+
+    /**
+     * 参加活动
+     */
+    @POST("/stage/join")
+    Flowable<BaseResult<String>> joinStageActivity(@Body JoinStageActivityRequestBean joinStageActivityRequestBean);
 
 }

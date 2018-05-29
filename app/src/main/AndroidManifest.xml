@@ -223,11 +223,16 @@
             android:name=".mvp.main.activity.StageActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.main.activity.StageSearchActivity"
+        <activity
+            android:name=".mvp.main.activity.StageSearchActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".mvp.main.activity.StageMapActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.main.activity.StageMapActivity"
             android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity android:name=".mvp.main.activity.StageActivityActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"/>
     </application>
 
