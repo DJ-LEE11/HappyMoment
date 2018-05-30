@@ -45,10 +45,13 @@ import com.flyco.banner.widget.Banner.base.BaseBanner;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.uwork.happymoment.R;
+import com.uwork.happymoment.manager.UserManager;
+import com.uwork.happymoment.mvp.login.activity.LoginRegisterActivity;
 import com.uwork.happymoment.mvp.main.bean.StageActivityDetailBean;
 import com.uwork.happymoment.mvp.main.contract.IStageActivityContract;
 import com.uwork.happymoment.mvp.main.presenter.IStageActivityPresenter;
 import com.uwork.happymoment.ui.banner.StageActivityBanner;
+import com.uwork.happymoment.ui.dialog.JoinActivityDialog;
 import com.uwork.happymoment.ui.dialog.ShareDialog;
 import com.uwork.happymoment.util.ShareUtil;
 import com.uwork.librx.mvp.BaseActivity;
@@ -131,6 +134,9 @@ public class StageActivityActivity extends BaseActivity implements SensorEventLi
     private double mStageLon;
     private IStageActivityPresenter mIStageActivityPresenter;
     private Dialog mShareDialog;
+
+    private JoinActivityDialog mJoinActivityDialog;
+    private Dialog mInputDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -250,7 +256,7 @@ public class StageActivityActivity extends BaseActivity implements SensorEventLi
             mStageActivityBanner.setOnItemClickL(new BaseBanner.OnItemClickL() {
                 @Override
                 public void onItemClick(int position) {
-                    showToast("id"+stageActivities.get(position).getId());
+                    goTo(StageActivityActivity.class,false,ACTIVITY_ID,stageActivities.get(position).getId());
                 }
             });
         } else {
@@ -288,12 +294,46 @@ public class StageActivityActivity extends BaseActivity implements SensorEventLi
                 showShareDialog();
                 break;
             case R.id.tvJoin:
-                showToast("加入");
+                if (UserManager.getInstance().isLogin(this)){
+                    initInputDialog();
+                    showDialog();
+                }else {
+                    goTo(LoginRegisterActivity.class);
+                }
                 break;
             case R.id.tvCall:
-                showToast("打电话");
+                if (UserManager.getInstance().isLogin(this)){
+                    showToast("打电话");
+                }else {
+                    goTo(LoginRegisterActivity.class);
+                }
                 break;
         }
+    }
+
+    private void initInputDialog() {
+        if (mJoinActivityDialog == null){
+            mJoinActivityDialog = new JoinActivityDialog();
+            mJoinActivityDialog.onGetInputListener(new JoinActivityDialog.onGetInputListener() {
+                @Override
+                public void onGetInput(String name, String phone) {
+                    if (mInputDialog != null) {
+                        mInputDialog.dismiss();
+                    }
+                    mIStageActivityPresenter.joinStageActivity(mActivityId,mAddress,name,phone,
+                            TimeUtils.formatDateTime(Long.valueOf(mStartTime), "yyyy-MM-dd"),
+                            TimeUtils.formatDateTime(Long.valueOf(mEndTime), "yyyy-MM-dd"));
+                }
+            });
+        }
+    }
+
+    private void showDialog() {
+        if (mInputDialog != null) {
+            mInputDialog.dismiss();
+        }
+        mInputDialog = mJoinActivityDialog.createInputDialog(this, true);
+        mInputDialog.show();
     }
 
     private void showShareDialog() {
@@ -321,7 +361,7 @@ public class StageActivityActivity extends BaseActivity implements SensorEventLi
 
     @Override
     public void joinSuccess() {
-
+        showToast("报名成功");
     }
 
     @Override

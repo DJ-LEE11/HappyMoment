@@ -28,6 +28,7 @@ public class StageAdapter extends BaseAdapter<StageItemBean>{
     protected void convert(BaseViewHolder helper, StageItemBean item) {
         helper.setText(R.id.tvTitle,item.getName());
         helper.addOnClickListener(R.id.llLocation);
+        helper.addOnClickListener(R.id.tvDetail);
         NiceVideoPlayer videoPlayer = helper.getView(R.id.video);
         // 将列表中的每个视频设置为默认16:9的比例
         ViewGroup.LayoutParams params = videoPlayer.getLayoutParams();

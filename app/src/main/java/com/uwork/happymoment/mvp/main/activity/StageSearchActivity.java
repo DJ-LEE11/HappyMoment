@@ -102,14 +102,10 @@ public class StageSearchActivity extends BaseActivity implements IStageListContr
                     } else {
                         showToast("暂无活动地址");
                     }
+                }else if (view.getId() == R.id.tvDetail){
+                    StageItemBean stageItemBean = (StageItemBean) adapter.getData().get(position);
+                    goTo(StageActivityActivity.class, false, ACTIVITY_ID, stageItemBean.getId());
                 }
-            }
-        });
-        mStageAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                StageItemBean stageItemBean = (StageItemBean) adapter.getData().get(position);
-                goTo(StageActivityActivity.class, false, ACTIVITY_ID, stageItemBean.getId());
             }
         });
     }

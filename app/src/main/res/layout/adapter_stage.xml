@@ -58,4 +58,18 @@
         android:layout_width="match_parent"
         android:layout_height="170dp" />
 
+    <TextView
+        android:id="@+id/tvDetail"
+        android:layout_width="65dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="right"
+        android:background="@drawable/shape_video_or_photo_select"
+        android:gravity="center"
+        android:text="查看详情"
+        android:textColor="@color/text_color_01"
+        android:textSize="@dimen/text_size_12" />
+
+
 </LinearLayout>

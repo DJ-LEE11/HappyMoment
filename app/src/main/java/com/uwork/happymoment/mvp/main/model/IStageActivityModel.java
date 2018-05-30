@@ -38,10 +38,10 @@ public class IStageActivityModel extends IBaseModelImpl implements IStageActivit
     }
 
     @Override
-    public ResourceSubscriber joinStageActivity(int activityId, String address, String startTime, String endTime, OnModelCallBack<BaseResult<String>> callBack) {
+    public ResourceSubscriber joinStageActivity(int activityId, String address, String contactName, String contactPhone, String startTime, String endTime, OnModelCallBack<BaseResult<String>> callBack) {
         return startObservable(ApiServiceFactory.INSTANCE
                 .create(mContext, BuildConfig.API_BASE_URL, ApiService.class)
-                .joinStageActivity(new JoinStageActivityRequestBean(activityId,address,startTime,endTime))
+                .joinStageActivity(new JoinStageActivityRequestBean(activityId,address,contactName,contactPhone,startTime,endTime))
                 .map(new ServerResultWithDataFunc<>())
                 .onErrorResumeNext(new HttpResultFunc<>()), new CustomResourceSubscriber<>(callBack));
     }

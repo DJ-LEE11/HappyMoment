@@ -60,8 +60,8 @@ public class IStageActivityPresenter<T extends IStageActivityContract.View & IBa
     }
 
     @Override
-    public void joinStageActivity(int activityId, String address, String startTime, String endTime) {
-        addSubscription(mModel.joinStageActivity(activityId, address, startTime, endTime, new OnModelCallBack<BaseResult<String>>() {
+    public void joinStageActivity(int activityId, String address, String contactName, String contactPhone, String startTime, String endTime) {
+        addSubscription(mModel.joinStageActivity(activityId, address, contactName,contactPhone,startTime, endTime, new OnModelCallBack<BaseResult<String>>() {
             @Override
             public void onStart() {
                 getView().showLoading();

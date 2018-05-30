@@ -21,12 +21,12 @@ public interface IStageActivityContract {
     interface Presenter {
         void getStageActivityDetail(Integer id);
 
-        void joinStageActivity(int activityId, String address, String startTime, String endTime);
+        void joinStageActivity(int activityId, String address, String contactName, String contactPhone, String startTime, String endTime);
     }
 
     interface Model {
         ResourceSubscriber getStageActivityDetail(Integer id,OnModelCallBack<StageActivityDetailBean> callBack);
 
-        ResourceSubscriber joinStageActivity(int activityId, String address, String startTime, String endTime, OnModelCallBack<BaseResult<String>> callBack);
+        ResourceSubscriber joinStageActivity(int activityId, String address, String contactName, String contactPhone, String startTime, String endTime, OnModelCallBack<BaseResult<String>> callBack);
     }
 }
