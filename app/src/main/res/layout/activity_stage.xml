@@ -45,7 +45,7 @@
                         app:bb_indicatorGravity="RIGHT"
                         app:bb_indicatorHeight="14dp"
                         app:bb_indicatorWidth="14dp"
-                        app:bb_scale="0.5"/>
+                        app:bb_scale="0.5625"/>
 
                     <RelativeLayout
                         android:layout_width="match_parent"

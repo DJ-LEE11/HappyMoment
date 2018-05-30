@@ -20,4 +20,9 @@
         <item>足迹</item>
     </string-array>
 
+    <string-array name="hotel_tab">
+        <item>热门城市</item>
+        <item>为你优选</item>
+        <item>主题风格</item>
+    </string-array>
 </resources>

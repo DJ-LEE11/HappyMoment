@@ -135,6 +135,7 @@ public class StageSearchActivity extends BaseActivity implements IStageListContr
 
     @Override
     public void showEmpty() {
+        mStageAdapter.setNewData(new ArrayList<>());
         mStageAdapter.setEmptyView(this, "搜不到当前驿站");
     }
 

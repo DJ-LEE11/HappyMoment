@@ -1,13 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
+    xmlns:stick="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white_color"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="桃园客栈"
-        android:layout_centerInParent="true"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/status_bar_height"
+        android:background="@color/white_color"/>
 
-</RelativeLayout>
+    <com.uwork.happymoment.ui.StickyLayout
+        android:id="@+id/stickyLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        stick:isStickNav="false">
+
+        <RelativeLayout
+            android:id="@id/id_sticky_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <com.uwork.happymoment.ui.banner.HomeTopBanner
+                android:id="@+id/homeTopBanner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:bb_barPaddingBottom="1dp"
+                app:bb_barPaddingRight="15dp"
+                app:bb_indicatorGap="0dp"
+                app:bb_indicatorGravity="RIGHT"
+                app:bb_indicatorHeight="14dp"
+                app:bb_indicatorWidth="14dp"
+                app:bb_scale="0.5625" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:id="@+id/llSearch"
+                    android:layout_width="200dp"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/shape_search_gray_bg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="15dp"
+                        android:src="@mipmap/ic_search_white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="20dp"
+                        android:text="搜索你想要的内容"
+                        android:textColor="@color/white_color"
+                        android:textSize="@dimen/text_size_14" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvMap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="地图模式"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/text_color_red"/>
+
+            </RelativeLayout>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@id/id_sticky_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white_color"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/line_color" />
+
+            <com.flyco.tablayout.CommonTabLayout
+                android:id="@+id/commonTabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="#ffffff"
+                tl:tl_iconVisible="false"
+                tl:tl_textSelectColor="@color/text_color_red"
+                tl:tl_textUnselectColor="@color/text_color_01"
+                tl:tl_textsize="@dimen/text_size_18"
+                tl:tl_tab_padding="3dp"
+                tl:tl_indicator_color="@color/text_color_red"
+                tl:tl_indicator_height="3dp"
+                tl:tl_indicator_margin_left="25dp"
+                tl:tl_indicator_margin_right="25dp"/>
+
+        </LinearLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@id/id_sticky_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never" />
+    </com.uwork.happymoment.ui.StickyLayout>
+</LinearLayout>

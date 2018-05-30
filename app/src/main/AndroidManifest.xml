@@ -225,50 +225,51 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.main.activity.StageSearchActivity"
-            android:configChanges="orientation"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mvp.main.activity.StageMapActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.main.activity.StageActivityActivity"
+        <activity
+            android:name=".mvp.main.activity.StageActivityActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!-- 配置友盟开始 -->
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="${UMENG_APPKEY}"/>
+            android:value="${UMENG_APPKEY}" />
         <!-- 微信 -->
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <!-- qq -->
         <activity
             android:name="com.umeng.qq.tencent.AuthActivity"
             android:launchMode="singleTask"
             android:noHistory="true">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="tencent1106477543"/>
+                <data android:scheme="tencent1106477543" />
             </intent-filter>
         </activity>
         <activity
             android:name="com.umeng.qq.tencent.AssistActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name="com.umeng.socialize.editorpage.ShareActivity"
             android:excludeFromRecents="true"
-            android:theme="@style/Theme.UMDefault"/>
+            android:theme="@style/Theme.UMDefault" />
         <!-- 新浪 -->
         <activity
             android:name="com.umeng.socialize.media.WBShareCallBackActivity"
@@ -276,19 +277,27 @@
             android:exported="false"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar">
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name="com.sina.weibo.sdk.share.WbShareTransActivity"
             android:launchMode="singleTask"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
             <intent-filter>
-                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY"/>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <!-- 配置友盟结束 -->
+        <activity
+            android:name=".mvp.hotel.activity.HotelMapActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.hotel.activity.HotelSearchActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity android:name=".mvp.hotel.activity.RadarMapActivity"></activity>
     </application>
 
 </manifest>

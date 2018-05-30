@@ -45,7 +45,7 @@ public class HomeTopBanner extends BaseIndicatorBanner<BannerBean, HomeTopBanner
 
         final BannerBean item = mDatas.get(position);
         int itemWidth = mDisplayMetrics.widthPixels;
-        int itemHeight = (int) (itemWidth /2);
+        int itemHeight = (int) (itemWidth *0.5625);
         iv.setLayoutParams(new LinearLayout.LayoutParams(itemWidth, itemHeight));
 
         String imgUrl = item.getPicture();

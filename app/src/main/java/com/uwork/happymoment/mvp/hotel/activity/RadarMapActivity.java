@@ -1,4 +1,4 @@
-package com.uwork.happymoment.mvp.my.activity;
+package com.uwork.happymoment.mvp.hotel.activity;
 
 import android.graphics.Color;
 import android.graphics.Point;
@@ -9,7 +9,6 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.ZoomControls;
 
 import com.baidu.location.BDLocation;
@@ -37,12 +36,12 @@ import com.uwork.happymoment.activity.BaseTitleActivity;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
-public class MapActivity extends BaseTitleActivity implements SensorEventListener {
+public class RadarMapActivity extends BaseTitleActivity implements SensorEventListener {
 
-    @BindView(R.id.rlContent)
-    RelativeLayout mRlContent;
+    @BindView(R.id.mapView)
+    MapView mMapView;
+
     private BaiduMap mBaiduMap;
     private UiSettings mUiSettings;
     // 定位相关
@@ -73,9 +72,6 @@ public class MapActivity extends BaseTitleActivity implements SensorEventListene
     private Marker mMarkerPersonGameB;
     private Marker mMarkerPersonGameC;
 
-    @BindView(R.id.mapView)
-    MapView mMapView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,14 +82,15 @@ public class MapActivity extends BaseTitleActivity implements SensorEventListene
         return null;
     }
 
+
     @Override
     protected int getContentResId() {
-        return R.layout.activity_map;
+        return R.layout.activity_radar_map;
     }
 
     @Override
     protected void initContentView(Bundle savedInstanceState) {
-        setTitle("地图");
+        setTitle("桃源客栈");
         setBackClick();
         initBaiDuMap();
     }
@@ -109,7 +106,7 @@ public class MapActivity extends BaseTitleActivity implements SensorEventListene
         //隐藏地图上比例尺
         mMapView.showScaleControl(false);
         //隐藏缩放控件
-        mMapView.showZoomControls(false);
+        mMapView.showZoomControls(true);
         //隐藏指南针
         mUiSettings.setCompassEnabled(false);
         //关闭地图俯视（3D）
@@ -169,8 +166,7 @@ public class MapActivity extends BaseTitleActivity implements SensorEventListene
 
             @Override
             public void onMapClick(LatLng arg0) {
-//                mBaiduMap.hideInfoWindow();
-                showToast(arg0.toString());
+                mBaiduMap.hideInfoWindow();
             }
         });
     }
@@ -277,18 +273,6 @@ public class MapActivity extends BaseTitleActivity implements SensorEventListene
         mBaiduMap.addOverlay(overlayOptions);
     }
 
-    @OnClick(R.id.ivLocation)
-    public void onViewClicked() {
-        LatLng ll = new LatLng(mCurrentLat, mCurrentLon);
-        MapStatus.Builder builder = new MapStatus.Builder();
-        //地图缩放
-        builder.target(ll).zoom(mDeFaultZoomLevel);
-        mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
-        showToast(mCurrentCity);
-        if (mMarkerPersonGameA == null){
-            addPersonGameOverlay(mCurrentLat, mCurrentLon);
-        }
-    }
 
     @Override
     public void onStart() {
@@ -332,5 +316,4 @@ public class MapActivity extends BaseTitleActivity implements SensorEventListene
         mMapView.onDestroy();
         mMapView = null;
     }
-
 }

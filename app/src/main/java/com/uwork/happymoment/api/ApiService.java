@@ -1,14 +1,16 @@
 package com.uwork.happymoment.api;
 
+import com.uwork.happymoment.mvp.hotel.bean.HotCityLabelBean;
+import com.uwork.happymoment.mvp.hotel.bean.HotelItemBean;
 import com.uwork.happymoment.mvp.login.bean.LoginRequestBean;
 import com.uwork.happymoment.mvp.login.bean.RegisterRequestBean;
 import com.uwork.happymoment.mvp.login.bean.ResetPasswordRequestBean;
 import com.uwork.happymoment.mvp.login.bean.UploadBean;
 import com.uwork.happymoment.mvp.login.bean.UserBean;
+import com.uwork.happymoment.mvp.main.bean.BannerBean;
 import com.uwork.happymoment.mvp.main.bean.JoinStageActivityRequestBean;
 import com.uwork.happymoment.mvp.main.bean.StageActivityDetailBean;
 import com.uwork.happymoment.mvp.main.bean.StageItemBean;
-import com.uwork.happymoment.mvp.main.bean.BannerBean;
 import com.uwork.happymoment.mvp.main.bean.VideoRespondBean;
 import com.uwork.happymoment.mvp.social.chat.bean.AddCreateGroupRequestBean;
 import com.uwork.happymoment.mvp.social.chat.bean.AddGroupBean;
@@ -253,4 +255,17 @@ public interface ApiService {
     @POST("/stage/join")
     Flowable<BaseResult<String>> joinStageActivity(@Body JoinStageActivityRequestBean joinStageActivityRequestBean);
 
+    //===========================================================================>客栈
+
+    /**
+     * 热门城市标签
+     */
+    @POST("/hostel/classify")
+    Flowable<BaseResult<List<HotCityLabelBean>>> getHotCityLabel();
+
+    /**
+     * 客栈列表
+     */
+    @POST("/hostel/hostels")
+    Flowable<BaseResult<List<HotelItemBean>>> hotelList(@Query("classifyId") Integer classifyId);
 }
