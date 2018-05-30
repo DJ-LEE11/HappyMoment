@@ -27,14 +27,14 @@ android {
     }
 
     //签名
-//    signingConfigs {
-//        config {
-//            keyAlias 'key0'
-//            keyPassword 'hm123456'
-//            storeFile file('HappyMoment.jks')
-//            storePassword 'hm123456'
-//        }
-//    }
+    signingConfigs {
+        config {
+            keyAlias 'key0'
+            keyPassword 'hm123456'
+            storeFile file('HappyMoment.jks')
+            storePassword 'hm123456'
+        }
+    }
 
     buildTypes {
         debug {
@@ -44,8 +44,8 @@ android {
 
             buildConfigField "String", "phone", "\"18825098496\""
             buildConfigField "String", "password", "\"123456\""
-            buildConfigField "String", "WechatId", "\"wx8ef894482cffe864\""
-            buildConfigField "String", "WechatSecret", "\"90c9f79675342ba29d7889befc99861a\""
+            buildConfigField "String", "WechatId", "\"wxec61603ad562387f\""
+            buildConfigField "String", "WechatSecret", "\"272ba2f8ed3f7095c201c22803fc651a\""
             buildConfigField "String", "QQId", "\"1106477543\""
             buildConfigField "String", "QQKey", "\"nagRs6QFfgY68e2X\""
             buildConfigField "String", "SinaKey", "\"2386491813\""
@@ -54,7 +54,7 @@ android {
 //            signingConfig signingConfigs.config
             manifestPlaceholders = [
                     BaiDu_AppKey: "uNgCWfWxOV7va5p5qxdKT5yORX2QuOT0",
-                    UMENG_APPKEY: "5a139e128f4a9d4e4400005f"
+                    UMENG_APPKEY: "5a139e128f4a9d4e4400005f",
             ]
         }
 
@@ -71,10 +71,10 @@ android {
             buildConfigField "String", "SinaSecret", "\"51d51981f67b237bc3470ec97cfa8411\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//            signingConfig signingConfigs.config
+            signingConfig signingConfigs.config
             manifestPlaceholders = [
                     BaiDu_AppKey: "uNgCWfWxOV7va5p5qxdKT5yORX2QuOT0",
-                    UMENG_APPKEY: "5a139e128f4a9d4e4400005f"
+                    UMENG_APPKEY: "5a139e128f4a9d4e4400005f",
             ]
         }
     }
@@ -125,6 +125,7 @@ dependencies {
     implementation project(':IMLib')
     implementation project(':imkit')
     implementation project(':lib.index')
+    implementation project(':lib.umeng')
     implementation project(':lib.marqueeview')
     implementation project(':circle_base_library')
     implementation project(':circle_base_ui')
@@ -134,6 +135,7 @@ dependencies {
     configurations {
         all*.exclude group: 'com.google.code.gson'
         all*.exclude group: 'com.squareup.okio'
+//        all*.exclude group: 'com.alibaba'
     }
 
 

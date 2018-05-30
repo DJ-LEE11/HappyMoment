@@ -42,12 +42,15 @@ import com.example.libvideo.NiceVideoPlayerManager;
 import com.example.libvideo.TxVideoPlayerController;
 import com.flyco.banner.widget.Banner.BaseIndicatorBanner;
 import com.flyco.banner.widget.Banner.base.BaseBanner;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.uwork.happymoment.R;
 import com.uwork.happymoment.mvp.main.bean.StageActivityDetailBean;
 import com.uwork.happymoment.mvp.main.contract.IStageActivityContract;
 import com.uwork.happymoment.mvp.main.presenter.IStageActivityPresenter;
 import com.uwork.happymoment.ui.banner.StageActivityBanner;
 import com.uwork.happymoment.ui.dialog.ShareDialog;
+import com.uwork.happymoment.util.ShareUtil;
 import com.uwork.librx.mvp.BaseActivity;
 import com.uwork.libutil.TimeUtils;
 
@@ -297,13 +300,19 @@ public class StageActivityActivity extends BaseActivity implements SensorEventLi
         mShareDialog = new ShareDialog(this, new View.OnClickListener() {
             @Override
             public void onClick(View view) {//分享到微信
-                showToast("微信");
+                ShareUtil.shareText(StageActivityActivity.this, SHARE_MEDIA.WEIXIN,"ghhhh");
                 mShareDialog.cancel();
             }
         }, new View.OnClickListener() {
             @Override
             public void onClick(View view) {//分享到朋友圈
-                showToast("朋友圈");
+                ShareUtil.shareText(StageActivityActivity.this, SHARE_MEDIA.WEIXIN_CIRCLE,"ghhhh");
+                mShareDialog.cancel();
+            }
+        }, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShareUtil.shareUrl(StageActivityActivity.this,SHARE_MEDIA.QQ,"https://www.baidu.com","cccc","cccccc");
                 mShareDialog.cancel();
             }
         });
@@ -350,10 +359,18 @@ public class StageActivityActivity extends BaseActivity implements SensorEventLi
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+    }
+
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         //关闭图层定位
         mIsFirstLoc = true;
+        UMShareAPI.get(this).release();
         mBaiduMap.setMyLocationEnabled(false);
         mLocationClient.stop();
         mMapView.onDestroy();
