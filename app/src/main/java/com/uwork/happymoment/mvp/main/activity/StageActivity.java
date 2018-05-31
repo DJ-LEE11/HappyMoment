@@ -45,6 +45,8 @@ public class StageActivity extends BaseActivity implements IBannerContract.View,
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout mRefreshLayout;
 
+    public static final String LOCATION = "LOCATION";
+    private String mLocation;
     private IBannerPresenter mIBannerPresenter;
     private IStageListPresenter mIStageListPresenter;
     private StageAdapter mStageAdapter;
@@ -123,8 +125,9 @@ public class StageActivity extends BaseActivity implements IBannerContract.View,
 
     @Override
     protected void initData(Intent intent, Bundle savedInstanceState) {
+        mLocation = intent.getStringExtra(LOCATION);
         mIBannerPresenter.getBanner(4);
-        mIStageListPresenter.getStageList("");
+        mIStageListPresenter.getStageList(mLocation,"");
     }
 
     @OnClick({R.id.llFinish, R.id.llSearch, R.id.tvCall})
@@ -134,7 +137,7 @@ public class StageActivity extends BaseActivity implements IBannerContract.View,
                 finish();
                 break;
             case R.id.llSearch:
-                goTo(StageSearchActivity.class);
+                goTo(StageSearchActivity.class,false,LOCATION,mLocation);
                 break;
             case R.id.tvCall:
                 showToast("一键管家");

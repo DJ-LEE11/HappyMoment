@@ -43,6 +43,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
+import static com.uwork.happymoment.mvp.main.activity.StageActivity.LOCATION;
+
 /**
  * Created by jie on 2018/5/9.
  */
@@ -63,6 +65,9 @@ public class HomePageFragment extends BaseFragment implements IBannerContract.Vi
     SimpleMarqueeView mMarqueeView;
     @BindView(R.id.rvVideo)
     RecyclerView mRvVideo;
+
+    private double mCurrentLat = 0.0;
+    private double mCurrentLon = 0.0;
 
     public static HomePageFragment newInstance() {
         if (null == fragment) {
@@ -188,7 +193,8 @@ public class HomePageFragment extends BaseFragment implements IBannerContract.Vi
                 goTo(MessageCenterActivity.class);
                 break;
             case R.id.llStage:
-                goTo(StageActivity.class);
+                String location = mCurrentLon+","+mCurrentLat;
+                goTo(StageActivity.class,false,LOCATION,location);
                 break;
             case R.id.llLoveHelp:
                 showToast("敬请期待");
@@ -221,6 +227,8 @@ public class HomePageFragment extends BaseFragment implements IBannerContract.Vi
             if (location == null) {
                 return;
             }
+            mCurrentLat = location.getLatitude();
+            mCurrentLon = location.getLongitude();
             if (mIsFirstLoc) {
                 mIsFirstLoc = false;
                 if (!TextUtils.isEmpty(location.getCity())) {

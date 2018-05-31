@@ -12,6 +12,7 @@ import java.util.Hashtable;
 
 /**
  * Created by jie on 2018/5/25.
+ * 获取第一帧视频
  */
 
 public class CreateVideoBitmapUtil {

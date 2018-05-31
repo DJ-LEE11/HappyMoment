@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/line_color">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <com.uwork.happymoment.ui.banner.HomeTopBanner
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:bb_barPaddingBottom="1dp"
+            app:bb_barPaddingRight="15dp"
+            app:bb_indicatorGap="0dp"
+            app:bb_indicatorGravity="RIGHT"
+            app:bb_indicatorHeight="14dp"
+            app:bb_indicatorWidth="14dp"
+            app:bb_scale="0.5625"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvRoom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

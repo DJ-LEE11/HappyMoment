@@ -12,7 +12,7 @@ public class HotelItemBean implements Serializable{
     /**
      * city : string
      * contactNumber : string
-     * hostelImgResponseBeans : [{"des":"string","id":0,"imgLink":0}]
+     * hostelImgResponseBeans : [{"des":"string","id":0,"imgLink":"string"}]
      * id : 0
      * lngLat : string
      * name : string
@@ -97,12 +97,12 @@ public class HotelItemBean implements Serializable{
         /**
          * des : string
          * id : 0
-         * imgLink : 0
+         * imgLink : string
          */
 
         private String des;
         private int id;
-        private int imgLink;
+        private String imgLink;
 
         public String getDes() {
             return des;
@@ -120,11 +120,11 @@ public class HotelItemBean implements Serializable{
             this.id = id;
         }
 
-        public int getImgLink() {
+        public String getImgLink() {
             return imgLink;
         }
 
-        public void setImgLink(int imgLink) {
+        public void setImgLink(String imgLink) {
             this.imgLink = imgLink;
         }
     }

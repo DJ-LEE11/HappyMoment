@@ -12,6 +12,8 @@ import com.example.libvideo.NiceVideoPlayerManager;
 import com.uwork.happymoment.R;
 import com.uwork.happymoment.mvp.hotel.adapter.HotelAdapter;
 import com.uwork.happymoment.mvp.hotel.bean.HotelItemBean;
+import com.uwork.happymoment.mvp.hotel.contract.ISearchHotelContract;
+import com.uwork.happymoment.mvp.hotel.presenter.ISearchHotelPresenter;
 import com.uwork.librx.mvp.BaseActivity;
 import com.uwork.libutil.IntentUtils;
 
@@ -24,8 +26,10 @@ import butterknife.OnClick;
 
 import static com.uwork.happymoment.mvp.hotel.activity.HotelMapActivity.HOTEL_LAT;
 import static com.uwork.happymoment.mvp.hotel.activity.HotelMapActivity.HOTEL_LON;
+import static com.uwork.happymoment.mvp.hotel.activity.RoomListActivity.HOTEL_ID;
+import static com.uwork.happymoment.mvp.hotel.activity.RoomListActivity.HOTEL_NAME;
 
-public class HotelSearchActivity extends BaseActivity {
+public class HotelSearchActivity extends BaseActivity implements ISearchHotelContract.View{
 
     @BindView(R.id.etSearchHotel)
     EditText mEtSearchHotel;
@@ -33,6 +37,7 @@ public class HotelSearchActivity extends BaseActivity {
     RecyclerView mRvVideo;
 
     private HotelAdapter mHotelAdapter;
+    private ISearchHotelPresenter mISearchHotelPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +46,12 @@ public class HotelSearchActivity extends BaseActivity {
 
     @Override
     protected List createPresenter(List list) {
-        return null;
+        if (list == null){
+            list = new ArrayList();
+        }
+        mISearchHotelPresenter = new ISearchHotelPresenter(this);
+        list.add(mISearchHotelPresenter);
+        return list;
     }
 
     @Override
@@ -82,8 +92,12 @@ public class HotelSearchActivity extends BaseActivity {
                         showToast("暂无活动地址");
                     }
                 }else if (view.getId() == R.id.tvDetail){
-
-//                    goTo(StageActivityActivity.class,false,ACTIVITY_ID,hotelItemBean.getId());
+                    new IntentUtils.Builder(HotelSearchActivity.this)
+                            .to(RoomListActivity.class)
+                            .putExtra(HOTEL_ID,hotelItemBean.getId())
+                            .putExtra(HOTEL_NAME,hotelItemBean.getName())
+                            .build()
+                            .start();
                 }
             }
         });
@@ -98,12 +112,23 @@ public class HotelSearchActivity extends BaseActivity {
             case R.id.tvSearch:
                 String searchText = mEtSearchHotel.getText().toString();
                 if (!TextUtils.isEmpty(searchText)) {
-                    showToast(searchText);
+                    mISearchHotelPresenter.searchHotelList(searchText);
                 } else {
                     showToast("请输入搜索内容");
                 }
                 break;
         }
+    }
+
+    @Override
+    public void showHotelList(List<HotelItemBean> hotelItemBeanList) {
+        mHotelAdapter.setNewData(hotelItemBeanList);
+    }
+
+    @Override
+    public void showEmpty() {
+        mHotelAdapter.setNewData(new ArrayList<>());
+        mHotelAdapter.setEmptyView(this, "搜不到当前客栈");
     }
 
     @Override
@@ -120,4 +145,5 @@ public class HotelSearchActivity extends BaseActivity {
         if (NiceVideoPlayerManager.instance().onBackPressd()) return;
         super.onBackPressed();
     }
+
 }

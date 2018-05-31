@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.uwork.happymoment.R;
 import com.uwork.happymoment.mvp.hotel.activity.HotelMapActivity;
+import com.uwork.happymoment.mvp.hotel.activity.RoomListActivity;
 import com.uwork.happymoment.mvp.hotel.adapter.HotelAdapter;
 import com.uwork.happymoment.mvp.hotel.bean.HotCityLabelBean;
 import com.uwork.happymoment.mvp.hotel.bean.HotelItemBean;
@@ -35,6 +36,8 @@ import butterknife.Unbinder;
 
 import static com.uwork.happymoment.mvp.hotel.activity.HotelMapActivity.HOTEL_LAT;
 import static com.uwork.happymoment.mvp.hotel.activity.HotelMapActivity.HOTEL_LON;
+import static com.uwork.happymoment.mvp.hotel.activity.RoomListActivity.HOTEL_ID;
+import static com.uwork.happymoment.mvp.hotel.activity.RoomListActivity.HOTEL_NAME;
 
 /**
  * Created by jie on 2018/5/30.
@@ -117,8 +120,12 @@ public class HotCityFragment extends BaseFragment implements IHotelCityContract.
                         showToast("暂无活动地址");
                     }
                 }else if (view.getId() == R.id.tvDetail){
-
-//                    goTo(StageActivityActivity.class,false,ACTIVITY_ID,hotelItemBean.getId());
+                    new IntentUtils.Builder(getActivity())
+                            .to(RoomListActivity.class)
+                            .putExtra(HOTEL_ID,hotelItemBean.getId())
+                            .putExtra(HOTEL_NAME,hotelItemBean.getName())
+                            .build()
+                            .start();
                 }
             }
         });

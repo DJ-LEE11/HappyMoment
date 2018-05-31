@@ -20,10 +20,10 @@ public interface IStageListContract {
     }
 
     interface Presenter {
-        void getStageList(String name);
+        void getStageList(String location, String name);
     }
 
     interface Model {
-        ResourceSubscriber getStageList(String name,OnModelCallBack<List<StageItemBean>> callBack);
+        ResourceSubscriber getStageList(String location, String name,OnModelCallBack<List<StageItemBean>> callBack);
     }
 }

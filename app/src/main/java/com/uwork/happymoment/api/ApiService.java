@@ -1,7 +1,14 @@
 package com.uwork.happymoment.api;
 
+import com.uwork.happymoment.mvp.hotel.bean.AddOrderRequestBean;
+import com.uwork.happymoment.mvp.hotel.bean.GetHotelListForCity;
+import com.uwork.happymoment.mvp.hotel.bean.GetHotelListForClassifyId;
+import com.uwork.happymoment.mvp.hotel.bean.GetHotelListForHotelName;
 import com.uwork.happymoment.mvp.hotel.bean.HotCityLabelBean;
 import com.uwork.happymoment.mvp.hotel.bean.HotelItemBean;
+import com.uwork.happymoment.mvp.hotel.bean.IntegralBean;
+import com.uwork.happymoment.mvp.hotel.bean.RoomDetailBean;
+import com.uwork.happymoment.mvp.hotel.bean.RoomItemBean;
 import com.uwork.happymoment.mvp.login.bean.LoginRequestBean;
 import com.uwork.happymoment.mvp.login.bean.RegisterRequestBean;
 import com.uwork.happymoment.mvp.login.bean.ResetPasswordRequestBean;
@@ -11,6 +18,7 @@ import com.uwork.happymoment.mvp.main.bean.BannerBean;
 import com.uwork.happymoment.mvp.main.bean.JoinStageActivityRequestBean;
 import com.uwork.happymoment.mvp.main.bean.StageActivityDetailBean;
 import com.uwork.happymoment.mvp.main.bean.StageItemBean;
+import com.uwork.happymoment.mvp.main.bean.StageListRequestBean;
 import com.uwork.happymoment.mvp.main.bean.VideoRespondBean;
 import com.uwork.happymoment.mvp.my.bean.UpdateUserInfoRequestBean;
 import com.uwork.happymoment.mvp.social.chat.bean.AddCreateGroupRequestBean;
@@ -248,7 +256,7 @@ public interface ApiService {
      * name不传返回全部
      */
     @POST("/stage/list")
-    Flowable<BaseResult<List<StageItemBean>>> getStageList(@Query("name") String name);
+    Flowable<BaseResult<List<StageItemBean>>> getStageList(@Body StageListRequestBean stageListRequestBean);
 
     /**
      * 驿站活动详情
@@ -271,8 +279,51 @@ public interface ApiService {
     Flowable<BaseResult<List<HotCityLabelBean>>> getHotCityLabel();
 
     /**
-     * 客栈列表
+     * 客栈列表(通过分类id获取)
      */
     @POST("/hostel/hostels")
-    Flowable<BaseResult<List<HotelItemBean>>> hotelList(@Query("classifyId") Integer classifyId);
+    Flowable<BaseResult<List<HotelItemBean>>> hotelListForClassifyId(@Body GetHotelListForClassifyId getHotelListForClassifyId);
+
+    /**
+     * 客栈列表(通过城市)
+     */
+    @POST("/hostel/hostels")
+    Flowable<BaseResult<List<HotelItemBean>>> hotelListForCity(@Body GetHotelListForCity getHotelListForCity);
+
+    /**
+     * 客栈列表(通过分类id获取)
+     */
+    @POST("/hostel/hostels")
+    Flowable<BaseResult<List<HotelItemBean>>> hotelListForHotelName(@Body GetHotelListForHotelName getHotelListForHotelName);
+
+    /**
+     * 为你优选
+     */
+    @POST("/hostel/optimization")
+    Flowable<BaseResult<List<HotelItemBean>>> preferenceForYou();
+
+    /**
+     * 房间列表
+     */
+    @POST("/hostel/roomList")
+    Flowable<BaseResult<List<RoomItemBean>>> getRoomList(@Query("id") Integer id);
+
+    /**
+     * 房间详情
+     */
+    @POST("/hostel/detail")
+    Flowable<BaseResult<RoomDetailBean>> getRoomDetail(@Query("id") Integer id);
+
+    /**
+     * 添加订单
+     */
+    @POST("/hostel/addOrder")
+    Flowable<BaseResult<String>> addOrder(@Body AddOrderRequestBean addOrderRequestBean);
+
+    /**
+     * 获取用户积分
+     */
+    @POST("/hostel/integral")
+    Flowable<BaseResult<IntegralBean>> getIntegral();
+
 }

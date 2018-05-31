@@ -341,19 +341,31 @@
             android:name=".mvp.my.activity.InterestMeActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.my.activity.UpdateNameActivity"
+        <activity
+            android:name=".mvp.my.activity.UpdateNameActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.my.activity.UpdateSexActivity"
+        <activity
+            android:name=".mvp.my.activity.UpdateSexActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.my.activity.UpdateAvatarActivity"
+        <activity
+            android:name=".mvp.my.activity.UpdateAvatarActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".mvp.hotel.activity.RoomListActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".mvp.hotel.activity.RoomDetailActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity android:name=".mvp.hotel.activity.RoomOrderActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

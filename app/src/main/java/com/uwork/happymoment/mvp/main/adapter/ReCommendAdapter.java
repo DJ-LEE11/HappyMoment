@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.example.circle_base_ui.imageloader.ImageLoadMnanger;
 import com.example.libvideo.NiceVideoPlayer;
 import com.example.libvideo.TxVideoPlayerController;
 import com.uwork.happymoment.R;
@@ -34,7 +35,7 @@ public class ReCommendAdapter extends BaseAdapter<VideoBean>{
         //控制器
         TxVideoPlayerController controller = new TxVideoPlayerController(mContext);
         videoPlayer.setController(controller);
-        controller.imageView().setImageBitmap(item.getBitmap());
+        ImageLoadMnanger.INSTANCE.loadImage(controller.imageView(),item.getUrl());
         controller.setTitle(item.getTitle());
         videoPlayer.setUp(item.getUrl(), null);
     }

@@ -1,10 +1,10 @@
-package com.uwork.happymoment.mvp.main.presenter;
+package com.uwork.happymoment.mvp.hotel.presenter;
 
 import android.content.Context;
 
-import com.uwork.happymoment.mvp.main.bean.StageItemBean;
-import com.uwork.happymoment.mvp.main.contract.IStageListContract;
-import com.uwork.happymoment.mvp.main.model.IStageListModel;
+import com.uwork.happymoment.mvp.hotel.bean.RoomItemBean;
+import com.uwork.happymoment.mvp.hotel.contract.IGetRoomListContract;
+import com.uwork.happymoment.mvp.hotel.model.IGetRoomListModel;
 import com.uwork.librx.mvp.contract.IBaseActivityContract;
 import com.uwork.librx.mvp.presenter.IBasePresenterImpl;
 import com.uwork.librx.rx.http.ApiException;
@@ -13,22 +13,22 @@ import com.uwork.librx.rx.interfaces.OnModelCallBack;
 import java.util.List;
 
 /**
- * Created by jie on 2018/5/28.
+ * Created by jie on 2018/5/31.
  */
 
-public class IStageListPresenter<T extends IStageListContract.View & IBaseActivityContract.View> extends IBasePresenterImpl<T>
-        implements IStageListContract.Presenter {
+public class IGetRoomListPresenter <T extends IGetRoomListContract.View & IBaseActivityContract.View> extends IBasePresenterImpl<T>
+        implements IGetRoomListContract.Presenter {
 
-    private IStageListModel mModel;
+    private IGetRoomListModel mModel;
 
-    public IStageListPresenter(Context context) {
+    public IGetRoomListPresenter(Context context) {
         super(context);
-        mModel = new IStageListModel(context);
+        mModel = new IGetRoomListModel(context);
     }
 
     @Override
-    public void getStageList(String location, String name) {
-        mModel.getStageList(location,name, new OnModelCallBack<List<StageItemBean>>() {
+    public void getRoomList(Integer id) {
+        addSubscription(mModel.getRoomList(id, new OnModelCallBack<List<RoomItemBean>>() {
             @Override
             public void onStart() {
                 getView().showLoading();
@@ -40,10 +40,10 @@ public class IStageListPresenter<T extends IStageListContract.View & IBaseActivi
             }
 
             @Override
-            public void onSuccess(List<StageItemBean> value) {
+            public void onSuccess(List<RoomItemBean> value) {
                 getView().dismissLoading();
                 if (value!=null && value.size()>0){
-                    getView().showStageList(value);
+                    getView().showRoomList(value);
                 }else {
                     getView().showEmpty();
                 }
@@ -59,6 +59,6 @@ public class IStageListPresenter<T extends IStageListContract.View & IBaseActivi
             public void onComplete() {
                 getView().dismissLoading();
             }
-        });
+        }));
     }
 }

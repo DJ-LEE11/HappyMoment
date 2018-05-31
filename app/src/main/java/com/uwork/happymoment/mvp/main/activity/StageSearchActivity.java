@@ -1,5 +1,6 @@
 package com.uwork.happymoment.mvp.main.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,6 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.uwork.happymoment.mvp.main.activity.StageActivity.LOCATION;
 import static com.uwork.happymoment.mvp.main.activity.StageActivityActivity.ACTIVITY_ID;
 import static com.uwork.happymoment.mvp.main.activity.StageMapActivity.STAGE_LAT;
 import static com.uwork.happymoment.mvp.main.activity.StageMapActivity.STAGE_LON;
@@ -39,6 +41,7 @@ public class StageSearchActivity extends BaseActivity implements IStageListContr
 
     private IStageListPresenter mIStageListPresenter;
     private StageAdapter mStageAdapter;
+    private String mLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +67,11 @@ public class StageSearchActivity extends BaseActivity implements IStageListContr
     protected void initView(Bundle savedInstanceState) {
         ButterKnife.bind(this);
         initList();
+    }
+
+    @Override
+    protected void initData(Intent intent, Bundle savedInstanceState) {
+        mLocation = intent.getStringExtra(LOCATION);
     }
 
     private void initList() {
@@ -120,7 +128,7 @@ public class StageSearchActivity extends BaseActivity implements IStageListContr
             case R.id.tvSearch:
                 String searchText = mEtSearch.getText().toString();
                 if (!TextUtils.isEmpty(searchText)) {
-                    mIStageListPresenter.getStageList(searchText);
+                    mIStageListPresenter.getStageList(mLocation,searchText);
                 } else {
                     showToast("请输入搜索驿站");
                 }

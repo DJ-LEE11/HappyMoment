@@ -1,7 +1,5 @@
 package com.uwork.happymoment.mvp.main.bean;
 
-import android.graphics.Bitmap;
-
 /**
  * Created by jie on 2018/5/25.
  */
@@ -9,12 +7,12 @@ import android.graphics.Bitmap;
 public class VideoBean {
     private String title;
     private String url;
-    private Bitmap bitmap;
+    private String img;
 
-    public VideoBean(String title, String url, Bitmap bitmap) {
+    public VideoBean(String title, String url, String img) {
         this.title = title;
         this.url = url;
-        this.bitmap = bitmap;
+        this.img = img;
     }
 
     public VideoBean(String title, String url) {
@@ -38,11 +36,11 @@ public class VideoBean {
         this.url = url;
     }
 
-    public Bitmap getBitmap() {
-        return bitmap;
+    public String getImg() {
+        return img;
     }
 
-    public void setBitmap(Bitmap bitmap) {
-        this.bitmap = bitmap;
+    public void setImg(String img) {
+        this.img = img;
     }
 }
