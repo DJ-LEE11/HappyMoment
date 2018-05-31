@@ -12,6 +12,7 @@ import com.uwork.happymoment.mvp.main.bean.JoinStageActivityRequestBean;
 import com.uwork.happymoment.mvp.main.bean.StageActivityDetailBean;
 import com.uwork.happymoment.mvp.main.bean.StageItemBean;
 import com.uwork.happymoment.mvp.main.bean.VideoRespondBean;
+import com.uwork.happymoment.mvp.my.bean.UpdateUserInfoRequestBean;
 import com.uwork.happymoment.mvp.social.chat.bean.AddCreateGroupRequestBean;
 import com.uwork.happymoment.mvp.social.chat.bean.AddGroupBean;
 import com.uwork.happymoment.mvp.social.chat.bean.ApplyAddFriendRequestBean;
@@ -220,6 +221,12 @@ public interface ApiService {
      */
     @POST("/user/logout")
     Flowable<BaseResult<String>> logout();
+
+    /**
+     * 更新用户信息
+     */
+    @POST("/user/updateUser")
+    Flowable<BaseResult<String>> updateUserInfo(@Body UpdateUserInfoRequestBean updateUserInfoRequestBean);
 
     //===========================================================================>首页
 

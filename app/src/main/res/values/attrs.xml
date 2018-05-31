@@ -6,6 +6,11 @@
         <attr name="pet_iconHide" format="integer"/>
     </declare-styleable>
 
+    <!-- 清空内容输入框 -->
+    <declare-styleable name="CleanEditText">
+        <attr name="iconClean" format="integer"/>
+    </declare-styleable>
+
     <!-- 圆形头像 -->
     <declare-styleable name="CircleImageView">
         <attr name="civ_border_width" format="dimension" />

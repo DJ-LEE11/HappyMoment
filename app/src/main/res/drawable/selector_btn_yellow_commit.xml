@@ -3,5 +3,5 @@
     <item android:state_pressed="true" android:drawable="@drawable/shape_btn_yellow_commit_pressed"></item>
     <item android:state_selected="true" android:drawable="@drawable/shape_btn_yellow_commit_pressed"></item>
     <item android:state_enabled="true" android:drawable="@drawable/shape_btn_yellow_commit_normal"/>
-    <item android:drawable="@drawable/shape_btn_commit_disable"/>
+    <item android:drawable="@drawable/shape_btn_commit_yellow_disable"/>
 </selector>

@@ -22,7 +22,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             manifestPlaceholders = [
-                    RONG_AppKey: "82hegw5u8yn9x"
+                    RONG_AppKey: "8brlm7uf8zxo3"
             ]
         }
     }

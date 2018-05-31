@@ -85,6 +85,8 @@ ext {
             Nineoldandroids              : 'com.nineoldandroids:library:2.4.0',
             FlycoBanner                  : 'com.flyco.banner:FlycoBanner_Lib:2.0.2@aar',
             //流式布局
-            FlowLayout                   : 'com.hyman:flowlayout-lib:1.1.2'
+            FlowLayout                   : 'com.hyman:flowlayout-lib:1.1.2',
+            //图片剪裁
+            ucrop       : 'com.yalantis:ucrop:2.2.0',
     ]
 }

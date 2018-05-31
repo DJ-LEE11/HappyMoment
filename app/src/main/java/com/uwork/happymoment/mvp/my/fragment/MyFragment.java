@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.circle_base_ui.imageloader.ImageLoadMnanger;
+import com.kw.rxbus.RxBus;
 import com.uwork.happymoment.R;
+import com.uwork.happymoment.event.RefreshUserInfoEvent;
 import com.uwork.happymoment.manager.UserManager;
 import com.uwork.happymoment.mvp.login.bean.UserBean;
 import com.uwork.happymoment.mvp.my.activity.HappyValueActivity;
@@ -32,6 +34,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Consumer;
 
 /**
  * Created by jie on 2018/5/9.
@@ -47,6 +51,8 @@ public class MyFragment extends BaseFragment {
     CircleImageView mIvAvatar;
     @BindView(R.id.tvName)
     TextView mTvName;
+    private CompositeDisposable mDisposables;
+
 
     public static MyFragment newInstance() {
         if (null == fragment) {
@@ -71,7 +77,21 @@ public class MyFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_my, container, false);
         unbinder = ButterKnife.bind(this, view);
         refreshUserInfo();
+        initEvent();
         return view;
+    }
+
+    //修改完信息后刷新
+    private void initEvent() {
+        if (mDisposables == null) {
+            mDisposables = new CompositeDisposable();
+        }
+        mDisposables.add(RxBus.getInstance().register(RefreshUserInfoEvent.class, new Consumer<RefreshUserInfoEvent>() {
+            @Override
+            public void accept(RefreshUserInfoEvent refreshUserInfoEvent) throws Exception {
+                refreshUserInfo();
+            }
+        }));
     }
 
     private void refreshUserInfo() {
