@@ -357,13 +357,19 @@
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".mvp.hotel.activity.RoomListActivity"
+        <activity
+            android:name=".mvp.hotel.activity.RoomListActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".mvp.hotel.activity.RoomDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.hotel.activity.RoomDetailActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.hotel.activity.RoomOrderActivity"
+        <activity
+            android:name=".mvp.hotel.activity.RoomOrderActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity android:name=".mvp.my.activity.EvaluateActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
     </application>

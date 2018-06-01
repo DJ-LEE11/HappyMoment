@@ -25,4 +25,12 @@
         <item>为你优选</item>
         <item>主题风格</item>
     </string-array>
+
+    <string-array name="order_status">
+        <item>全部订单</item>
+        <item>待付款</item>
+        <item>已付款</item>
+        <item>已取消</item>
+        <item>交易完成</item>
+    </string-array>
 </resources>

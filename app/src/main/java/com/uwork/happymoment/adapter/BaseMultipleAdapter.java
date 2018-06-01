@@ -26,6 +26,10 @@ public abstract class BaseMultipleAdapter extends BaseMultiItemQuickAdapter<Mult
     public static final int TYPE_ITEM2 = 2;
     //第三种布局
     public static final int TYPE_ITEM3 = 3;
+    //第四种布局
+    public static final int TYPE_ITEM4 = 4;
+    //第五种布局
+    public static final int TYPE_ITEM5 = 5;
 
     public BaseMultipleAdapter(List<MultiItemEntity> data) {
         super(data);

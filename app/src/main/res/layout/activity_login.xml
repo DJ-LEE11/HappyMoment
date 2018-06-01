@@ -69,7 +69,7 @@
                 android:layout_marginLeft="10dp"
                 android:background="@null"
                 android:gravity="left|center_vertical"
-                android:hint="请输入验证码"
+                android:hint="请输入密码"
                 android:maxLength="30"
                 android:inputType="textPassword"
                 android:paddingLeft="1dp"

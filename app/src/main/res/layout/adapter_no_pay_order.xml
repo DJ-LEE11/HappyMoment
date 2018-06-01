@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white_color"
+    android:layout_marginBottom="8dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="12dp"
+    android:paddingBottom="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_14"
+            android:textColor="@color/text_color_01"
+            android:maxLines="1"
+            android:text="法国代购"
+            android:ellipsize="end"
+            android:id="@+id/tvHotelName"/>
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:text="待付款"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_14"
+            android:textColor="@color/text_color_red" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:background="@color/line_color"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="4dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <ImageView
+            android:id="@+id/ivOrder"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/tvRoom"
+            android:text="222222222"
+            android:layout_marginLeft="8dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textSize="@dimen/text_size_14"
+            android:textColor="@color/text_color_01"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:gravity="left"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/tvPrice"
+                android:text="222.0"
+                android:textSize="@dimen/text_size_14"
+                android:textColor="@color/text_color_01"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/tvNum"
+                android:text="222333"
+                android:layout_marginTop="6dp"
+                android:textSize="@dimen/text_size_14"
+                android:textColor="@color/text_color_01"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:background="@color/line_color"
+        android:layout_marginTop="8dp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvAllPrice"
+        android:text="22222"
+        android:textColor="@color/text_color_red"
+        android:textSize="@dimen/text_size_14"
+        android:layout_marginTop="3dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="20dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp">
+
+        <TextView
+            android:id="@+id/tvPay"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:text="付款"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:background="@drawable/shape_gray_frame"/>
+    </RelativeLayout>
+
+</LinearLayout>
