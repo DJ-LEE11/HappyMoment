@@ -16,6 +16,7 @@ import com.uwork.happymoment.manager.UserManager;
 import com.uwork.happymoment.mvp.login.bean.UserBean;
 import com.uwork.happymoment.mvp.my.activity.HappyValueActivity;
 import com.uwork.happymoment.mvp.my.activity.InterestMeActivity;
+import com.uwork.happymoment.mvp.my.activity.MapActivity;
 import com.uwork.happymoment.mvp.my.activity.MyActivityActivity;
 import com.uwork.happymoment.mvp.my.activity.MyEvaluateActivity;
 import com.uwork.happymoment.mvp.my.activity.MyFileActivity;
@@ -141,7 +142,7 @@ public class MyFragment extends BaseFragment {
                 goTo(MyStewardActivity.class);
                 break;
             case R.id.llInterestMe:
-                goTo(InterestMeActivity.class);
+                goTo(MapActivity.class);
                 break;
         }
     }
